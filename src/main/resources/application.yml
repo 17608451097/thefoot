@@ -1,0 +1,31 @@
+server:
+
+mybatis:
+  type-aliases-package: com.cssl.pojo
+  mapper-locations: classpath:com.cssl.dao/*.xml
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///thefoot
+    username: root
+    password: 123
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+    
+  resources:
+    static-locations: classpath:/
+
+#thymeleaf start
+  thymeleaf:
+    encoding: UTF-8
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: true
+    prefix: classpath:/page/
+    suffix: .html
+#thymeleaf end

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>加百利商城后台管理</title> 
+<style type="text/css">
+	li{
+		list-style: none;
+		
+	}
+	.sp,.yh,.dd{
+		text-decoration: none;
+		color:#000;
+	}
+</style>  
+<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">   
+<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+<script type="text/javascript" src="static/jquery.min.js"></script>  
+<script type="text/javascript" src="static/jquery.easyui.min.js"></script> 
+<script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".sp").click(function(){
+	  	var title =	$(this).text();
+		if($('#tt').tabs('exists',title)){
+			$('#tt').tabs('select',title)
+		}else{
+		  	$('#tt').tabs('add',{    
+			    title:title, 
+			    closable:true,
+			    href:'shop.html',
+			});
+		}
+	});
+	$(".yh").click(function(){
+	  	var title =	$(this).text();
+		if($('#tt').tabs('exists',title)){
+			$('#tt').tabs('select',title)
+		}else{
+		  	$('#tt').tabs('add',{    
+			    title:title, 
+			    closable:true,
+			    href:'user.html',
+			});
+		}
+	});
+	$(".dd").click(function(){
+	  	var title =	$(this).text();
+		if($('#tt').tabs('exists',title)){
+			$('#tt').tabs('select',title)
+		}else{
+		  	$('#tt').tabs('add',{    
+			    title:title, 
+			    closable:true,
+			    href:'order.html',
+			});
+		}
+	});
+});
+</script>
+</head>
+<body class="easyui-layout"> 
+	<!-- 顶部LOGO板块 -->
+    <div data-options="region:'north'" style="height:60px;background-color:#ccc;">
+    	<!-- <img alt="logo" src="image/ad.jpg" height="41px" width="41px"><h3></h3> -->
+    	<h3 style="text-align: center;color:#000;">加百利商城1.0测试版管理员后台</h3>
+    </div>
+    
+    <!-- 底部版权板块 -->
+    <div data-options="region:'south'" style="height:40px;text-align:center;"><br/>&copy; 版权所有 北大青鸟 F4</div>
+    
+    <!-- 左部类别板块 -->
+    <div data-options="region:'west'" style="width:280px;">
+    	<div id="aa" class="easyui-accordion" style="width:100%;height:100%;">
+		    <div title="商品管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+		        <h3 style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="sp">商品</a></h3>
+		    </div>
+		    <div title="用户管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+		        <h3 style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="yh">用户</a></h3>
+		    </div>
+		    <div title="订单管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+		        <h3 style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="dd">订单</a></h3>
+		    </div>
+		</div>
+    </div>   
+    
+    <!-- 后台数据展示开始板块  -->
+    <div data-options="region:'center'" style="padding:5px;background:#eee;">
+    	<div id="tt" class="easyui-tabs" style="width:100%;height:100%;">
+    		<!-- 第一个选项卡 -->
+		    <div title="欢迎管理员" style="background-color:#fff;padding:20px;background-image: url('image/1234.jpg');background-size: 100% 70%; background-repeat: no-repeat;background-position:-2px 175px;">   
+		         <img class="img" src="image/ad.jpg">
+		        
+		    </div>
+		    
+		    <!-- 新增的选项卡在后面 -->
+		</div>  
+    </div>
+    <!-- 后台数据展示结束板块 -->  
+    
+</body> 
+</html>

@@ -1,0 +1,689 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Single</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="css/form.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function () {
+                $(".dropdown dd ul").toggle();
+            });
+
+            $(".dropdown dd ul li a").click(function () {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function (e) {
+                var $clicked = $(e.target);
+                if (!$clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function () {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+    </script>
+    <!-- start menu -->
+    <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="js/megamenu.js"></script>
+    <script>$(document).ready(function () {
+        $(".megamenu").megamenu();
+    });</script>
+    <!-- end menu -->
+    <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" id="sourcecode">
+        $(function () {
+            $('.scroll-pane').jScrollPane();
+        });
+    </script>
+    <!----details-product-slider--->
+    <!-- Include the Etalage files -->
+    <link rel="stylesheet" href="css/etalage.css">
+    <script src="js/jquery.etalage.min.js"></script>
+    <!-- Include the Etalage files -->
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $('#etalage').etalage({
+                thumb_image_width: 300,
+                thumb_image_height: 400,
+
+                show_hint: true,
+                click_callback: function (image_anchor, instance_id) {
+                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
+                }
+            });
+            // This is for the dropdown list example:
+            $('.dropdownlist').change(function () {
+                etalage_show($(this).find('option:selected').attr('class'));
+            });
+
+        });
+    </script>
+    <!----//details-product-slider--->
+    <!-- top scrolling -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1200);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="header-top">
+    <div class="wrap">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt=""/></a>
+        </div>
+        <div class="cssmenu">
+		   <ul>
+			 <li class="active"><a href="register.html">注册</a></li> 
+			 <li><a href="shop.html">商品列表</a></li> 
+			 <li><a href="checkout.html">我的帐户</a></li> 
+			 <li><a href="checkout.html">查看</a></li> 
+		   </ul>
+		</div>
+        <ul class="icon2 sub-icon2 profile_img">
+            <li><a class="active-icon c2" href="#"> </a>
+                <ul class="sub-icon2 list">
+                    <li><h3>制品</h3><a href=""></a></li>
+                    <li><p>的的Lorem存有胡萝卜，提高 <a href="">本科开发商，但直径</a></p></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="header-bottom">
+		<div class="wrap">
+			<!-- start header menu -->
+			<ul class="megamenu skyblue">
+				<li><a class="color1" href="#">首页</a></li>
+				<li class="grid"><a class="color2" href="#">男装</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">最新上市</a></li>
+									</ul>
+								</div>
+								<div class="h_nav">
+									<h4 class="top">男装</h4>
+									<ul>
+										<li><a href="shop.html">最新上市</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>风格区</h4>
+									<ul>
+										<li><a href="shop.html">潮牌</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<img src="images/nav_img.jpg" alt="" />
+						</div>
+					</div></li>
+				<li class="active grid"><a class="color4" href="#">女装</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>商品</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>饰品</h4>
+									<ul>
+										<li><a href="shop.html">头饰</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>我的公司</h4>
+									<ul>
+										<li><a href="shop.html">风格</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>账户</h4>
+									<ul>
+										<li><a href="shop.html">登陆</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">风格</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<img src="images/nav_img1.jpg" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col2"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color5" href="#">童装</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+								<div class="h_nav">
+									<h4 class="top">男款</h4>
+									<ul>
+										<li><a href="shop.html">新款</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>我的风格</h4>
+									<ul>
+										<li><a href="shop.html">男子气概</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<img src="images/nav_img2.jpg" alt="" />
+						</div>
+					</div></li>
+				<li><a class="color6" href="#">销售</a>
+					<div class="megapanel">
+						<div class="row">
+							<!-- <div class="col1">
+							<div class="h_nav">
+								<h4>shop</h4>
+								<ul>
+									<li><a href="shop.html">new arrivals</a></li>
+									<li><a href="shop.html">men</a></li>
+									<li><a href="shop.html">women</a></li>
+									<li><a href="shop.html">accessories</a></li>
+									<li><a href="shop.html">kids</a></li>
+									<li><a href="shop.html">brands</a></li>
+								</ul>	
+							</div>	
+							<div class="h_nav">
+								<h4 class="top">my company</h4>
+								<ul>
+									<li><a href="shop.html">trends</a></li>
+									<li><a href="shop.html">sale</a></li>
+									<li><a href="shop.html">style videos</a></li>
+									<li><a href="shop.html">accessories</a></li>
+									<li><a href="shop.html">kids</a></li>
+									<li><a href="shop.html">style videos</a></li>
+								</ul>	
+							</div>												
+						</div> -->
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col2"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color7" href="#">定制</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col2"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color8" href="#">商城</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>自我风格</h4>
+									<ul>
+										<li><a href="shop.html">爆款</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>风格</h4>
+									<ul>
+										<li><a href="shop.html">爆款上市</a></li>
+									</ul>
+								</div>
+							</div>
+						</div></li>
+				<li><a class="color9" href="#">足球</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color10" href="#">跑鞋</a></li>
+				<li><a class="color11" href="#">原件</a></li>
+				<li><a class="color12" href="#">篮球</a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+<div class="single">
+    <div class="wrap">
+        <div class="rsidebar span_1_of_left">
+            <section class="sky-form">
+                <h4>类别</h4>
+                <div class="row row1 scroll-pane">
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>类别</label>
+                    </div>
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>运动鞋</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>休闲鞋</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>高跟鞋(38)</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>其它(1)</label>
+                    </div>
+                </div>
+            </section>
+            <section class="sky-form">
+                <h4>价钱</h4>
+                <div class="row row1 scroll-pane">
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i> 50.00及以下</label>
+                    </div>
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>  100.00及以下</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$  200.00及以下</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 300.00及以下</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$  400.00及以下</label>
+                    </div>
+                </div>
+            </section>
+            <section class="sky-form">
+                <h4>颜色</h4>
+                <div class="row row1 scroll-pane">
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>红</label>
+                    </div>
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i></label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>黑色</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>黄色</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>橙色</label>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="cont span_2_of_3">
+            <div class="labout span_1_of_a1">
+                <!-- start product_slider -->
+                <ul id="etalage">
+                	<!-- 详细商品图片,上边图片为原图,下边为悬浮显示图片 -->
+                    <li>
+                        <a href="optionallink.html">
+                            <img class="etalage_thumb_image" src="images/t1.jpg"/>
+                            <img class="etalage_source_image" src="images/t2.jpg"/>
+                        </a>
+                    </li>
+                    <!-- 详细商品图片下面的轮换小图,上边图片为原图,下边为悬浮显示图片 -->
+                    <li>
+                        <img class="etalage_thumb_image" src="images/t1.jpg"/>
+                        <img class="etalage_source_image" src="images/t2.jpg"/>
+                    </li>
+                    <li>
+                        <img class="etalage_thumb_image" src="images/t3.jpg"/>
+                        <img class="etalage_source_image" src="images/t3.jpg"/>
+                    </li>
+                    <li>
+                        <img class="etalage_thumb_image" src="images/t4.jpg"/>
+                        <img class="etalage_source_image" src="images/t4.jpg"/>
+                    </li>
+                    <li>
+                        <img class="etalage_thumb_image" src="images/t5.jpg"/>
+                        <img class="etalage_source_image" src="images/t5.jpg"/>
+                    </li>
+                    <li>
+                        <img class="etalage_thumb_image" src="images/t6.jpg"/>
+                        <img class="etalage_source_image" src="images/t6.jpg"/>
+                    </li>
+                    <li>
+                        <img class="etalage_thumb_image" src="images/t1.jpg"/>
+                        <img class="etalage_source_image" src="images/t1.jpg"/>
+                    </li>
+                </ul>
+                <!-- end product_slider -->
+            </div>
+            
+            <div class="cont1 span_2_of_a1">
+                <h3 class="m_3">LOREM存有胡萝卜</h3>
+
+                <div class="price_single">
+                    <span class="reducedfrom">$66.00</span>
+                    <span class="actual">$12.00</span><a href="#">点击报价</a>
+                </div>
+                <ul class="options">
+                    <h4 class="m_9">选择尺寸</h4>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">8</a></li>
+                    <li><a href="#">9</a></li>
+                    <div class="clear"></div>
+                </ul>
+                <br/>
+                 <ul class="options">
+                    <h4 class="m_9">选择颜色</h4>
+                    <li><a href="#">黄色</a></li>
+                    <li><a href="#">绿色</a></li>
+                    <li><a href="#">蓝色</a></li>
+                    <li><a href="#">黑色</a></li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="btn_form">
+                    <form>
+                        <input type="submit" value="buy now" title="">
+                    </form>
+                </div>
+                <ul class="add-to-links">
+                    <li><img src="images/wish.png" alt=""/><a href="#">加入购物车</a></li>
+                </ul>
+                <p class="m_desc">产品描述</p>
+
+                <div class="social_single">
+                    <ul>
+                        <li class="fb"><a href="#"><span> </span></a></li>
+                        <li class="tw"><a href="#"><span> </span></a></li>
+                        <li class="g_plus"><a href="#"><span> </span></a></li>
+                        <li class="rss"><a href="#"><span> </span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+
+            <ul id="flexiselDemo3">
+                <li><img src="images/pic11.jpg"/>
+                    <div class="grid-flex"><a href="#">Bloch</a>
+                        <p>Rs 850</p></div>
+                </li>
+                <li><img src="images/pic10.jpg"/>
+                    <div class="grid-flex"><a href="#">Capzio</a>
+                        <p>Rs 850</p></div>
+                </li>
+                <li><img src="images/pic9.jpg"/>
+                    <div class="grid-flex"><a href="#">Zumba</a>
+                        <p>Rs 850</p></div>
+                </li>
+                <li><img src="images/pic8.jpg"/>
+                    <div class="grid-flex"><a href="#">Bloch</a>
+                        <p>Rs 850</p></div>
+                </li>
+                <li><img src="images/pic7.jpg"/>
+                    <div class="grid-flex"><a href="#">Capzio</a>
+                        <p>Rs 850</p></div>
+                </li>
+            </ul>
+            
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $("#flexiselDemo1").flexisel();
+                    $("#flexiselDemo2").flexisel({
+                        enableResponsiveBreakpoints: true,
+                        responsiveBreakpoints: {
+                            portrait: {
+                                changePoint: 480,
+                                visibleItems: 1
+                            },
+                            landscape: {
+                                changePoint: 640,
+                                visibleItems: 2
+                            },
+                            tablet: {
+                                changePoint: 768,
+                                visibleItems: 3
+                            }
+                        }
+                    });
+
+                    $("#flexiselDemo3").flexisel({
+                        visibleItems: 5,
+                        animationSpeed: 1000,
+                        autoPlay: true,
+                        autoPlaySpeed: 3000,
+                        pauseOnHover: true,
+                        enableResponsiveBreakpoints: true,
+                        responsiveBreakpoints: {
+                            portrait: {
+                                changePoint: 480,
+                                visibleItems: 1
+                            },
+                            landscape: {
+                                changePoint: 640,
+                                visibleItems: 2
+                            },
+                            tablet: {
+                                changePoint: 768,
+                                visibleItems: 3
+                            }
+                        }
+                    });
+
+                });
+            </script>
+            <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+            <div class="toogle">
+                <h3 class="m_3">产品 详情</h3>
+                <p class="m_text">Lorem ipsum dolor sit amet</p>
+            </div>
+            <div class="toogle">
+                <h3 class="m_3">产品 评论</h3>
+                <p class="m_text">Lorem ipsum dolor sit amet</p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="footer">
+       	  <div class="footer-top">
+       		<div class="wrap">
+       			   <div class="col_1_of_footer-top span_1_of_footer-top">
+				  	 <ul class="f_list">
+				  	 	<li><img src="images/f_icon.png" alt=""><span class="delivery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">超过100英镑的所有订单免费送货*</font></font></span></li>
+				  	 </ul>
+				   </div>
+				   <div class="col_1_of_footer-top span_1_of_footer-top">
+				  	<ul class="f_list">
+				  	 	<li><img src="images/f_icon1.png" alt=""><span class="delivery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客户服务：</font></font><span class="orange"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（800）000-2587（免费电话）</font></font></span></span></li>
+				  	 </ul>
+				   </div>
+				   <div class="col_1_of_footer-top span_1_of_footer-top">
+				  	<ul class="f_list">
+				  	 	<li><img src="images/f_icon2.png" alt=""><span class="delivery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速交货和免费退货</font></font></span></li>
+				  	 </ul>
+				   </div>
+				  <div class="clear"></div>
+			 </div>
+       	 </div>
+       	 <div class="footer-middle">
+       	 	<div class="wrap">
+       	 		<div class="section group">
+				<div class="col_1_of_middle span_1_of_middle">
+					<dl id="sample" class="dropdown">
+			        <dt><a href="#"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请选择一个国家</font></font></span></a></dt>
+			        <dd>
+			            <ul style="display: none;">
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">澳大利亚</font></font><img class="flag flagvisibility" src="images/as.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AS</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">斯里兰卡</font></font><img class="flag flagvisibility" src="images/srl.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SL</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Newziland </font></font><img class="flag flagvisibility" src="images/nz.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NZ</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">巴基斯坦</font></font><img class="flag flagvisibility" src="images/pk.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pk</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英国</font></font><img class="flag flagvisibility" src="images/uk.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英国</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">美国</font></font><img class="flag flagvisibility" src="images/us.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">美国</font></font></span></a></li>
+			            </ul>
+			         </dd>
+   				    </dl>
+   				 </div>
+				<div class="col_1_of_middle span_1_of_middle">
+					<ul class="f_list1">
+						<li><span class="m_8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注册电子邮件并获得15％的折扣</font></font></span>
+						<div class="search">	  
+							<input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="订阅" id="submit" name="submit"></font></font>
+							<div id="response"> </div>
+			 			</div><div class="clear"></div>
+			 		    </li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			   </div>
+       	 	</div>
+       	 </div>
+       	<div class="footer-bottom">
+       	 	<div class="wrap">
+       	 		<div class="section group">
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店</font></font></h3>
+					<ul class="sub_list">
+						<h4 class="m_10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男人</font></font></h4>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男装鞋</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男士服装</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男士配饰</font></font></a></li>
+			        </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">体育</font></font></h3>
+					<ul class="list1">
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">篮球</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">足球</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">足球鞋</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕食者</font></font></a></li>
+			         </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">原稿</font></font></h3>
+					<ul class="list1">
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Originals鞋子</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">羚羊</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">桑巴</font></font></a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品类型</font></font></h3>
+					<ul class="list1">
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">衬衫</font></font></a></li>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">裤子和裤袜</font></font></a></li>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">衬衫</font></font></a></li>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">球衣</font></font></a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支持</font></font></h3>
+					<ul class="list1">
+					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商店发现者</font></font></a></li>
+					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客户服务</font></font></a></li>
+					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">常问问题</font></font></a></li>
+					  
+		            </ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+       	 	</div>
+       	 </div>
+       	 
+       	 <div class="copy">
+       	   <div class="wrap" style="height: 50px"> </div>
+       	 </div>
+       	 
+       </div>
+       <script type="text/javascript">
+			$(document).ready(function() {
+			
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+		 		};
+				
+				
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+		</script>
+        <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><span id="toTopHover" style="opacity: 1;"></span></a>       
+</body></html>

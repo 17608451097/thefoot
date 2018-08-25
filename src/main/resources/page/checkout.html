@@ -1,0 +1,448 @@
+<html class="translated-ltr"><head>
+<title>查看</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+                        
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+                        
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+     </script>
+<!-- start menu -->     
+<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="js/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<!-- end menu -->
+<!-- top scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+   <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+	</script>
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css"></head>
+<body>
+  <div class="header-top">
+	 <div class="wrap"> 
+		<div class="logo">
+			<a href="index.html"><img src="images/logo.png" alt=""></a>
+	    </div>
+	    <div class="cssmenu">
+		   <ul>
+			 <li class="active"><a href="register.html">注册</a></li> 
+			 <li><a href="shop.html">商品列表</a></li> 
+			  <li><a href="checkout.html">我的帐户</a></li> 
+			 <li><a href="checkout.html">查看</a></li> 
+		   </ul>
+		</div>
+		<ul class="icon2 sub-icon2 profile_img">
+			<li><a class="active-icon c2" href="#"> </a>
+				<ul class="sub-icon2 list">
+					<li><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">制品</font></font></h3><a href=""></a></li>
+					<li><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> </font></font><a href=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">consectetuer adipiscing elit，sed diam</font></font></a></p></li>
+				</ul>
+			</li>
+		</ul>
+		<div class="clear"></div>
+ 	</div>
+   </div><div class="header-bottom">
+		<div class="wrap">
+			<!-- start header menu -->
+			<ul class="megamenu skyblue">
+				<li><a class="color1" href="#">首页</a></li>
+				<li class="grid"><a class="color2" href="#">男装</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">最新上市</a></li>
+									</ul>
+								</div>
+								<div class="h_nav">
+									<h4 class="top">男装</h4>
+									<ul>
+										<li><a href="shop.html">最新上市</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>风格区</h4>
+									<ul>
+										<li><a href="shop.html">潮牌</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<img src="images/nav_img.jpg" alt="" />
+						</div>
+					</div></li>
+				<li class="active grid"><a class="color4" href="#">女装</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>商品</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>饰品</h4>
+									<ul>
+										<li><a href="shop.html">头饰</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>我的公司</h4>
+									<ul>
+										<li><a href="shop.html">风格</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>账户</h4>
+									<ul>
+										<li><a href="shop.html">登陆</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">风格</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<img src="images/nav_img1.jpg" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col2"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color5" href="#">童装</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+								<div class="h_nav">
+									<h4 class="top">男款</h4>
+									<ul>
+										<li><a href="shop.html">新款</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>我的风格</h4>
+									<ul>
+										<li><a href="shop.html">男子气概</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<img src="images/nav_img2.jpg" alt="" />
+						</div>
+					</div></li>
+				<li><a class="color6" href="#">销售</a>
+					<div class="megapanel">
+						<div class="row">
+							<!-- <div class="col1">
+							<div class="h_nav">
+								<h4>shop</h4>
+								<ul>
+									<li><a href="shop.html">new arrivals</a></li>
+									<li><a href="shop.html">men</a></li>
+									<li><a href="shop.html">women</a></li>
+									<li><a href="shop.html">accessories</a></li>
+									<li><a href="shop.html">kids</a></li>
+									<li><a href="shop.html">brands</a></li>
+								</ul>	
+							</div>	
+							<div class="h_nav">
+								<h4 class="top">my company</h4>
+								<ul>
+									<li><a href="shop.html">trends</a></li>
+									<li><a href="shop.html">sale</a></li>
+									<li><a href="shop.html">style videos</a></li>
+									<li><a href="shop.html">accessories</a></li>
+									<li><a href="shop.html">kids</a></li>
+									<li><a href="shop.html">style videos</a></li>
+								</ul>	
+							</div>												
+						</div> -->
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col2"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color7" href="#">定制</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款上市</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col2"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color8" href="#">商城</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>自我风格</h4>
+									<ul>
+										<li><a href="shop.html">爆款</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1">
+								<div class="h_nav">
+									<h4>风格</h4>
+									<ul>
+										<li><a href="shop.html">爆款上市</a></li>
+									</ul>
+								</div>
+							</div>
+						</div></li>
+				<li><a class="color9" href="#">足球</a>
+					<div class="megapanel">
+						<div class="row">
+							<div class="col1">
+								<div class="h_nav">
+									<h4>流行</h4>
+									<ul>
+										<li><a href="shop.html">新款</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col1"></div>
+						</div>
+					</div></li>
+				<li><a class="color10" href="#">跑鞋</a></li>
+				<li><a class="color11" href="#">原件</a></li>
+				<li><a class="color12" href="#">篮球</a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+	
+       <div class="login">
+         <div class="wrap">
+    	     <h4 class="title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">购物车是空的</font></font></h4>
+    	     <p class="cart"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您的购物车中没有商品。</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">点击</font></font><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此处</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">继续购物</font></font></p>
+    	   </div>
+		</div>
+		
+		
+        <div class="footer">
+       	  <div class="footer-top">
+       		<div class="wrap">
+       			   <div class="col_1_of_footer-top span_1_of_footer-top">
+				  	 <ul class="f_list">
+				  	 	<li><img src="images/f_icon.png" alt=""><span class="delivery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">超过100英镑的所有订单免费送货*</font></font></span></li>
+				  	 </ul>
+				   </div>
+				   <div class="col_1_of_footer-top span_1_of_footer-top">
+				  	<ul class="f_list">
+				  	 	<li><img src="images/f_icon1.png" alt=""><span class="delivery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客户服务：</font></font><span class="orange"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（800）000-2587（免费电话）</font></font></span></span></li>
+				  	 </ul>
+				   </div>
+				   <div class="col_1_of_footer-top span_1_of_footer-top">
+				  	<ul class="f_list">
+				  	 	<li><img src="images/f_icon2.png" alt=""><span class="delivery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速交货和免费退货</font></font></span></li>
+				  	 </ul>
+				   </div>
+				  <div class="clear"></div>
+			 </div>
+       	 </div>
+       	 <div class="footer-middle">
+       	 	<div class="wrap">
+       	 		<div class="section group">
+				<div class="col_1_of_middle span_1_of_middle">
+					<dl id="sample" class="dropdown">
+			        <dt><a href="#"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请选择一个国家</font></font></span></a></dt>
+			        <dd>
+			            <ul style="display: none;">
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">澳大利亚</font></font><img class="flag flagvisibility" src="images/as.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AS</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">斯里兰卡</font></font><img class="flag flagvisibility" src="images/srl.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SL</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Newziland </font></font><img class="flag flagvisibility" src="images/nz.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NZ</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">巴基斯坦</font></font><img class="flag flagvisibility" src="images/pk.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pk</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英国</font></font><img class="flag flagvisibility" src="images/uk.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英国</font></font></span></a></li>
+			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">美国</font></font><img class="flag flagvisibility" src="images/us.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">美国</font></font></span></a></li>
+			            </ul>
+			         </dd>
+   				    </dl>
+   				 </div>
+				<div class="col_1_of_middle span_1_of_middle">
+					<ul class="f_list1">
+						<li><span class="m_8"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注册电子邮件并获得15％的折扣</font></font></span>
+						<div class="search">	  
+							<input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+							<font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="订阅" id="submit" name="submit"></font></font>
+							<div id="response"> </div>
+			 			</div><div class="clear"></div>
+			 		    </li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			   </div>
+       	 	</div>
+       	 </div>
+       	<div class="footer-bottom">
+       	 	<div class="wrap">
+       	 		<div class="section group">
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店</font></font></h3>
+					<ul class="sub_list">
+						<h4 class="m_10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男人</font></font></h4>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男装鞋</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男士服装</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男士配饰</font></font></a></li>
+			        </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">体育</font></font></h3>
+					<ul class="list1">
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">篮球</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">足球</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">足球鞋</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">捕食者</font></font></a></li>
+			         </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">原稿</font></font></h3>
+					<ul class="list1">
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Originals鞋子</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">羚羊</font></font></a></li>
+			            <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">桑巴</font></font></a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品类型</font></font></h3>
+					<ul class="list1">
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">衬衫</font></font></a></li>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">裤子和裤袜</font></font></a></li>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">衬衫</font></font></a></li>
+					    <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">球衣</font></font></a></li>
+		            </ul>
+				</div>
+				<div class="col_1_of_5 span_1_of_5">
+					<h3 class="m_9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支持</font></font></h3>
+					<ul class="list1">
+					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商店发现者</font></font></a></li>
+					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客户服务</font></font></a></li>
+					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">常问问题</font></font></a></li>
+					  
+		            </ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+       	 	</div>
+       	 </div>
+       	 
+       	 <div class="copy">
+       	   <div class="wrap" style="height: 50px"> </div>
+       	 </div>
+       	 
+       </div>
+       <script type="text/javascript">
+			$(document).ready(function() {
+			
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+		 		};
+				
+				
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+		</script>
+        <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><span id="toTopHover" style="opacity: 1;"></span></a>       
+</body></html>
