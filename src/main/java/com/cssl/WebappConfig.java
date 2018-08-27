@@ -1,4 +1,4 @@
-package com.cssl;
+/*package com.cssl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,4 +30,4 @@ public class WebappConfig implements WebMvcConfigurer {
 		registry.addInterceptor(hi).addPathPatterns("/htpage/*").excludePathPatterns("/htpage/image/*","/htpage/js/*","/htpage/static/*");
 	}
 	
-}
+}*/
