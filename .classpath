@@ -28,7 +28,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="fastjson-1.2.31.jar">
+	<classpathentry kind="lib" path="fastjson-1.2.31.jar" sourcepath="E:/bdqn accp/Y2/SpringBoot/Maven/jar/com/alibaba/fastjson/1.2.31/fastjson-1.2.31-sources.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
