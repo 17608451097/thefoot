@@ -23,7 +23,7 @@ $(function(){
 	$(".sp").click(function(){
 	  	var title =	$(this).text();
 		if($('#tt').tabs('exists',title)){
-			$('#tt').tabs('select',title)
+		 	$('#tt').tabs('select',title)
 		}else{
 		  	$('#tt').tabs('add',{    
 			    title:title, 

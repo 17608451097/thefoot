@@ -27,13 +27,13 @@ $(function(){
         loadMsg: '正在加载数据.......',
 		 columns:[[			            
 		        {field:'shopid',title:'ID',width:50,align:'right'},
-		        {field:'shopname',title:'名称',width:100,align:'center'},
+		        {field:'shopname',title:'名称',width:200,align:'center'},
 		        {field:'price',title:'价格',width:100,align:'center'},
 		        {field:'Oriprice',title:'原价',width:100,align:'center'},
 		        {field:'prodetails',title:'详情',width:200,align:'center'},
-		        {field:'proreview',title:'描述',width:200,align:'center'},
+		        {field:'proreview',title:'描述',width:250,align:'center'},
 		        {field:'grsonname',title:'类别名',width:100,align:'center'},
-		        {field:'filename',title:'图片',width:220,align:'right',
+		        {field:'filename',title:'图片',width:50,align:'right',
 		        	formatter: function(value,row,index){
 						return '<img height="46px" src="'+"image/"+row.filename+'"/>';
 					}
