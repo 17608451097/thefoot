@@ -40,35 +40,7 @@ $(function(){
 		        },
 		        {field:'Stock',title:'存量',width:172,align:'center'}
 		    ]]
-	});
-   /*  onRowContextMenu:function(e, rowIndex, rowData){
-		//只能采用阻止默认事件			
-		e.preventDefault();				
-		//取消原来的选中行
-		$dgg.datagrid('unselectAll');
-		//右键选中行
-		$dgg.datagrid('selectRow',rowIndex);
-		//弹出右键菜单
-		$('#mm').menu('show', {    
-			  left: e.pageX,    
-			  top: e.pageY  
-		});						
-	} */
-	
-	/* $('#mm').menu({    
-	    onClick:function(item){ 			       
-	        if(item.name=='add'){
-	        	addData();
-	        }else if(item.name=='edit'){				       
-				updateData();
-	        }else if(item.name=='exit'){
-				$('#mm').menu('hide');
-		    }else if(item.name=='remove'){
-				alert('remove');
-				deleteData();
-	        } 
-	    }		 
-	}); */
+	});  
 });
 </script>
 <table id = "dg"> </table>

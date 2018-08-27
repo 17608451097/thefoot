@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>商品详情</title>
 <script type="text/javascript" src="static/jquery.min.js"></script>
 <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
@@ -11,6 +11,39 @@
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
 <body>
-222
+<script type="text/javascript">
+$(function(){
+	$('#dg').datagrid({
+		url:'xx',
+	    striped:true,    	//斑马线效果
+	    singleSelect:true,
+	    fitColumns:false,	  //匹配列宽
+	    fit:false,			  //匹配父容器
+	    pagination:true,
+        pageSize: 5,
+        pageList: [5, 10, 15, 20],
+	    queryParams:{
+  			name: 'easyui'		  			
+  		},
+        loadMsg: '正在加载数据.......',
+		 columns:[[			            
+		        {field:'shopid',title:'ID',width:50,align:'right'},
+		        {field:'shopname',title:'名称',width:100,align:'center'},
+		        {field:'price',title:'价格',width:100,align:'center'},
+		        {field:'Oriprice',title:'原价',width:100,align:'center'},
+		        {field:'prodetails',title:'详情',width:200,align:'center'},
+		        {field:'proreview',title:'描述',width:200,align:'center'},
+		        {field:'grsonname',title:'类别名',width:100,align:'center'},
+		        {field:'filename',title:'图片',width:220,align:'right',
+		        	formatter: function(value,row,index){
+						return '<img height="46px" src="'+"image/"+row.filename+'"/>';
+					}
+		        },
+		        {field:'Stock',title:'存量',width:172,align:'center'}
+		    ]]
+	});
+});
+</script>
+	<table id = "dg"> </table>
 </body>
 </html>
