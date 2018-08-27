@@ -23,8 +23,11 @@ public class LoginController {
 			request.setAttribute("result","账号密码有误,请重新登陆。");
 			return "login";
 		}else {
-			if(us.getIsAdmin()==1)
+			if(us.getIsAdmin()==1) {
 				request.getSession().setAttribute("admin", us);
+				return "redirect:/htpage/layout.html";
+			}
+			request.getSession().setAttribute("user", us);
 			return "index";
 		}
 	}
