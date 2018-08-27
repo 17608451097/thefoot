@@ -30,7 +30,7 @@ public class MyController {
 		PrintWriter out = response.getWriter();
 		List<Map<String, Object>> list = ssic.getShop();
 		String json = JSON.toJSONString(list);
-		out.println(json);
+		out.write(json);
 		System.out.println(json);
 		out.flush();
 		out.close();

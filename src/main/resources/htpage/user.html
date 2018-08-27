@@ -9,7 +9,24 @@
 <link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
+<script type="text/javascript">
+$(function(){
+	$('#dg').datagrid({
+		 url:'xx',
+		 columns:[[			            
+			 {field:'shopid',title:'ID',width:100,align:'right'},
+		        {field:'shopname',title:'名称',width:200,align:'center'},
+		        {field:'filename',title:'图片',width:200,align:'right',
+		        	formatter: function(value,row,index){
+			        	alert('<img height="46px" src="'+"image/"+row.filename+'"/>')
+						return '<img height="46px" src="'+"image/"+row.filename+'"/>';
+					}
+		        }
+		    ]]
+	});
+})
+</script>
 <body>
-	333
+	<table id="dg"></table>
 </body>
 </html>

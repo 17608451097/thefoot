@@ -9,36 +9,75 @@
 <link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
+<body>
 <script type="text/javascript">
 $(function(){
 	$('#dg').datagrid({
-		columns:[[
-			{field:'filename',
-				formatter: function(value,row,index){
-					var img = new Image;
-					img.src = "image/"+row.filename;
-					return img;
-				}
-			}
-		]]
+		url:'xx',
+	    striped:true,    	//斑马线效果
+	    singleSelect:true,
+	    fitColumns:false,	  //匹配列宽
+	    fit:false,			  //匹配父容器
+	    pagination:true,
+        pageSize: 5,
+        pageList: [5, 10, 15, 20],
+	    queryParams:{
+  			name: 'easyui'		  			
+  		},
+        loadMsg: '正在加载数据.......',
+		 columns:[[			            
+		        {field:'shopid',title:'ID',width:50,align:'right'},
+		        {field:'shopname',title:'名称',width:100,align:'center'},
+		        {field:'price',title:'价格',width:100,align:'center'},
+		        {field:'Oriprice',title:'原价',width:100,align:'center'},
+		        {field:'prodetails',title:'详情',width:200,align:'center'},
+		        {field:'proreview',title:'描述',width:200,align:'center'},
+		        {field:'grsonname',title:'类别名',width:100,align:'center'},
+		        {field:'filename',title:'图片',width:220,align:'right',
+		        	formatter: function(value,row,index){
+						return '<img height="46px" src="'+"image/"+row.filename+'"/>';
+					}
+		        },
+		        {field:'Stock',title:'存量',width:172,align:'center'}
+		    ]]
 	});
+   /*  onRowContextMenu:function(e, rowIndex, rowData){
+		//只能采用阻止默认事件			
+		e.preventDefault();				
+		//取消原来的选中行
+		$dgg.datagrid('unselectAll');
+		//右键选中行
+		$dgg.datagrid('selectRow',rowIndex);
+		//弹出右键菜单
+		$('#mm').menu('show', {    
+			  left: e.pageX,    
+			  top: e.pageY  
+		});						
+	} */
+	
+	/* $('#mm').menu({    
+	    onClick:function(item){ 			       
+	        if(item.name=='add'){
+	        	addData();
+	        }else if(item.name=='edit'){				       
+				updateData();
+	        }else if(item.name=='exit'){
+				$('#mm').menu('hide');
+		    }else if(item.name=='remove'){
+				alert('remove');
+				deleteData();
+	        } 
+	    }		 
+	}); */
 });
 </script>
-<body>
-	<table class="easyui-datagrid" data-options="url:'xx',fitColumns:true,pagination:true">   
-		<thead>
-			<tr>
-				<th data-options="field:'shopid'">ID</th>
-				<th data-options="field:'shopname'">名称</th>
-				<th data-options="field:'price'">价格</th>
-				<th data-options="field:'Oriprice'">原价</th>
-				<th data-options="field:'prodetails'">详情</th>
-				<th data-options="field:'proreview'">描述</th>
-				<th data-options="field:'grsonname'">类别名</th>
-				<th id="filename" data-options="field:'filename'">图片</th>
-				<th data-options="field:'Stock'">存量</th>
-			</tr>
-		</thead>
-	</table>
+<table id = "dg"> </table>
+<div id="mm" class="easyui-menu" style="width:120px;display:none;">   
+	    <div data-options="name:'add',iconCls:'icon-add'">添加</div>  
+	    <div data-options="name:'edit',iconCls:'icon-edit'">编辑</div> 
+	    <div data-options="name:'remove',iconCls:'icon-remove'">删除</div>
+ <div class="menu-sep"></div>
+<div data-options="name:'exit',iconCls:'icon-exit'" >退出</div>
+</div>  
 </body>
 </html>
