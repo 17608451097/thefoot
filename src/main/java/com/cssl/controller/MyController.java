@@ -24,6 +24,7 @@ public class MyController {
 	@RequestMapping("/xx")
 	public void xx(HttpServletResponse response) throws IOException {
 		
+		//这是后台商品数据展示代码
 		response.setCharacterEncoding("GBK");
 		response.setContentType("text/heml;charset=GBK");
 		PrintWriter out = response.getWriter();
