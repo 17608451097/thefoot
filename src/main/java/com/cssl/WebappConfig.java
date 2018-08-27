@@ -12,7 +12,7 @@ import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 @Component
 public class WebappConfig implements WebMvcConfigurer {
 
-	@Override
+	/*@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		HandlerInterceptor hi = new HandlerInterceptor() {
 			@Override
@@ -28,6 +28,6 @@ public class WebappConfig implements WebMvcConfigurer {
 			}
 		};
 		registry.addInterceptor(hi).addPathPatterns("/htpage/*").excludePathPatterns("/htpage/image/*","/htpage/js/*","/htpage/static/*");
-	}
+	}*/
 	
 }

@@ -3,17 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-th, td {
-	
-}
-</style>
 <script type="text/javascript" src="static/jquery.min.js"></script>
 <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
+<script type="text/javascript">
+$(function(){
+	$('#dg').datagrid({
+		columns:[[
+			{field:'filename',
+				formatter: function(value,row,index){
+					var img = new Image;
+					img.src = "image/"+row.filename;
+					return img;
+				}
+			}
+		]]
+	});
+});
+</script>
 <body>
 	<table class="easyui-datagrid" data-options="url:'xx',fitColumns:true,pagination:true">   
 		<thead>
@@ -25,7 +35,7 @@ th, td {
 				<th data-options="field:'prodetails'">详情</th>
 				<th data-options="field:'proreview'">描述</th>
 				<th data-options="field:'grsonname'">类别名</th>
-				<th data-options="field:'filename'">图片</th>
+				<th id="filename" data-options="field:'filename'">图片</th>
 				<th data-options="field:'Stock'">存量</th>
 			</tr>
 		</thead>
