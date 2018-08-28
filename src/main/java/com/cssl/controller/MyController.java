@@ -2,6 +2,8 @@ package com.cssl.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,8 +48,13 @@ public class MyController {
 		response.setContentType("text/heml;charset=GBK");
 		PrintWriter out = response.getWriter();
 		List<Map<String, Object>> list = usic.getuser();
+		if(list!=null&&list.size()!=0){
+			for (int i = 0; i < list.size(); i++) {
+				Map<String,Object> map = list.get(i);
+				map.put("DATE", new SimpleDateFormat("yyyy-MM-dd").format(map.get("DATE")));
+			}
+		}
 		String json = JSON.toJSONString(list);
-		System.out.println(json);
 		out.write(json);
 		out.flush();
 		out.close();

@@ -6,13 +6,14 @@
 <script type="text/javascript" src="static/jquery.min.js"></script>
 <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(function(){
-	$('#dg').datagrid({
+	var $dgg =$('#dg').datagrid({
 		url:'user',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
@@ -27,20 +28,44 @@ $(function(){
         loadMsg: '正在加载数据.......',
 		 columns:[[			            
 		        {field:'userid',title:'ID',width:50,align:'right'},
-		        {field:'NAME',title:'名称',width:200,align:'center'},
+		        {field:'NAME',title:'名称',width:242,align:'center'},
 		        {field:'companyname',title:'真实姓名',width:100,align:'center'},
 		        {field:'email',title:'邮箱',width:150,align:'center'},
 		        {field:'address',title:'住址',width:200,align:'center'},
-		        {field:'phone',title:'联系电话',width:150,align:'center'},
-		        {field:'DATE',title:'注册时间',width:150,align:'center'},
-		        {field:'countrycord',title:'国家代码',width:100,align:'center'},
-		        {field:'userfile',title:'头像',width:122,align:'center',
-		        	formatter: function(value,row,index){
-						return '<img height="46px" src="'+"image/"+row.userfile+'"/>';
-					}
-			    }
-		    ]]
-	});  
+		        {field:'phone',title:'联系电话',width:130,align:'center'},
+		        {field:'DATE',title:'注册时间',width:130,align:'center'},
+		        {field:'countrycord',title:'国家代码',width:130,align:'center'}
+		    ]],
+		    //右键菜单				
+			onRowContextMenu:function(e, rowIndex, rowData){
+				//只能采用阻止默认事件			
+				e.preventDefault();				
+				//取消原来的选中行
+				$dgg.datagrid('unselectAll');
+				//右键选中行
+				$dgg.datagrid('selectRow',rowIndex);
+				//弹出右键菜单
+				$('#mm').menu('show', {    
+					  left: e.pageX,    
+					  top: e.pageY  
+				});						
+			}
+	}); 
+	//菜单点击事件			
+	$('#mm').menu({    
+	    onClick:function(item){ 			       
+	        if(item.name=='add'){
+	        	addData();
+	        }else if(item.name=='edit'){				       
+				updateData();
+	        }else if(item.name=='exit'){
+				$('#mm').menu('hide');
+		    }else if(item.name=='remove'){
+				alert('remove');
+				deleteData();
+	        } 
+	    }		 
+	}); 
 });
 </script>
 	<table id="dg"></table>
