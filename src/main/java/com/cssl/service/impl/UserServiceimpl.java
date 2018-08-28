@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cssl.dao.UserDao;
-import com.cssl.pojo.Users;
+import com.cssl.pojo.User;
 import com.cssl.service.UserService;
 
 @Service
@@ -17,7 +17,7 @@ public class UserServiceimpl implements UserService {
 	private UserDao udao;
 
 	@Override
-	public Users getByUser(String username, String password) {
+	public User getByUser(String username, String password) {
 		
 		return udao.getByUser(username, password);
 	}

@@ -5,11 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.cssl.pojo.Users;
+import com.cssl.pojo.User;
 
 public interface UserDao {
 
-	public Users getByUser(@Param("username") String username,@Param("password")String password);
+	public User getByUser(@Param("username") String username,@Param("password")String password);
 	
 	public List<Map<String,Object>> getuser();
 	
