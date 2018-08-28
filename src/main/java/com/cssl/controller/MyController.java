@@ -39,6 +39,7 @@ public class MyController {
 		out.close();
 	}
 	
+	
 	@RequestMapping("user")
 	public void  user(HttpServletResponse response)throws IOException {
 		response.setCharacterEncoding("GBK");
