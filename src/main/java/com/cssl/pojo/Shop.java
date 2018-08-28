@@ -7,8 +7,6 @@ import lombok.Setter;
 public class Shop {
 	private int shopid;
 	private String shopname;
-	private int colorid;
-	private int size;
 	private int price;
 	private int oriprice;
 	private String prodetails;
