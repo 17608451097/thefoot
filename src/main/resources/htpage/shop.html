@@ -12,7 +12,20 @@
 <body>
 <script type="text/javascript">
 $(function(){
-	$('#dg').datagrid({
+	function addshop(){
+		$('#dd').dialog({    
+		    title: '商品新增',
+		  	width:600,
+		   	height:650,
+		    closed: false,    
+		    cache: false,    
+		    href: 'addshop.html',    
+		    modal: true   
+		});    
+		$('#dd').dialog('refresh', 'addshop.html');
+	}
+	
+	var $dgg =$('#dg').datagrid({
 		url:'shop',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
@@ -39,17 +52,89 @@ $(function(){
 					}
 		        },
 		        {field:'Stock',title:'存量',width:122,align:'center'}
-		    ]]
-	});  
-});
+		    ]],
+		  	toolbar: [{
+			  	text: '添加',
+		  		iconCls: 'icon-add',
+		  		handler: function(){	
+		  			//addData();
+		  			addshop();
+		  		}
+		  	},'-',{
+		  		text: '编辑',
+		  		iconCls: 'icon-edit',
+		  		handler: function(){
+		  			updateData();						
+		  		}
+		  	},'-',{
+			  	text: '删除',
+		  		iconCls: 'icon-remove',
+		  		handler: function(){
+		  			deleteData();
+		  		}
+		  	},'-',{
+			  	text: '保存',
+		  		iconCls: 'icon-save',
+		  		handler: function(){			  			
+					if(editRow!=null){							
+						//触发onAfterEdit事件
+						$dgg.datagrid('endEdit',editRow);
+					}											
+		  		} 
+		  	},'-',{
+			  	text: '取消编辑',
+		  		iconCls: 'icon-back',
+		  		handler: function(){			  			
+					$dgg.datagrid('rejectChanges');	//撤销修改内容
+					$dgg.datagrid('unselectAll');	//取消选择
+					editRow=null;
+		  		}
+		  	}],//双击编辑
+	  		onDblClickRow:function(rowIndex,rowData){
+	  			updateData(rowIndex);			  		
+			},//右键菜单				
+			onRowContextMenu:function(e, rowIndex, rowData){
+				//只能采用阻止默认事件			
+				e.preventDefault();				
+				//取消原来的选中行
+				$dgg.datagrid('unselectAll');
+				//右键选中行
+				$dgg.datagrid('selectRow',rowIndex);
+				//弹出右键菜单
+				$('#mm').menu('show', {    
+					  left: e.pageX,    
+					  top: e.pageY  
+				});						
+			}		  		 	     
+	});   
+	//菜单点击事件			
+	$('#mm').menu({    
+	    onClick:function(item){ 			       
+	        if(item.name=='add'){
+	        	addshop();
+	        }else if(item.name=='edit'){				       
+				updateData();
+	        }else if(item.name=='exit'){
+				$('#mm').menu('hide');
+		    }else if(item.name=='remove'){
+				alert('remove');
+				deleteData();
+	        } 
+	    }		 
+	});
+
+	
+})
 </script>
-<table id = "dg"> </table>
-<div id="mm" class="easyui-menu" style="width:120px;display:none;">   
-	    <div data-options="name:'add',iconCls:'icon-add'">添加</div>  
-	    <div data-options="name:'edit',iconCls:'icon-edit'">编辑</div> 
-	    <div data-options="name:'remove',iconCls:'icon-remove'">删除</div>
- <div class="menu-sep"></div>
-<div data-options="name:'exit',iconCls:'icon-exit'" >退出</div>
-</div>  
+	<table id="dg">
+	</table>
+	<div id="mm" class="easyui-menu" style="width: 120px; display: none;">
+		<div data-options="name:'add',iconCls:'icon-add'">添加</div>
+		<div data-options="name:'edit',iconCls:'icon-edit'">编辑</div>
+		<div data-options="name:'remove',iconCls:'icon-remove'">删除</div>
+		<div class="menu-sep"></div>
+		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
+	</div>
+	<div id="dd"></div>
 </body>
 </html>
