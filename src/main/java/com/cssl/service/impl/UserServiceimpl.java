@@ -1,5 +1,8 @@
 package com.cssl.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,12 @@ public class UserServiceimpl implements UserService {
 	public User getByUser(String username, String password) {
 		
 		return udao.getByUser(username, password);
+	}
+
+	@Override
+	public List<Map<String, Object>> getuser() {
+		
+		return udao.getuser();
 	}
 
 }

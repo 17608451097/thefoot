@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $(function(){
 	$('#dg').datagrid({
-		url:'xx',
+		url:'shop',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
 	    fitColumns:false,	  //匹配列宽
@@ -31,14 +31,14 @@ $(function(){
 		        {field:'price',title:'价格',width:100,align:'center'},
 		        {field:'Oriprice',title:'原价',width:100,align:'center'},
 		        {field:'prodetails',title:'详情',width:200,align:'center'},
-		        {field:'proreview',title:'描述',width:250,align:'center'},
+		        {field:'proreview',title:'描述',width:300,align:'center'},
 		        {field:'grsonname',title:'类别名',width:100,align:'center'},
 		        {field:'filename',title:'图片',width:50,align:'right',
 		        	formatter: function(value,row,index){
 						return '<img height="46px" src="'+"image/"+row.filename+'"/>';
 					}
 		        },
-		        {field:'Stock',title:'存量',width:172,align:'center'}
+		        {field:'Stock',title:'存量',width:122,align:'center'}
 		    ]]
 	});  
 });

@@ -10,6 +10,39 @@
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
 <body>
+<script type="text/javascript">
+$(function(){
+	$('#dg').datagrid({
+		url:'user',
+	    striped:true,    	//斑马线效果
+	    singleSelect:true,
+	    fitColumns:false,	  //匹配列宽
+	    fit:false,			  //匹配父容器
+	    pagination:true,
+        pageSize: 5,
+        pageList: [5, 10, 15, 20],
+	    queryParams:{
+  			name: 'easyui'		  			
+  		},
+        loadMsg: '正在加载数据.......',
+		 columns:[[			            
+		        {field:'userid',title:'ID',width:50,align:'right'},
+		        {field:'NAME',title:'名称',width:200,align:'center'},
+		        {field:'companyname',title:'真实姓名',width:100,align:'center'},
+		        {field:'email',title:'邮箱',width:150,align:'center'},
+		        {field:'address',title:'住址',width:200,align:'center'},
+		        {field:'phone',title:'联系电话',width:150,align:'center'},
+		        {field:'DATE',title:'注册时间',width:150,align:'center'},
+		        {field:'countrycord',title:'国家代码',width:100,align:'center'},
+		        {field:'userfile',title:'头像',width:122,align:'center',
+		        	formatter: function(value,row,index){
+						return '<img height="46px" src="'+"image/"+row.userfile+'"/>';
+					}
+			    }
+		    ]]
+	});  
+});
+</script>
 	<table id="dg"></table>
 </body>
 </html>

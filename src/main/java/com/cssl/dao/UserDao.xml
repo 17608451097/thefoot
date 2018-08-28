@@ -8,4 +8,8 @@
 		SELECT * FROM `users` WHERE NAME=#{username} AND PASSWORD = #{password}
 	</select>
 	
+	<select id="getuser" resultType="map">
+		SELECT * FROM users u INNER JOIN`country` c ON  c.`countryid` =u.`countryid` WHERE u.isadmin=0
+	</select>
+	
 </mapper>
