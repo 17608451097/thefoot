@@ -25,7 +25,7 @@ spring:
   thymeleaf:
     encoding: UTF-8
     #开发时关闭缓存,不然没法看到实时页面
-    cache: true
+    cache: false
     prefix: classpath:/page/
     suffix: .html
 #thymeleaf end
