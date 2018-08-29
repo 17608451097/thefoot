@@ -20,4 +20,14 @@ public class ShowServiceImpl implements ShowService {
 		return sdao.getType();
 	}
 
+	@Override
+	public List<Map<String, Object>> getSonType() {
+		return sdao.getSonType();
+	}
+
+	@Override
+	public List<Map<String, Object>> getGrsontype() {
+		return sdao.getGrsontype();
+	}
+
 }

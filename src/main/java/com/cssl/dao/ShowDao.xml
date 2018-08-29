@@ -7,5 +7,12 @@
 	<select id="getType" resultType="map">
 		SELECT * FROM `type`
 	</select>
+	
+	<select id="getSonType" resultType="map">
+		SELECT *  FROM `sontype` 
+	</select>
 
+	<select id="getGrsontype" resultType="map">
+		SELECT * FROM `grsontype`
+	</select>
 </mapper>

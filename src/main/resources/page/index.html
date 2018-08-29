@@ -1,4 +1,5 @@
 <html class="translated-ltr">
+<HTML xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>首页</title>
 <meta name="viewport"
@@ -99,231 +100,29 @@
 	</div>
 	<div class="header-bottom">
 		<div class="wrap">
-			<!-- start header menu -->
-			<ul class="megamenu skyblue">
-				<li><a class="color1" href="#">首页</a></li>
-				<li class="grid"><a class="color2" href="#">男装</a>
-					<div class="megapanel">
+		
+		
+			<ul class="megamenu skyblue"  >
+			<!-- 每个标题的li -->
+			<li class="grid" th:each="n,map:${list}">
+			<!-- 这里是标题，标题！ -->
+			<a class="color2" href="#" th:text="${n.typename}">男装</a>
+
+			<div class="megapanel" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
 						<div class="row">
-							<div class="col1">
+							<div class="col1" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
 								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">最新上市</a></li>
-									</ul>
-								</div>
-								<div class="h_nav">
-									<h4 class="top">男装</h4>
-									<ul>
-										<li><a href="shop.html">最新上市</a></li>
+									<h4 th:text="${n1.sontypename}"></h4>
+									<ul th:each="n2,map:${list2}" th:if="${n1.sontypeid}==${n2.sontypeid}">
+										<li><a href="shop.html" th:text="${n2.grsonname}">最新上市</a></li>
 									</ul>
 								</div>
 							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格区</h4>
-									<ul>
-										<li><a href="shop.html">潮牌</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
 							<img src="images/nav_img.jpg" alt="" />
 						</div>
-					</div></li>
-				<li class="active grid"><a class="color4" href="#">女装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>商品</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>饰品</h4>
-									<ul>
-										<li><a href="shop.html">头饰</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>我的公司</h4>
-									<ul>
-										<li><a href="shop.html">风格</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>账户</h4>
-									<ul>
-										<li><a href="shop.html">登陆</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">风格</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<img src="images/nav_img1.jpg" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color5" href="#">童装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-								<div class="h_nav">
-									<h4 class="top">男款</h4>
-									<ul>
-										<li><a href="shop.html">新款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>我的风格</h4>
-									<ul>
-										<li><a href="shop.html">男子气概</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<img src="images/nav_img2.jpg" alt="" />
-						</div>
-					</div></li>
-				<li><a class="color6" href="#">销售</a>
-					<div class="megapanel">
-						<div class="row">
-							<!-- <div class="col1">
-							<div class="h_nav">
-								<h4>shop</h4>
-								<ul>
-									<li><a href="shop.html">new arrivals</a></li>
-									<li><a href="shop.html">men</a></li>
-									<li><a href="shop.html">women</a></li>
-									<li><a href="shop.html">accessories</a></li>
-									<li><a href="shop.html">kids</a></li>
-									<li><a href="shop.html">brands</a></li>
-								</ul>	
-							</div>	
-							<div class="h_nav">
-								<h4 class="top">my company</h4>
-								<ul>
-									<li><a href="shop.html">trends</a></li>
-									<li><a href="shop.html">sale</a></li>
-									<li><a href="shop.html">style videos</a></li>
-									<li><a href="shop.html">accessories</a></li>
-									<li><a href="shop.html">kids</a></li>
-									<li><a href="shop.html">style videos</a></li>
-								</ul>	
-							</div>												
-						</div> -->
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color7" href="#">定制</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color8" href="#">商城</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>自我风格</h4>
-									<ul>
-										<li><a href="shop.html">爆款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格</h4>
-									<ul>
-										<li><a href="shop.html">爆款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div></li>
-				<li><a class="color9" href="#">足球</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color10" href="#">跑鞋</a></li>
-				<li><a class="color11" href="#">原件</a></li>
-				<li><a class="color12" href="#">篮球</a></li>
+					</div>
+			</li>
+				
 			</ul>
 			<div class="clear"></div>
 		</div>

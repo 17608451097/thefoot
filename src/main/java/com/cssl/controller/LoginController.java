@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cssl.pojo.User;
+import com.cssl.pojo.Users;
 import com.cssl.service.UserService;
 
 @Controller
@@ -18,7 +18,7 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public String login(String username,String password,HttpServletRequest request) {
-		User us = usic.getByUser(username, password);
+		Users us = usic.getByUser(username, password);
 		if(!username.equals(us.getName()) && password.equals(us.getPassword())) {
 			request.setAttribute("result","账号密码有误,请重新登陆。");
 			return "login";
