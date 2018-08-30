@@ -10,4 +10,15 @@
         INNER JOIN `grsontype` gt ON sp.`grsonid` = gt.`grsonid`
 	</select>
 	
+	<insert id="addproduct">
+		INSERT INTO shop (`shopname`,`price`,`Oriprice`,`prodetails`,`proreview`,`grsonid`,`filename`) VALUES (#{shopname},#{price},#{oriprice},#{prodetails},#{proreview},#{grsonid},#{filename})
+	</insert>
+	
+	<insert id="addshopstock">
+		INSERT INTO `shopstock` (shopid,colorid,sizeid,stock) VALUES (#{shopid},#{colorid},#{sizeid},#{stock})
+	</insert>
+	
+	<select id="getaddshopid" resultType="int">
+		select @@IDENTITY
+	</select>
 </mapper>

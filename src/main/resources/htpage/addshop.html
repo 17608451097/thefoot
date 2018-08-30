@@ -31,7 +31,7 @@
 		padding-top: 30px;
 	}
 </style>
-	<form>
+	<form action="addshop" enctype="multipart/form-data"  method="post">
 		<table>
 			<tr>
 				<td class="ss" id="ssf">商品名称</td>
@@ -54,12 +54,32 @@
 				<td class="xx"><textarea name="proreview" /></textarea>
 			</tr>
 			<tr>
+				<td class="ss">尺码</td>
+				<td class="xx">
+					<select name="size">
+						<option value="0">请选择尺码</option>
+						<option value="1">41</option>
+						<option value="2">42</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss">颜色</td>
+				<td class="xx">
+					<select name="color">
+						<option value="0">请选择颜色</option>
+						<option value="1">红色</option>
+						<option value="2">黑色</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<td class="ss">分类</td>
 				<td class="xx">
-					<select>
-						<option>请选择分类</option>
-						<option>NIKE</option>
-						<option>阿迪</option>
+					<select name="grsonid">
+						<option value="0">请选择分类</option>
+						<option value="1">NIKE</option>
+						<option value="2">阿迪</option>
 					</select>
 				</td>
 			</tr>
@@ -71,9 +91,11 @@
 				<td class="ss">商品数量</td>
 				<td class="xx"><input name="stock" type="number" value="0" /></td>
 			</tr>
-			<tr><td></td><td><button type="submit">新增</button></td></tr>
+			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
 		</table>
 	</form>
+	
+	
 </div>
 </body>
 </html>

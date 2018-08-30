@@ -1,5 +1,6 @@
 server:
 
+
 mybatis:
   type-aliases-package: com.cssl.pojo
   mapper-locations: classpath:com.cssl.dao/*.xml
@@ -20,7 +21,7 @@ spring:
     
   resources:
     static-locations: classpath:/
-
+ 
 #thymeleaf start
   thymeleaf:
     encoding: UTF-8
