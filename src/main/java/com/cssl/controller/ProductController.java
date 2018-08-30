@@ -28,7 +28,7 @@ public class ProductController {
 	
 	@Autowired
 	private ServletContext aco;
-	
+	  
 	@RequestMapping("/addshop")
 	public String addshop(Shop shop,@RequestPart("file")MultipartFile file,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		/*if(ssic.addproduct(shop))
