@@ -9,4 +9,8 @@ public interface ShowService {
 	public List<Map<String,Object>> getSonType();
 	
 	public List<Map<String,Object>> getGrsontype();
+	
+	public List<Map<String,Object>> getShopOne_Three();
+	
+	public List<Map<String,Object>> getShopThree_Six();
 }

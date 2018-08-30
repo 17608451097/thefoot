@@ -15,4 +15,11 @@
 	<select id="getGrsontype" resultType="map">
 		SELECT * FROM `grsontype`
 	</select>
+
+	<select id="getShopOne_Three" resultType="map">
+		SELECT *FROM `shop` LIMIT 0,3
+	</select>
+	<select id="getShopThree_Six" resultType="map">
+		SELECT *FROM `shop` LIMIT 3,3
+	</select>
 </mapper>
