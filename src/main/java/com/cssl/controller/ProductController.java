@@ -9,7 +9,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,25 +32,13 @@ public class ProductController {
 	public String addshop(Shop shop,@RequestPart("file")MultipartFile file,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		/*if(ssic.addproduct(shop))
 			ssic.addshopstock(String.valueOf(ssic.getaddshopid()), shop);*/
-		System.out.println(shop.getShopname());
 		String time = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		String qtpaths = aco.getRealPath("/images");
-		System.out.println(qtpaths);
 		String uuid = UUID.randomUUID().toString();
-		System.out.println(uuid+time);
 		if (!file.isEmpty()) {
-			File fs = new File(qtpaths,time+uuid+".png");
+			File fs = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.32\\webapps\\thefootimg\\shopimg",time+uuid+file.getOriginalFilename());
 			file.transferTo(fs);
-			/*
-			  E:\Eclipse\WORKS\eclipse\spring\TheFoot\src\main\resources\page\images
-			  E:\Eclipse\WORKS\eclipse\spring\TheFoot\src\main\webapp\image
-			 */
 		}
 		return "redirect:/htpage/layout.html";
 	}
-	
-	
-	
-	
 
 }
