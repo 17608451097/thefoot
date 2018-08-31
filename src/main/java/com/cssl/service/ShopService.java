@@ -11,7 +11,7 @@ public interface ShopService {
 	
 	public boolean addproduct(Shop shop);
 	
-	public boolean addshopstock(String shopid,Shop shop);
+	public boolean addshopstock(Shop shop);
 	
 	public int getaddshopid();
 	

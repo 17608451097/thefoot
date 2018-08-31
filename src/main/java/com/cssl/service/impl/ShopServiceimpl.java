@@ -30,8 +30,8 @@ public class ShopServiceimpl implements ShopService {
 	}
 
 	@Override
-	public boolean addshopstock(String shopid, Shop shop) {
-		if(sdao.addshopstock(shopid, shop)>0)
+	public boolean addshopstock(Shop shop) {
+		if(sdao.addshopstock(shop)>0)
 			return true;
 		return false;
 	}

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<HTML xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -43,7 +42,7 @@
 			</tr>
 			<tr>
 				<td class="ss">原价</td>
-				<td class="xx"><input name="orprice" type="text" /></td>
+				<td class="xx"><input name="oriprice" type="text" /></td>
 			</tr>
 			<tr>
 				<td class="ss">详情</td>
@@ -56,20 +55,18 @@
 			<tr>
 				<td class="ss">尺码</td>
 				<td class="xx">
-					<select name="size">
-						<option value="0">请选择尺码</option>
-						<option value="1">41</option>
-						<option value="2">42</option>
+					<select name="sizeid" >
+						<option selected="selected" value="0">请选择尺码</option>
+						<option th:each="n,map:${sizels}" th:value="${n.sizeid}" th:text="${n.sizename}"></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td class="ss">颜色</td>
 				<td class="xx">
-					<select name="color">
+					<select name="colorid">
 						<option value="0">请选择颜色</option>
-						<option value="1">红色</option>
-						<option value="2">黑色</option>
+						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
 					</select>
 				</td>
 			</tr>
@@ -78,8 +75,7 @@
 				<td class="xx">
 					<select name="grsonid">
 						<option value="0">请选择分类</option>
-						<option value="1">NIKE</option>
-						<option value="2">阿迪</option>
+						<option th:each="n,map:${typels}" th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
 					</select>
 				</td>
 			</tr>
@@ -94,8 +90,6 @@
 			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
 		</table>
 	</form>
-	
-	
 </div>
 </body>
-</html>
+</HTML>

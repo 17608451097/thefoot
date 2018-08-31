@@ -19,14 +19,14 @@ $(function(){
 		   	height:650,
 		    closed: false,    
 		    cache: false,    
-		    href: 'addshop.html',    
+		    href: '/templates/htpage/showoption',    
 		    modal: true   
 		});    
 		$('#dd').dialog('refresh', 'addshop.html');
 	}
 	
 	var $dgg =$('#dg').datagrid({
-		url:'shop',
+		url:'/templates/htpage/shop',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
 	    fitColumns:false,	  //匹配列宽

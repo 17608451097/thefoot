@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cssl.service.impl.ShowServiceImpl;
 
 @Controller
-@RequestMapping("/page")
+@RequestMapping("/templates/page")
 public class ShowController {
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class ShowController {
 		req.setAttribute("list2", list2);
 		req.setAttribute("list3", list3);
 		req.setAttribute("list4", list4);
-		return "index";
+		return "page/index";
 		
 	}
 	

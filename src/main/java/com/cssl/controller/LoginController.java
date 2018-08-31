@@ -10,7 +10,7 @@ import com.cssl.pojo.Users;
 import com.cssl.service.UserService;
 
 @Controller
-@RequestMapping("/page")
+@RequestMapping("/templates/page")
 public class LoginController {
 
 	@Autowired
@@ -25,10 +25,10 @@ public class LoginController {
 		}else {
 			if(us.getIsAdmin()==1) {
 				request.getSession().setAttribute("admin", us);
-				return "redirect:/htpage/layout.html";
+				return "redirect:/templates/htpage/layout.html";
 			}
 			request.getSession().setAttribute("user", us);
-			return "redirect:showType";
+			return "redirect:/templates/page/showType";
 		}
 	}
 	

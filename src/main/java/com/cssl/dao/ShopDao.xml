@@ -21,4 +21,5 @@
 	<select id="getaddshopid" resultType="int">
 		select @@IDENTITY
 	</select>
+	
 </mapper>
