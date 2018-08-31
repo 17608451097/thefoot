@@ -41,7 +41,7 @@ public class ProductController {
 	  
 	@RequestMapping("/addshop")
 	public String addshop(Shop shop,@RequestPart("file")MultipartFile file,HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		//
 		String time = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		String uuid = UUID.randomUUID().toString();
 		if (!file.isEmpty()) {
