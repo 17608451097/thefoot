@@ -18,7 +18,7 @@ import com.cssl.service.ShopService;
 import com.cssl.service.UserService;
 
 @Controller
-@RequestMapping("/htpage")
+@RequestMapping("/templates/htpage")
 public class MyController {
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class MyController {
 	}
 	
 	
-	@RequestMapping("user")
+	@RequestMapping("/user")
 	public void  user(HttpServletResponse response)throws IOException {
 		response.setCharacterEncoding("GBK");
 		response.setContentType("text/heml;charset=GBK");

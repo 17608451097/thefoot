@@ -14,4 +14,6 @@ public class Shop {
 	private int grsonid;
 	private String filename;
 	private int stock;
+	private int sizeid;
+	private int colorid;
 }

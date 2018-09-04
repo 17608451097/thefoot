@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<HTML xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -31,7 +30,7 @@
 		padding-top: 30px;
 	}
 </style>
-	<form>
+	<form action="addshop" enctype="multipart/form-data"  method="post">
 		<table>
 			<tr>
 				<td class="ss" id="ssf">商品名称</td>
@@ -43,7 +42,7 @@
 			</tr>
 			<tr>
 				<td class="ss">原价</td>
-				<td class="xx"><input name="orprice" type="text" /></td>
+				<td class="xx"><input name="oriprice" type="text" /></td>
 			</tr>
 			<tr>
 				<td class="ss">详情</td>
@@ -54,12 +53,29 @@
 				<td class="xx"><textarea name="proreview" /></textarea>
 			</tr>
 			<tr>
+				<td class="ss">尺码</td>
+				<td class="xx">
+					<select name="sizeid" >
+						<option selected="selected" value="0">请选择尺码</option>
+						<option th:each="n,map:${sizels}" th:value="${n.sizeid}" th:text="${n.sizename}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss">颜色</td>
+				<td class="xx">
+					<select name="colorid">
+						<option value="0">请选择颜色</option>
+						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<td class="ss">分类</td>
 				<td class="xx">
-					<select>
-						<option>请选择分类</option>
-						<option>NIKE</option>
-						<option>阿迪</option>
+					<select name="grsonid">
+						<option value="0">请选择分类</option>
+						<option th:each="n,map:${typels}" th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
 					</select>
 				</td>
 			</tr>
@@ -71,9 +87,9 @@
 				<td class="ss">商品数量</td>
 				<td class="xx"><input name="stock" type="number" value="0" /></td>
 			</tr>
-			<tr><td></td><td><button type="submit">新增</button></td></tr>
+			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
 		</table>
 	</form>
 </div>
 </body>
-</html>
+</HTML>

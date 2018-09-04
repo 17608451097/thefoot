@@ -12,7 +12,6 @@ public class MyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication sc = new SpringApplication(MyApplication.class);
-		//ghjk
 		sc.run(args);
 	}
 	

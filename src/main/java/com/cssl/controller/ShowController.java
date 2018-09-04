@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cssl.service.impl.ShowServiceImpl;
 
 @Controller
-@RequestMapping("/page")
+@RequestMapping("/templates/page")
 public class ShowController {
 	
 	@Autowired
@@ -23,10 +23,14 @@ public class ShowController {
 		List<Map<String,Object>> list= ssi.getType();
 		List<Map<String,Object>> list1= ssi.getSonType();
 		List<Map<String,Object>> list2= ssi.getGrsontype();
+		List<Map<String,Object>> list3=ssi.getShopOne_Three();
+		List<Map<String,Object>> list4=ssi.getShopThree_Six();
 		req.setAttribute("list", list);
 		req.setAttribute("list1", list1);
 		req.setAttribute("list2", list2);
-		return "index";
+		req.setAttribute("list3", list3);
+		req.setAttribute("list4", list4);
+		return "page/index";
 		
 	}
 	

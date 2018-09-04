@@ -30,4 +30,14 @@ public class ShowServiceImpl implements ShowService {
 		return sdao.getGrsontype();
 	}
 
+	@Override
+	public List<Map<String, Object>> getShopOne_Three() {
+		return sdao.getShopOne_Three();
+	}
+
+	@Override
+	public List<Map<String, Object>> getShopThree_Six() {
+		return sdao.getShopThree_Six();
+	}
+
 }
