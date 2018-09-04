@@ -19,44 +19,69 @@
 <script type="text/javascript" src="static/jquery.easyui.min.js"></script> 
 <script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
+
+/* function tabs(title,href){
+	alert('111');
+	if($('#tt').tabs('exists',title)){
+ 		$('#tt').tabs('select',title)
+	}else{
+  		$('#tt').tabs('add',{  
+  			id:'sp',      
+	  	 	title:title, 
+	    	closable:true,
+	   		href:href
+		});
+	}
+} */
+
 $(function(){
 	$(".sp").click(function(){
 	  	var title =	$(this).text();
+	  	var href = null;
+	  	if(title=='商品'){
+			href='shop.html';
+		}else if(title=='用户'){
+			href='user.html';
+		}
 		if($('#tt').tabs('exists',title)){
 		 	$('#tt').tabs('select',title)
 		}else{
-		  	$('#tt').tabs('add',{    
+		  	$('#tt').tabs('add',{  
+		  		id:'sp',      
 			    title:title, 
 			    closable:true,
-			    href:'shop.html',
+			    href:href
 			});
 		}
 	});
-	$(".yh").click(function(){
+	
+	/* $(".yh").click(function(){
 	  	var title =	$(this).text();
 		if($('#tt').tabs('exists',title)){
 			$('#tt').tabs('select',title)
 		}else{
-			
-		  	$('#tt').tabs('add',{    
+		  	$('#tt').tabs('add',{
+		  		id:'yh',    
 			    title:title, 
 			    closable:true,
 			    href:'user.html',
 			});
 		}
 	});
+	
 	$(".dd").click(function(){
 	  	var title =	$(this).text();
 		if($('#tt').tabs('exists',title)){
 			$('#tt').tabs('select',title)
 		}else{
-		  	$('#tt').tabs('add',{    
+		  	$('#tt').tabs('add',{  
+		  		id:'dd',      
 			    title:title, 
 			    closable:true,
 			    href:'order.html',
 			});
 		}
-	});
+	}); */
 });
 </script>
 </head>
@@ -74,13 +99,13 @@ $(function(){
     <div data-options="region:'west'" style="width:280px;">
     	<div id="aa" class="easyui-accordion" style="width:100%;height:100%;">
 		    <div title="商品管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-		        <h3 class="sp" style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="sp">商品</a></h3>
+		        <h3 class="sp"  style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="sp">商品</a></h3>
 		    </div>
 		    <div title="用户管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-		        <h3 class="yh" style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="yh">用户</a></h3>
+		        <h3 class="sp"  style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="yh">用户</a></h3>
 		    </div>
 		    <div title="订单管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-		        <h3 class="dd" style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="dd">订单</a></h3>
+		        <h3 class="sp" style="color:#fff;background-color: #ccc;padding: 5px;margin: 0px;border-radius:5px;"><a href="#"  class="dd">订单</a></h3>
 		    </div>
 		</div>
     </div>   
@@ -98,7 +123,5 @@ $(function(){
 		</div>  
     </div>
     <!-- 后台数据展示结束板块 -->  
-    
-    <div id="dd"></div>
 </body> 
 </html>

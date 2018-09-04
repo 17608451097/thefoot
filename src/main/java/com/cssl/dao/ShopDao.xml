@@ -3,23 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cssl.dao.ShopDao">
-	
+
 	<select id="getShop" resultType="map">
-		SELECT `shopid`,`shopname`,`price`,`Oriprice`,`prodetails`,`proreview`,gt.`grsonname`,`filename`,`Stock`
-        FROM `shop` sp
-        INNER JOIN `grsontype` gt ON sp.`grsonid` = gt.`grsonid`
+		SELECT
+		`shopid`,`shopname`,`price`,`Oriprice`,`prodetails`,`proreview`,gt.`grsonname`,`filename`,`Stock`
+		FROM `shop` sp
+		INNER JOIN `grsontype` gt ON sp.`grsonid` = gt.`grsonid`
 	</select>
-	
+
 	<insert id="addproduct">
-		INSERT INTO shop (`shopname`,`price`,`Oriprice`,`prodetails`,`proreview`,`grsonid`,`filename`) VALUES (#{shopname},#{price},#{oriprice},#{prodetails},#{proreview},#{grsonid},#{filename})
+		INSERT INTO shop
+		(`shopname`,`price`,`Oriprice`,`prodetails`,`proreview`,`grsonid`,`filename`)
+		VALUES
+		(#{shopname},#{price},#{oriprice},#{prodetails},#{proreview},#{grsonid},#{filename})
 	</insert>
-	
+
 	<insert id="addshopstock">
-		INSERT INTO `shopstock` (shopid,colorid,sizeid,stock) VALUES (#{shopid},#{colorid},#{sizeid},#{stock})
+		INSERT INTO `shopstock` (shopid,colorid,sizeid,stock)
+		VALUES (#{shopid},#{colorid},#{sizeid},#{stock})
 	</insert>
-	
+
 	<select id="getaddshopid" resultType="int">
 		select @@IDENTITY
 	</select>
-	
+
+	<select id="getbyidshop" resultType="map">
+		SELECT * FROM `shop` WHERE
+		shopid=#{shopid}
+	</select>
+
+	<update id="updateshop">
+		UPDATE shop SET
+		price=#{price},Oriprice=#{oriprice},prodetails=#{prodetails},proreview=#{proreview},grsonid=#{grsonid},filename=#{filename}
+		WHERE shopid=#{shopid}
+	</update>
+
+	<delete id="delshop">
+		DELETE FROM shop WHERE shopid=#{shopid}
+	</delete>
+
+	<delete id="delstock">
+		DELETE FROM shopstock WHERE shopid=#{shopid}
+	</delete>
+
+	<select id="getshop" resultType="map">
+		SELECT
+		sk.`sid`,sk.`shopid`,sp.shopname,c.`colorname`,s.`sizename`,sk.`stock`
+		FROM shopstock sk
+		INNER JOIN shop sp ON sk.`shopid` = sp.`shopid`
+		INNER JOIN colors c ON sk.`colorid` = c.`colorid`
+		INNER JOIN size s ON sk.`sizeid` = s.`sizeid`
+		WHERE sk.shopid = #{shopid}
+	</select>
+
 </mapper>

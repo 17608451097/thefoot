@@ -13,20 +13,103 @@
 <script type="text/javascript">
 $(function(){
 	function addshop(){
-		$('#dd').dialog({    
+		$('#dq').dialog({    
 		    title: '商品新增',
 		  	width:600,
 		   	height:650,
 		    closed: false,    
 		    cache: false,    
-		    href: '/templates/htpage/showoption',    
+		    href: 'showoption?gn=ss',    
 		    modal: true   
-		});    
-		$('#dd').dialog('refresh', 'addshop.html');
+		});
+	}
+
+	function update(ss){
+		$('#dq').dialog({    
+		    title: '商品修改',
+		  	width:600,
+		   	height:650,
+		    closed: false,    
+		    cache: false,    
+		    href: 'showoption?shopid='+ss.shopid+'&gn=update',    
+		    modal: true   
+		});
+	}
+
+	function kccz(id){
+		var $dgg =$('#dc').datagrid({
+			url:'kccz?shopid='+id.shopid+'&now='+new Date(),
+		    striped:true,    	//斑马线效果
+		    singleSelect:true,
+		    fitColumns:false,	  //匹配列宽
+		    fit:false,			  //匹配父容器
+		    queryParams:{
+	  			name: 'easyui'		  			
+	  		},
+	        loadMsg: '正在加载数据.......',
+			 columns:[[
+					{field:'sid',title:'库存ID',width:50,align:'right'},			            
+			        {field:'shopid',title:'商品ID',width:50,align:'right'},
+			        {field:'shopname',title:'商品名称',width:200,align:'center'},
+			        {field:'colorname',title:'颜色',width:100,align:'center'},
+			        {field:'sizename',title:'尺码',width:100,align:'center'},
+			        {field:'stock',title:'存量',width:122,align:'center'}
+			    ]],
+			  	toolbar: [{
+				  	text: '添加商品库存',
+			  		iconCls: 'icon-add',
+			  		handler: function(){
+			  			//addshop();
+			  		}
+			  	},'-',{
+				  	text: '取消选中',
+			  		iconCls: 'icon-back',
+			  		handler: function(){			  			
+						$dgg.datagrid('rejectChanges');	//撤销修改内容
+						$dgg.datagrid('unselectAll');	//取消选择
+						editRow=null;
+			  		}
+			  	}],//右键菜单				
+				onRowContextMenu:function(e, rowIndex, rowData){
+					//只能采用阻止默认事件			
+					e.preventDefault();				
+					//取消原来的选中行
+					$dgg.datagrid('unselectAll');
+					//右键选中行
+					$dgg.datagrid('selectRow',rowIndex);
+					//弹出右键菜单
+					$('#mc').menu('show', {    
+						  left: e.pageX,    
+						  top: e.pageY  
+					});						
+				}		  		 	     
+		});   
+		$('#dd').dialog({    
+		    title: '库存操作',
+		  	width:800,
+		   	height:500,
+		    closed: false,    
+		    cache: false,
+		    modal: true   
+		});
+	}
+
+	//删除商品
+	function del(id,xx){
+		var flag = confirm("确定要删除这条商品吗,商品删除之后,商品库存也会删除。");
+		if(flag){
+			$.post("delshop?shopid="+id,function(row){
+				if(row>0){
+					var ss = $('#dg').datagrid('getRowIndex',xx);	
+					$('#dg').datagrid('deleteRow',ss);
+					alert('删除成功!');
+				}
+			});
+		}
 	}
 	
 	var $dgg =$('#dg').datagrid({
-		url:'/templates/htpage/shop',
+		url:'shop',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
 	    fitColumns:false,	  //匹配列宽
@@ -64,25 +147,38 @@ $(function(){
 		  		text: '编辑',
 		  		iconCls: 'icon-edit',
 		  		handler: function(){
-		  			updateData();						
+		  			 var xx = $('#dg').datagrid('getSelected')	
+		  			 if(xx==null){
+			  			 alert('请选中一条数据在操作!');
+			  		 }else{
+			  			 update(xx);
+				  	 }
+		  			//update();		
 		  		}
 		  	},'-',{
 			  	text: '删除',
 		  		iconCls: 'icon-remove',
 		  		handler: function(){
-		  			deleteData();
+		  			var xx = $('#dg').datagrid('getSelected')	
+		  			if(xx==null){
+			  			 alert('请选中一条数据在操作!');
+			  		 }else{
+			  			 del(xx.shopid,xx);
+				  	 }
 		  		}
 		  	},'-',{
-			  	text: '保存',
-		  		iconCls: 'icon-save',
-		  		handler: function(){			  			
-					if(editRow!=null){							
-						//触发onAfterEdit事件
-						$dgg.datagrid('endEdit',editRow);
-					}											
-		  		} 
+			  	text: '库存查询',
+		  		iconCls: 'icon-search',
+		  		handler: function(){
+		  			 var xx = $('#dg').datagrid('getSelected')	
+		  			 if(xx==null){
+			  			 alert('请选中一条数据在操作!');
+			  		 }else{
+			  			 kccz(xx);
+				  	 }
+		  		}
 		  	},'-',{
-			  	text: '取消编辑',
+			  	text: '取消选中',
 		  		iconCls: 'icon-back',
 		  		handler: function(){			  			
 					$dgg.datagrid('rejectChanges');	//撤销修改内容
@@ -112,29 +208,51 @@ $(function(){
 	    onClick:function(item){ 			       
 	        if(item.name=='add'){
 	        	addshop();
-	        }else if(item.name=='edit'){				       
-				updateData();
+	        }else if(item.name=='edit'){
+	        	var xx = $('#dg').datagrid('getSelected');
+		  		update(xx);
 	        }else if(item.name=='exit'){
 				$('#mm').menu('hide');
 		    }else if(item.name=='remove'){
-				alert('remove');
-				deleteData();
-	        } 
+		    	var xx = $('#dg').datagrid('getSelected');
+		    	del(xx.shopid,xx);
+	        } else if(item.name=='kccz'){
+	        	var xx = $('#dg').datagrid('getSelected')	
+		  		kccz(xx);
+		    }
 	    }		 
 	});
-
-	
 })
 </script>
-	<table id="dg">
-	</table>
+
+	<!-- 商品展示datagrid -->
+	<table id="dg"></table>
+	
+	<!-- 商品操作dialog -->
+	<div id="dq"></div>
+	
+	<!-- 商品右键菜单 -->
 	<div id="mm" class="easyui-menu" style="width: 120px; display: none;">
 		<div data-options="name:'add',iconCls:'icon-add'">添加</div>
 		<div data-options="name:'edit',iconCls:'icon-edit'">编辑</div>
 		<div data-options="name:'remove',iconCls:'icon-remove'">删除</div>
+		<div data-options="name:'kccz',iconCls:'icon-search'">库存查询</div>
 		<div class="menu-sep"></div>
 		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
 	</div>
-	<div id="dd"></div>
+	
+	<!-- 商品库存dialog -->
+	<div id="dd">
+		<!-- 库存展示datagrid -->
+		<table id="dc"></table>
+	</div>
+	
+	<!-- 商品库存右键菜单 -->
+	<div id="mc" class="easyui-menu" style="width: 120px; display: none;">
+		<div data-options="name:'edit',iconCls:'icon-edit'">修改商品库存</div>
+		<div data-options="name:'remove',iconCls:'icon-remove'">删除商品库存</div>
+		<div class="menu-sep"></div>
+		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
+	</div>
 </body>
 </html>

@@ -60,4 +60,17 @@ public class MyController {
 		out.close();
 	}
 	
+	@RequestMapping("/kccz")
+	public void kccz(String shopid,HttpServletResponse response) throws IOException {
+		System.out.println(shopid);
+		response.setCharacterEncoding("GBK");
+		response.setContentType("text/heml;charset=GBK");
+		PrintWriter out = response.getWriter();
+		List<Map<String, Object>> list = ssic.getshop(shopid);
+		String json = JSON.toJSONString(list);
+		out.write(json);
+		out.flush();
+		out.close();
+	}
+	
 }

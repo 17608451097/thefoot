@@ -42,4 +42,34 @@ public class ShopServiceimpl implements ShopService {
 		return sdao.getaddshopid();
 	}
 
+	@Override
+	public List<Map<String, Object>> getbyidshop(String shopid) {
+		
+		return sdao.getbyidshop(shopid);
+	}
+
+	@Override
+	public int updateshop(Shop shop) {
+		
+		return sdao.updateshop(shop);
+	}
+
+	@Override
+	public int delshop(String shopid) {
+		// TODO Auto-generated method stub
+		return sdao.delshop(shopid);
+	}
+
+	@Override
+	public int delstock(String shopid) {
+		// TODO Auto-generated method stub
+		return sdao.delstock(shopid);
+	}
+
+	@Override
+	public List<Map<String, Object>> getshop(String shopid) {
+		// TODO Auto-generated method stub
+		return sdao.getshop(shopid);
+	}
+
 }

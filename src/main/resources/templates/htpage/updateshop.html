@@ -30,52 +30,37 @@
 		padding-top: 30px;
 	}
 </style>
-	<form action="addshop" enctype="multipart/form-data"  method="post">
-		<table>
+	<form action="updateshop" enctype="multipart/form-data"  method="post">
+		<table th:each="nb,map:${shopls}">
+			<tr>
+				<td><input name="shopid" th:value="${nb.shopid}"  style="display: none;" /></td>
+			</tr>
 			<tr>
 				<td class="ss" id="ssf">商品名称</td>
-				<td class="xx" id="sss"><input name="shopname" type="text"/></td>
+				<td class="xx" id="sss"><input name="shopname" readonly="readonly" type="text" th:value="${nb.shopname}"/></td>
 			</tr>
 			<tr>
 				<td class="ss">价格</td>
-				<td class="xx"><input name="price" type="text" /></td>
+				<td class="xx"><input name="price" type="text" th:value="${nb.price}" /></td>
 			</tr>
 			<tr>
 				<td class="ss">原价</td>
-				<td class="xx"><input name="oriprice" type="text" /></td>
+				<td class="xx"><input name="oriprice" type="text" th:value="${nb.Oriprice}" /></td>
 			</tr>
 			<tr>
 				<td class="ss">详情</td>
-				<td class="xx"><textarea name="prodetails"/></textarea>
+				<td class="xx"><textarea name="prodetails" th:text="${nb.prodetails}"/></textarea>
 			</tr>
 			<tr>
 				<td class="ss">描述</td>
-				<td class="xx"><textarea name="proreview" /></textarea>
+				<td class="xx"><textarea name="proreview" th:text="${nb.proreview}" /></textarea>
 			</tr>
-			<!-- <tr>
-				<td class="ss">尺码</td>
-				<td class="xx">
-					<select name="sizeid" >
-						<option selected="selected" value="0">请选择尺码</option>
-						<option th:each="n,map:${sizels}" th:value="${n.sizeid}" th:text="${n.sizename}"></option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="ss">颜色</td>
-				<td class="xx">
-					<select name="colorid">
-						<option value="0">请选择颜色</option>
-						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
-					</select>
-				</td>
-			</tr> -->
 			<tr>
 				<td class="ss">分类</td>
 				<td class="xx">
 					<select name="grsonid">
 						<option value="0">请选择分类</option>
-						<option th:each="n,map:${typels}" th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
+						<option th:each="n,map:${typels}"  th:selected="${n.grsonid} eq ${nb.grsonid} ? selected : ''" th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
 					</select>
 				</td>
 			</tr>
