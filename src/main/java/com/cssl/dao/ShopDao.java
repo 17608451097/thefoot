@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.cssl.pojo.Shop;
+import com.cssl.pojo.Shopstock;
 
 public interface ShopDao {
 	
@@ -26,4 +27,10 @@ public interface ShopDao {
 	public int delstock(String shopid);
 	
 	public List<Map<String,Object>> getshop(String shopid);
+	
+	public int getshopstock(String shopid);
+	
+	public int addkc(Shopstock stock);
+	
+	public int updshop(@Param("stock")String stock,@Param("shopid")String shopid);
 }

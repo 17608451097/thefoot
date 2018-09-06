@@ -55,5 +55,17 @@
 		INNER JOIN size s ON sk.`sizeid` = s.`sizeid`
 		WHERE sk.shopid = #{shopid}
 	</select>
+	
+	<select id="getshopstock" resultType="int">
+		SELECT SUM(stock) FROM shopstock WHERE shopid=#{shopid}
+	</select>
+	
+	<insert id="addkc">
+		INSERT INTO shopstock(`shopid`,`colorid`,`sizeid`,`stock`) VALUES (#{shopid},#{colorid},#{sizeid},#{stock})
+	</insert>
+	
+	<update id="updshop">
+		UPDATE shop SET Stock=#{stock} WHERE shopid = #{shopid}
+	</update>
 
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cssl.dao.ShopDao;
 import com.cssl.pojo.Shop;
+import com.cssl.pojo.Shopstock;
 import com.cssl.service.ShopService;
 
 @Service
@@ -70,6 +71,24 @@ public class ShopServiceimpl implements ShopService {
 	public List<Map<String, Object>> getshop(String shopid) {
 		// TODO Auto-generated method stub
 		return sdao.getshop(shopid);
+	}
+
+	@Override
+	public int getshopstock(String shopid) {
+		// TODO Auto-generated method stub
+		return sdao.getshopstock(shopid);
+	}
+
+	@Override
+	public int addkc(Shopstock stock) {
+		// TODO Auto-generated method stub
+		return sdao.addkc(stock);
+	}
+
+	@Override
+	public int updshop(String stock, String shopid) {
+		// TODO Auto-generated method stub
+		return sdao.updshop(stock, shopid);
 	}
 
 }

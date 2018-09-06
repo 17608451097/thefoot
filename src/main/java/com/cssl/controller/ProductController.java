@@ -76,7 +76,7 @@ public class ProductController {
 			List<Map<String, Object>> shopls = ssic.getbyidshop(shop.getShopid() + "");
 			req.setAttribute("shopls", shopls);
 			return "htpage/updateshop";
-		}
+		} 
 		return "htpage/addshop";
 	}
 

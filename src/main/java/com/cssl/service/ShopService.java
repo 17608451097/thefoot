@@ -3,7 +3,10 @@ package com.cssl.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cssl.pojo.Shop;
+import com.cssl.pojo.Shopstock;
 
 public interface ShopService {
 
@@ -24,4 +27,10 @@ public interface ShopService {
 	public int delstock(String shopid);
 
 	public List<Map<String,Object>> getshop(String shopid);
+	
+	public int getshopstock(String shopid);
+
+	public int addkc(Shopstock stock);
+
+	public int updshop(@Param("stock")String stock,@Param("shopid")String shopid);
 }
