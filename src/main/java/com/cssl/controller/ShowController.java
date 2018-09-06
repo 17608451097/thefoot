@@ -31,7 +31,25 @@ public class ShowController {
 		req.setAttribute("list3", list3);
 		req.setAttribute("list4", list4);
 		return "page/index";
-		
 	}
 	
+	@RequestMapping("/showSingle")
+	public String showSingle(HttpServletRequest req,int id) {
+		List<Map<String,Object>> list= ssi.getType();
+		List<Map<String,Object>> list1= ssi.getSonType();
+		List<Map<String,Object>> list2= ssi.getGrsontype();
+		List<Map<String,Object>> sa= ssi.getShopAll(id);
+		List<Map<String,Object>> sz= ssi.getShopsizename(id);
+		List<Map<String,Object>> show=ssi.getShopImg();
+		List<Map<String,Object>> ic=ssi.getImgColor(id);
+		
+		req.setAttribute("list", list);
+		req.setAttribute("list1", list1);
+		req.setAttribute("list2", list2);
+		req.setAttribute("sa", sa);
+		req.setAttribute("sz", sz);
+		req.setAttribute("show", show);
+		req.setAttribute("ic", ic);
+		return "page/single";
+	}
 }
