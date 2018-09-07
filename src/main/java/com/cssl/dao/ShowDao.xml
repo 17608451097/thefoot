@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="getShopAll" resultType="map">
-          SELECT se.`sizename`,cd.`colorname`,sp.`shopname`,sp.`price`,sp.`proreview`
+          SELECT se.`sizename`,cd.`colorname`,sp.`shopname`,sp.`price`,sp.`proreview`,sp.`Oriprice`
 FROM `shopstock` sk
 INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
 INNER JOIN `colors` cd ON sk.`cololid`=cd.`colorid`

@@ -42,7 +42,6 @@ public class ShowController {
 		List<Map<String,Object>> sz= ssi.getShopsizename(id);
 		List<Map<String,Object>> show=ssi.getShopImg();
 		List<Map<String,Object>> ic=ssi.getImgColor(id);
-		
 		req.setAttribute("list", list);
 		req.setAttribute("list1", list1);
 		req.setAttribute("list2", list2);

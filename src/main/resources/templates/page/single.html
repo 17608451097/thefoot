@@ -163,8 +163,8 @@
                 <h3 class="m_3" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.shopname}"></h3>
 
                 <div class="price_single">
-                    <span class="reducedfrom">$66.00</span>
-                    <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.price}"></span><a href="#">点击报价</a>
+                    <span class="reducedfrom" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'$'+${m.price}"></span>
+                    <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.Oriprice}"></span><a href="#">点击报价</a>
                 </div>
                 <ul class="options">
                     <h4 class="m_9" >选择尺寸</h4>
@@ -360,7 +360,6 @@
 					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商店发现者</font></font></a></li>
 					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客户服务</font></font></a></li>
 					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">常问问题</font></font></a></li>
-					  
 		            </ul>
 				</div>
 				<div class="clear"></div>
