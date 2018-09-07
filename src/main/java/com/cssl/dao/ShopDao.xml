@@ -67,5 +67,17 @@
 	<update id="updshop">
 		UPDATE shop SET Stock=#{stock} WHERE shopid = #{shopid}
 	</update>
+	
+	<update id="updshopkc">
+		UPDATE `shopstock` SET colorid=#{colorid},sizeid=#{sizeid},stock=#{stock} WHERE sid=#{sid}
+	</update>
+	
+	<select id="updhx" resultType="map">
+		SELECT * FROM shopstock WHERE sid = #{sid}
+	</select>
+	
+	<delete id="delkc">
+		DELETE FROM shopstock WHERE sid = #{sid}
+	</delete>
 
 </mapper>

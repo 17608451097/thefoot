@@ -91,4 +91,22 @@ public class ShopServiceimpl implements ShopService {
 		return sdao.updshop(stock, shopid);
 	}
 
+	@Override
+	public int updshopkc(Shopstock stock) {
+		// TODO Auto-generated method stub
+		return sdao.updshopkc(stock);
+	}
+
+	@Override
+	public List<Shopstock> updhx(String sid) {
+		// TODO Auto-generated method stub
+		return sdao.updhx(sid);
+	}
+
+	@Override
+	public int delkc(String sid) {
+		// TODO Auto-generated method stub
+		return sdao.delkc(sid);
+	}
+
 }

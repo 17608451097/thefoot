@@ -6,12 +6,116 @@
 <script type="text/javascript" src="static/jquery.min.js"></script>
 <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+<script type="text/javascript">
+	$(function(){
+		function upddd(xx){
+			$('#dv').dialog({    
+			    title: '订单状态修改',
+			  	width:600,
+			   	height:550,
+			    closed: false,    
+			    cache: false,    
+			    href: 'upddd.html', 
+			    modal: true   
+			});
+		}
+		
+		var $dgg =$('#dg').datagrid({
+			url:'order',
+		    striped:true,    	//斑马线效果
+		    singleSelect:true,
+		    fitColumns:false,	  //匹配列宽
+		    fit:true,			  //匹配父容器
+		    queryParams:{
+	  			name: 'easyui'		  			
+	  		},
+	        loadMsg: '正在加载数据.......',
+			 columns:[[
+					{field:'orderid',title:'订单ID',width:50,align:'right',height: 50,hidden:'true'},
+					{field:'companyname',title:'下单用户姓名',width:225,align:'center'},	
+					{field:'ordernumber',title:'订单编号',width:265,align:'center'},
+			        {field:'ordertypename',title:'订单状态',width:230,align:'center'},
+			        {field:'orderdate',title:'下单时间',width:250,align:'center'},
+			        {field:'orderprice',title:'订单总价',width:250,align:'center'}
+			    ]],
+			  	toolbar: [{
+				  	text: '修改订单状态',
+			  		iconCls: 'icon-edit',
+			  		handler: function(){
+			  			var xx = $('#dg').datagrid('getSelected');	
+			        	if(xx==null){
+				  			alert('请选中一条数据在操作!');
+				  		}else{
+				        	upddd(xx);
+					  	}
+			  		}
+			  	},'-',{
+				  	text: '删除订单',
+			  		iconCls: 'icon-remove',
+			  		handler: function(){
+				  		
+			  		}
+			  	},'-',{
+				  	text: '查看订单详情',
+			  		iconCls: 'icon-search',
+			  		handler: function(){
+				  		
+			  		}
+			  	},'-',{
+				  	text: '取消选中',
+			  		iconCls: 'icon-back',
+			  		handler: function(){			  			
+						$dgg.datagrid('rejectChanges');	//撤销修改内容
+						$dgg.datagrid('unselectAll');	//取消选择
+						editRow=null;
+			  		}
+			  	}],//右键菜单				
+				onRowContextMenu:function(e, rowIndex, rowData){
+					//只能采用阻止默认事件			
+					e.preventDefault();				
+					//取消原来的选中行
+					$dgg.datagrid('unselectAll');
+					//右键选中行
+					$dgg.datagrid('selectRow',rowIndex);
+					//弹出右键菜单
+					$('#mm').menu('show', {    
+						  left: e.pageX,    
+						  top: e.pageY  
+					});						
+				}		  		 	     
+		});  
 
+		$('#mm').menu({    
+		    onClick:function(item){ 			       
+		        if(item.name=='edit'){
+		        	//修改商品库存
+		        	var xx = $('#dg').datagrid('getSelected');	
+		        	upddd(xx);
+		        }else if(item.name=='exit'){
+					$('#mm').menu('hide');
+			    }else if(item.name=='remove'){
+				    //删除商品库存
+			    	
+		        }else if(item.name=='ddxq'){
+				    //查看订单详情
+			    	
+		        }
+		    }		 
+		}); 
+	});
+</script>
 </head>
 <body>
-	<table id = "dg"></table> 
+	<table id = "dg"></table>
+	<div id="mm" class="easyui-menu" style="width: 120px; display: none;">
+		<div data-options="name:'edit',iconCls:'icon-edit'">修改订单状态</div>
+		<div data-options="name:'remove',iconCls:'icon-remove'">退货</div>
+		<div data-options="name:'ddxq',iconCls:'icon-search'">查看订单详情</div>
+		<div class="menu-sep"></div>
+		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
+	</div> 
+	<div id="dv"></div>
 </body>
 </html>

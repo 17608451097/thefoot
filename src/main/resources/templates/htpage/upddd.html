@@ -1,0 +1,69 @@
+<HTML xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="static/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div style="text-align: center;">
+<style type="text/css">
+.ss{
+		padding-left: 120px;
+	}
+	.ss,.xx{
+		padding-bottom: 30px;
+	}
+	
+	.sc{
+		padding-left: 100px;
+		padding-bottom: 30px;
+	}
+	#sss,#ssf{
+		padding-top: 62px;
+	} 
+</style>
+	<form action="" method="post" target="_top">
+		<table style="margin-left: 112px;margin-top: -60px;"  th:each="ns,map:${hx}">
+			<tr>
+				<td class="ss" id="ssfs"></td>
+				<td class="xx" id="sss"><input name="sid" th:value="" style="display: none;" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="szs" id="ssf"></td>
+				<td class="xxss" id="sss4"><span><strong>23333</strong></span></td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf1"></td>
+				<td class="xx" id="sss2"><span>2222</span></td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx">
+					<select name="sizeid" >
+						<option selected="selected" value="0">请选择状态</option>
+						<option th:each="" th:selected="1=1 ? selected : ''"  th:value="" th:text=""></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx"><span>22</span></td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx"><span>22</span></td>
+			</tr>
+			<tr><td></td><td><button type="submit">点击修改</button></td></tr>
+		</table>
+	</form>
+</div>
+</body>
+</HTML>

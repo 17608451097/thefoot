@@ -1,4 +1,4 @@
-<HTML xmlns:th="http://www.thymeleaf.org">
+‘【//2<HTML xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -30,29 +30,17 @@
 		padding-top: 30px;
 	}
 </style>
-	<form action="addshop" enctype="multipart/form-data"  method="post" target="_top">
-		<table>
+	<form action="addkc" method="post" target="_top">
+		<table style="margin-left: 63px;margin-top: -27px;">
+			<tr>
+				<td class="ss" id="ssf"></td>
+				<td class="xx" id="sss"><input name="shopid" th:value="${shopid}" style="display: none;" type="text"/></td>
+			</tr>
 			<tr>
 				<td class="ss" id="ssf">商品名称</td>
-				<td class="xx" id="sss"><input name="shopname" type="text"/></td>
+				<td class="xx" id="sss"><input name="shopname" th:value="${shopname}" readonly="readonly" type="text"/></td>
 			</tr>
 			<tr>
-				<td class="ss">价格</td>
-				<td class="xx"><input name="price" type="text" /></td>
-			</tr>
-			<tr>
-				<td class="ss">原价</td>
-				<td class="xx"><input name="oriprice" type="text" /></td>
-			</tr>
-			<tr>
-				<td class="ss">详情</td>
-				<td class="xx"><textarea name="prodetails"/></textarea>
-			</tr>
-			<tr>
-				<td class="ss">描述</td>
-				<td class="xx"><textarea name="proreview" /></textarea>
-			</tr>
-			<!-- <tr>
 				<td class="ss">尺码</td>
 				<td class="xx">
 					<select name="sizeid" >
@@ -69,24 +57,11 @@
 						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
 					</select>
 				</td>
-			</tr> -->
-			<tr>
-				<td class="ss">分类</td>
-				<td class="xx">
-					<select name="grsonid">
-						<option value="0">请选择分类</option>
-						<option th:each="n,map:${typels}" th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
-					</select>
-				</td>
 			</tr>
 			<tr>
-				<td class="ss">商品图片</td>
-				<td class="sc"><input name="file" type="file" /></td>
-			</tr>
-			<!-- <tr>
 				<td class="ss">商品数量</td>
 				<td class="xx"><input name="stock" type="number" value="0" /></td>
-			</tr> -->
+			</tr>
 			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
 		</table>
 	</form>

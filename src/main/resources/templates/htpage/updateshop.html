@@ -30,7 +30,7 @@
 		padding-top: 30px;
 	}
 </style>
-	<form action="updateshop" enctype="multipart/form-data"  method="post">
+	<form action="updateshop" enctype="multipart/form-data"  method="post"  target="_top">
 		<table th:each="nb,map:${shopls}">
 			<tr>
 				<td><input name="shopid" th:value="${nb.shopid}"  style="display: none;" /></td>
@@ -72,7 +72,7 @@
 				<td class="ss">商品数量</td>
 				<td class="xx"><input name="stock" type="number" value="0" /></td>
 			</tr> -->
-			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
+			<tr><td></td><td><button type="submit">点击修改</button></td></tr>
 		</table>
 	</form>
 </div>

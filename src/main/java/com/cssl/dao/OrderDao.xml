@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.OrderDao">
+
+	<select id="getOrder" resultType="map">
+		select o.`orderid`,o.`ordernumber`,ot.ordertypename,o.orderdate,o.orderprice,u.companyname from orders o
+		inner join ordertype ot on o.ordertypeid = ot.ordertypeid
+		inner join users u on o.userid = u.userid
+	</select>
+	
+</mapper>

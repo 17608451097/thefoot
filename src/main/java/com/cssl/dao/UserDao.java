@@ -13,4 +13,6 @@ public interface UserDao {
 	
 	public List<Map<String,Object>> getuser();
 	
+	public int deluser(String userid);
+	
 }

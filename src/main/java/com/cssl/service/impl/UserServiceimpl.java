@@ -28,4 +28,10 @@ public class UserServiceimpl implements UserService {
 		return udao.getuser();
 	}
 
+	@Override
+	public int deluser(String userid) {
+		
+		return udao.deluser(userid);
+	}
+
 }

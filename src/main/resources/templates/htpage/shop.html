@@ -12,6 +12,20 @@
 <body>
 <script type="text/javascript">
 $(function(){
+	function delkc(xx){
+		var flag = confirm("确定要删除这条商品库存吗,商品库存删除之后,商品不会删除。");
+		if(flag){
+			$.post("delkc?sid="+xx.sid+"&shopid="+xx.shopid,function(row){
+				if(row>0){
+					var ss = $('#dc').datagrid('getRowIndex',xx);
+					$('#dc').datagrid('deleteRow',ss);
+					alert('删除成功!');
+				}else{
+					alert('删除失败!');
+				}
+			});
+		}
+	}
 
 	function updkc(xx){
 		$('#dv').dialog({    
@@ -67,18 +81,18 @@ $(function(){
 		    striped:true,    	//斑马线效果
 		    singleSelect:true,
 		    fitColumns:false,	  //匹配列宽
-		    fit:false,			  //匹配父容器
+		    fit:true,			  //匹配父容器
 		    queryParams:{
 	  			name: 'easyui'		  			
 	  		},
 	        loadMsg: '正在加载数据.......',
 			 columns:[[
-					{field:'sid',title:'库存ID',width:50,align:'right',height: 50},			            
-			        {field:'shopid',title:'商品ID',width:80,align:'right'},
+					{field:'sid',title:'库存ID',width:50,align:'right',height: 50,hidden:'true'},			            
+			        {field:'shopid',title:'商品ID',width:110,align:'center'},
 			        {field:'shopname',title:'商品名称',width:230,align:'center'},
 			        {field:'colorname',title:'颜色',width:100,align:'center'},
 			        {field:'sizename',title:'尺码',width:100,align:'center'},
-			        {field:'stock',title:'存量',width:122,align:'center'}
+			        {field:'stock',title:'存量',width:142,align:'center'}
 			    ]],
 			  	toolbar: [{
 				  	text: '添加商品库存',
@@ -138,8 +152,8 @@ $(function(){
 		url:'shop',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
-	    fitColumns:false,	  //匹配列宽
-	    fit:false,			  //匹配父容器
+	    fitColumns:true,	  //匹配列宽
+	    fit:true,			  //匹配父容器
 	    pagination:true,
         pageSize: 5,
         pageList: [5, 10, 15, 20],
@@ -260,6 +274,8 @@ $(function(){
 				$('#mm').menu('hide');
 		    }else if(item.name=='remove'){
 			    //删除商品库存
+		    	var xx = $('#dc').datagrid('getSelected');
+		    	delkc(xx);
 	        }
 	    }		 
 	});

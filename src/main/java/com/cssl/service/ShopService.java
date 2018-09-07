@@ -33,4 +33,10 @@ public interface ShopService {
 	public int addkc(Shopstock stock);
 
 	public int updshop(@Param("stock")String stock,@Param("shopid")String shopid);
+
+	public int updshopkc(Shopstock stock);
+
+	public List<Shopstock> updhx(String sid);
+	
+	public int delkc(String sid);
 }

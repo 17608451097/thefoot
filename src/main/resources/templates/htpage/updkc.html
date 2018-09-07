@@ -1,0 +1,74 @@
+<HTML xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="static/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+
+<script type="text/javascript">
+</script>
+</head>
+<body>
+<div style="text-align: center;">
+<style type="text/css">
+	.ss{
+		padding-left: 120px;
+	}
+	.ss,.xx{
+		padding-bottom: 30px;
+	}
+	
+	.sc{
+		padding-left: 100px;
+		padding-bottom: 30px;
+	}
+	#sss,#ssf{
+		padding-top: 30px;
+	}
+</style>
+	<form action="updkc" method="post" target="_top">
+		<table style="margin-left: 63px;margin-top: -84px;"  th:each="ns,map:${hx}">
+			<tr>
+				<td class="ss" id="ssf"></td>
+				<td class="xx" id="sss"><input name="shopid" th:value="${shopid}" style="display: none;" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf"></td>
+				<td class="xx" id="sss"><input name="sid" th:value="${sid}" style="display: none;" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf">商品名称</td>
+				<td class="xx" id="sss"><input name="shopname" th:value="${shopname}" readonly="readonly" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="ss">尺码</td>
+				<td class="xx">
+					<select name="sizeid" >
+						<option selected="selected" value="0">请选择尺码</option>
+						<option th:each="n,map:${sizels}" th:selected="${n.sizeid} eq ${ns.sizeid} ? selected : ''"  th:value="${n.sizeid}" th:text="${n.sizename}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss">颜色</td>
+				<td class="xx">
+					<select name="colorid">
+						<option value="0">请选择颜色</option>
+						<option th:each="n,map:${colorls}" th:selected="${n.colorid} eq ${ns.colorid} ? selected : ''" th:value="${n.colorid}" th:text="${n.colorname}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss">商品数量</td>
+				<td class="xx"><input name="stock" type="number" th:value="${ns.stock}" /></td>
+			</tr>
+			<tr><td></td><td><button type="submit">点击修改</button></td></tr>
+		</table>
+	</form>
+</div>
+</body>
+</HTML>

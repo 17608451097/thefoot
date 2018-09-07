@@ -13,15 +13,27 @@
 <body>
 	<script type="text/javascript">
 $(function(){
+	function deluser(xx){
+		var flag = confirm("确定要删除"+xx.companyname+"这个用户吗");
+		if(flag){
+			$.post("deluser?userid="+xx.userid,function(row){
+				if(row>0){
+					var ss = $('#dg').datagrid('getRowIndex',xx);
+					$('#dg').datagrid('deleteRow',ss);
+					alert('删除成功!');
+				}else{
+					alert('删除失败!');
+				}
+			});
+		}
+	}
+	
 	var $dgg =$('#dg').datagrid({
-		url:'/templates/htpage/user',
+		url:'user',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
 	    fitColumns:false,	  //匹配列宽
-	    fit:false,			  //匹配父容器
-	    pagination:true,
-        pageSize: 5,
-        pageList: [5, 10, 15, 20],
+	    fit:true,
 	    queryParams:{
   			name: 'easyui'		  			
   		},
@@ -35,7 +47,27 @@ $(function(){
 		        {field:'phone',title:'联系电话',width:130,align:'center'},
 		        {field:'DATE',title:'注册时间',width:130,align:'center'},
 		        {field:'countrycord',title:'国家代码',width:130,align:'center'}
-		    ]],
+		    ]],toolbar: [{
+			  	text: '删除用户',
+		  		iconCls: 'icon-remove',
+		  		handler: function(){
+		  			var xx = $('#dg').datagrid('getSelected');
+		  			if(xx==null){
+			  			alert('请先选择一条数据在进行删除');
+			  		}else{
+			  			deluser(xx);
+					}
+		        	
+		  		}
+		  	},'-',{
+			  	text: '取消选中',
+		  		iconCls: 'icon-back',
+		  		handler: function(){			  			
+					$dgg.datagrid('rejectChanges');	//撤销修改内容
+					$dgg.datagrid('unselectAll');	//取消选择
+					editRow=null;
+		  		}
+		  	}],
 		    //右键菜单				
 			onRowContextMenu:function(e, rowIndex, rowData){
 				//只能采用阻止默认事件			
@@ -54,20 +86,20 @@ $(function(){
 	//菜单点击事件			
 	$('#mm').menu({    
 	    onClick:function(item){ 			       
-	        if(item.name=='add'){
-	        	addData();
-	        }else if(item.name=='edit'){				       
-				updateData();
-	        }else if(item.name=='exit'){
-				$('#mm').menu('hide');
-		    }else if(item.name=='remove'){
-				alert('remove');
-				deleteData();
-	        } 
+	        if(item.name=='remove'){
+	        	//addData();
+	        	var xx = $('#dg').datagrid('getSelected');
+	        	deluser(xx);
+	        }
 	    }		 
 	}); 
 });
 </script>
 	<table id="dg"></table>
+	<div id="mm" class="easyui-menu" style="width: 120px; display: none;">
+		<div data-options="name:'remove',iconCls:'icon-remove'">删除用户</div>
+		<div class="menu-sep"></div>
+		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
+	</div>
 </body>
 </html>
