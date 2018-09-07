@@ -73,7 +73,7 @@ public class MyController {
 		List<Map<String, Object>> list = ssic.getshop(shopid);
 		String json = JSON.toJSONString(list);
 		out.write(json);
-		out.flush();
+		out.flush(); 
 		out.close();
 	}
 	
