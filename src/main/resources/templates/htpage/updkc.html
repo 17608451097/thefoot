@@ -49,7 +49,7 @@
 				<td class="xx">
 					<select name="sizeid" >
 						<option selected="selected" value="0">请选择尺码</option>
-						<option th:each="n,map:${sizels}" th:selected="${n.sizeid} eq ${ns.sizeid} ? selected : ''"  th:value="${n.sizeid}" th:text="${n.sizename}"></option>
+						<option th:each="n,map:${sizels}" th:selected="${n.sizeid} eq ${ns.sizeid}"  th:value="${n.sizeid}" th:text="${n.sizename}"></option>
 					</select>
 				</td>
 			</tr>
@@ -58,7 +58,7 @@
 				<td class="xx">
 					<select name="colorid">
 						<option value="0">请选择颜色</option>
-						<option th:each="n,map:${colorls}" th:selected="${n.colorid} eq ${ns.colorid} ? selected : ''" th:value="${n.colorid}" th:text="${n.colorname}"></option>
+						<option th:each="n,map:${colorls}" th:selected="${n.colorid} eq ${ns.colorid}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
 					</select>
 				</td>
 			</tr>

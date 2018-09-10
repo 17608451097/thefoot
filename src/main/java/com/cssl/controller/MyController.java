@@ -53,7 +53,7 @@ public class MyController {
 		response.setContentType("text/heml;charset=GBK");
 		PrintWriter out = response.getWriter();
 		List<Map<String, Object>> list = usic.getuser();
-		if(list!=null&&list.size()!=0){
+		if(list != null && list.size() != 0){
 			for (int i = 0; i < list.size(); i++) {
 				Map<String,Object> map = list.get(i);
 				map.put("DATE", new SimpleDateFormat("yyyy-MM-dd").format(map.get("DATE")));
@@ -92,6 +92,18 @@ public class MyController {
 		String json = JSON.toJSONString(list);
 		out.write(json);
 		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/ddxq")
+	public void ddxq(String orderid,HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("GBK");
+		response.setContentType("text/heml;charset=GBK");
+		PrintWriter out = response.getWriter();
+		List<Map<String, Object>> list = osic.getddxq(orderid);
+		String json = JSON.toJSONString(list);
+		out.write(json);
+		out.flush(); 
 		out.close();
 	}
 	

@@ -42,36 +42,32 @@ $(function(){
 		padding-top: 62px;
 	} 
 </style>
-	<form action="updzt" method="post" target="_top">
+	<form action="updxq" method="post" target="_top">
 		<table style="margin-left: 112px;margin-top: -60px;">
 			<tr>
 				<td class="ss" id="ssfs"></td>
-				<td class="xx" id="sss"><input name="orderid" th:value="${orderid}" style="display: none;" type="text"/></td>
+				<td class="xx" id="sss"><input name="detailsid" th:value="${detailsid}" style="display: none;" type="text"/></td>
 			</tr>
 			<tr>
 				<td class="szs" id="ssf"></td>
-				<td class="xxss" id="sss4"><span><strong name="ddbh" th:text="${ddbh}"></strong></span></td>
+				<td class="xxss" id="sss4"><span><strong name="shopname" th:text="${shopname}"></strong></span></td>
 			</tr>
 			<tr>
 				<td class="ss" id="ssf1"></td>
-				<td class="xx" id="sss2"><span name="name" th:text="'下单人姓名:   '+${name}"></span></td>
+				<td class="xx" id="sss2"><span name="shopprice" th:text="'商品单价 : '+${shopprice}"></span></td>
 			</tr>
 			<tr>
 				<td class="ss"></td>
 				<td class="xx">
-					<select name="ordertypeid" id="options" >
+					<select name="orderdetailstypeid" id="options" >
 						<option value="0">请选择状态</option>
-						<option th:each="n,map:${typelist}" th:value="${n.ordertypeid}" th:selected="${ordertypeid} eq ${n.ordertypeid}"  th:text="${n.ordertypename}"></option>
+						<option th:each="n,map:${typelist}" th:value="${n.orderdetailstypeid}" th:selected="${orderdetailstypeid} eq ${n.orderdetailstypeid}"  th:text="${n.orderdetailstypename}"></option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td class="ss"></td>
-				<td class="xx"><span  name="date" th:text="${date}">22</span></td>
-			</tr>
-			<tr>
-				<td class="ss"></td>
-				<td class="xx"><span  name="price" th:text="'总价: ￥'+${price}+'.00'">22</span></td>
+				<td class="ss" id="ssf1"></td>
+				<td class="xx" id="sss2"><span name="sale" th:text="'下单数量: '+${sale}"></span></td>
 			</tr>
 			<tr><td></td><td><button type="submit">点击修改</button></td></tr>
 		</table>

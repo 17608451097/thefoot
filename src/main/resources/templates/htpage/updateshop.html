@@ -58,9 +58,9 @@
 			<tr>
 				<td class="ss">分类</td>
 				<td class="xx">
-					<select name="grsonid">
+					<select name="grsonid" >
 						<option value="0">请选择分类</option>
-						<option th:each="n,map:${typels}"  th:selected="${n.grsonid} eq ${nb.grsonid} ? selected : ''" th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
+						<option th:each="n,map:${typels}"  th:selected="${n.grsonid eq nb.grsonid}"  th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
 					</select>
 				</td>
 			</tr>
