@@ -65,11 +65,21 @@ public class ShopServiceimpl implements ShopService {
 		// TODO Auto-generated method stub
 		return sdao.delstock(shopid);
 	}
-
+ 
 	@Override
 	public List<Map<String, Object>> getshop(String shopid) {
 		// TODO Auto-generated method stub
 		return sdao.getshop(shopid);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectshopall(String grsonid, String price, String orde) {
+		return sdao.selectshopall(grsonid, price, orde);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectgrson() {
+		return sdao.selectgrson();
 	}
 
 }

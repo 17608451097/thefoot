@@ -26,4 +26,9 @@ public interface ShopDao {
 	public int delstock(String shopid);
 	
 	public List<Map<String,Object>> getshop(String shopid);
+	
+	//shop前台页面查询
+	public List<Map<String,Object>> selectshopall(@Param("grsonid") String grsonid,@Param("price")String price,@Param("orde")String orde);
+	
+	public List<Map<String,Object>> selectgrson();
 }

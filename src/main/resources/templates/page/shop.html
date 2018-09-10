@@ -1,11 +1,296 @@
-<html class="translated-ltr"><head>
+<html xmlns:th="http://www.thymeleaf.org">
+<html class="translated-ltr">
+<head>
 <title>店</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
 <link href="css/form.css" rel="stylesheet" type="text/css" media="all">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+  function GotoPagess(i){
+	var page =$(".page").html();
+     var ss=$(".ss").html();
+      if(i=="1"){  
+      GotoPages(--page);
+    }else if(i=="2"){
+      if(page!=ss){
+       GotoPages(++page);
+       }
+    }
+        }
+
+  function GotoPages(page){ 
+	  var  pp= $("input[name='checkbox0']:checked").val();	
+	  var  price= $("input[name='checkbox1']:checked").val();	
+      var  orde = $(".orde").val();
+     $.get("shopselectall?pages="+page+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
+         var sb ="";
+    	 for (var i = 0; i <json.length; i++) {
+				var js = json[i];
+				$(".page").html(js.pages);
+				$(".pages").html(js.ss);
+				if(js.shopname !=null){
+				sb += "<div id='shophtml' class='col_1_of_single1 span_1_of_single1'>"
+				       +"<a href='single.html'>"
+				       +"<div class='view1 view-fifth1'>"
+				       +"<div class='top_box'>"
+				       +"<div class='grid_img'>"
+				       +"<div class='css3'><img src='images/pic11.jpg' alt=''></div>"
+				       +"<div class='mask1'>"
+				       +"<div class='info'>快速浏览</div>"
+				       +"</div>"
+				       +"</div>"
+				       +"<div class='price'>￥"
+				       +js.Oriprice 
+				       +"</div>"
+				       +"</div>"
+				       +"</div>"
+				       +"<span class='rating1'>"
+				       +"<input type='radio' class='rating-input' id='rating-input-1-5' name='rating-input-1'>"
+				       +"<label for='rating-input-1-5' class='rating-star1'></label>"
+				       +"<input type='radio' class='rating-input' id='rating-input-1-4' name='rating-input-1'>"
+				       +"<label for='rating-input-1-4' class='rating-star1'></label>"
+				       +"<input type='radio' class='rating-input' id='rating-input-1-3' name='rating-input-1'>"
+				       +"<label for='rating-input-1-3' class='rating-star1'></label>"
+				       +" <input type='radio' class='rating-input' id='rating-input-1-2' name='rating-input-1'>"
+				       +"<label for='rating-input-1-2' class='rating-star'></label>"
+				       +"<input type='radio' class='rating-input' id='rating-input-1-1' name='rating-input-1'>"
+				       +"<label for='rating-input-1-1' class='rating-star'></label>"
+				       +"&nbsp;"
+				       +"("
+				       +js.Stock
+				       +")"
+				       +"</span>"
+				       +"</a><ul class='list2'>"
+				       +"<a href='single.html'>"
+				       +"</a><li><a href='single.html'>"
+				       +"<img src='images/plus.png' alt=''>"
+				       +"</a>"
+				       +"<ul class='icon1 sub-icon1 profile_img'>"
+				       +"<a href='single.html'>"
+				       +"</a><li><a href='single.html'></a>"
+				       +"<a class='active-icon c1' href='#'>添加至购物袋</a>"
+				       +"<ul class='sub-icon1 list'></ul>"
+				       +"</li>"
+				       +"</ul>"
+				       +"</li>"
+				       +"</ul> "
+				       +"<div class='clear'></div>"
+				       +"</div>";
+			}			
+    	 }		
+	             $(".box1").html(sb);
+         },"json");
+    }
+
+
+  //↓ 条件查询
+	$(function(){
+		$(".checkboxs").change(function(){
+			var  pp= $("input[name='checkbox0']:checked").val();	
+			var  price= $("input[name='checkbox1']:checked").val();	
+			var  orde = $(".orde").val();
+			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
+		         var sb ="";
+		    	 for (var i = 0; i < json.length; i++) {
+						var js = json[i];
+						$(".page").html(js.pages);
+						$(".pages").html(js.ss);
+						if(js.shopname !=null){
+						sb += "<div id='shophtml' class='col_1_of_single1 span_1_of_single1'>"
+						       +"<a href='single.html'>"
+						       +"<div class='view1 view-fifth1'>"
+						       +"<div class='top_box'>"
+						       +"<div class='grid_img'>"
+						       +"<div class='css3'><img src='images/pic11.jpg' alt=''></div>"
+						       +"<div class='mask1'>"
+						       +"<div class='info'>快速浏览</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<div class='price'>￥"
+						       +js.price
+						       +"</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<span class='rating1'>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-5' name='rating-input-1'>"
+						       +"<label for='rating-input-1-5' class='rating-star1'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-4' name='rating-input-1'>"
+						       +"<label for='rating-input-1-4' class='rating-star1'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-3' name='rating-input-1'>"
+						       +"<label for='rating-input-1-3' class='rating-star1'></label>"
+						       +" <input type='radio' class='rating-input' id='rating-input-1-2' name='rating-input-1'>"
+						       +"<label for='rating-input-1-2' class='rating-star'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-1' name='rating-input-1'>"
+						       +"<label for='rating-input-1-1' class='rating-star'></label>"
+						       +"&nbsp;"
+						       +"("
+						       +js.Stock
+						       +")"
+						       +"</span>"
+						       +"</a><ul class='list2'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'>"
+						       +"<img src='images/plus.png' alt=''>"
+						       +"</a>"
+						       +"<ul class='icon1 sub-icon1 profile_img'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'></a>"
+						       +"<a class='active-icon c1' href='#'>添加至购物袋</a>"
+						       +"<ul class='sub-icon1 list'></ul>"
+						       +"</li>"
+						       +"</ul>"
+						       +"</li>"
+						       +"</ul> "
+						       +"<div class='clear'></div>"
+						       +"</div>";
+					}	
+		    	 }				
+			             $(".box1").html(sb);
+		         },"json");
+			 			
+			});	 
+
+		$(".orde").change(function(){
+			var  pp= $("input[name='checkbox0']:checked").val();	
+			var  price= $("input[name='checkbox1']:checked").val();	
+			var  orde = $(".orde").val();
+			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
+		         var sb ="";
+		    	 for (var i = 0; i < json.length; i++) {
+						var js = json[i];
+						$(".page").html(js.pages);
+						$(".pages").html(js.ss);
+						if(js.shopname !=null){
+						sb += "<div id='shophtml' class='col_1_of_single1 span_1_of_single1'>"
+						       +"<a href='single.html'>"
+						       +"<div class='view1 view-fifth1'>"
+						       +"<div class='top_box'>"
+						       +"<div class='grid_img'>"
+						       +"<div class='css3'><img src='images/pic11.jpg' alt=''></div>"
+						       +"<div class='mask1'>"
+						       +"<div class='info'>快速浏览</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<div class='price'>￥"
+						       +js.price
+						       +"</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<span class='rating1'>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-5' name='rating-input-1'>"
+						       +"<label for='rating-input-1-5' class='rating-star1'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-4' name='rating-input-1'>"
+						       +"<label for='rating-input-1-4' class='rating-star1'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-3' name='rating-input-1'>"
+						       +"<label for='rating-input-1-3' class='rating-star1'></label>"
+						       +" <input type='radio' class='rating-input' id='rating-input-1-2' name='rating-input-1'>"
+						       +"<label for='rating-input-1-2' class='rating-star'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-1' name='rating-input-1'>"
+						       +"<label for='rating-input-1-1' class='rating-star'></label>"
+						       +"&nbsp;"
+						       +"("
+						       +js.Stock
+						       +")"
+						       +"</span>"
+						       +"</a><ul class='list2'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'>"
+						       +"<img src='images/plus.png' alt=''>"
+						       +"</a>"
+						       +"<ul class='icon1 sub-icon1 profile_img'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'></a>"
+						       +"<a class='active-icon c1' href='#'>添加至购物袋</a>"
+						       +"<ul class='sub-icon1 list'></ul>"
+						       +"</li>"
+						       +"</ul>"
+						       +"</li>"
+						       +"</ul> "
+						       +"<div class='clear'></div>"
+						       +"</div>";
+					}	
+		    	 }				
+			             $(".box1").html(sb);
+		         },"json");
+			 			
+			});	 
+
+		$(".checkbox1").change(function(){
+			var  pp= $("input[name='checkbox0']:checked").val();	
+			var  price= $("input[name='checkbox1']:checked").val();	
+			var  orde = $(".orde").val();
+			alert(price);
+			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde"+orde,function(json){
+		         var sb ="";
+		    	 for (var i = 0; i < json.length; i++) {
+						var js = json[i];
+						$(".page").html(js.pages);
+						$(".pages").html(js.ss);
+						if(js.shopname !=null){
+						sb += "<div id='shophtml' class='col_1_of_single1 span_1_of_single1'>"
+						       +"<a href='single.html'>"
+						       +"<div class='view1 view-fifth1'>"
+						       +"<div class='top_box'>"
+						       +"<div class='grid_img'>"
+						       +"<div class='css3'><img src='images/pic11.jpg' alt=''></div>"
+						       +"<div class='mask1'>"
+						       +"<div class='info'>快速浏览</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<div class='price'>￥"
+						       +js.price
+						       +"</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<span class='rating1'>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-5' name='rating-input-1'>"
+						       +"<label for='rating-input-1-5' class='rating-star1'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-4' name='rating-input-1'>"
+						       +"<label for='rating-input-1-4' class='rating-star1'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-3' name='rating-input-1'>"
+						       +"<label for='rating-input-1-3' class='rating-star1'></label>"
+						       +" <input type='radio' class='rating-input' id='rating-input-1-2' name='rating-input-1'>"
+						       +"<label for='rating-input-1-2' class='rating-star'></label>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-1' name='rating-input-1'>"
+						       +"<label for='rating-input-1-1' class='rating-star'></label>"
+						       +"&nbsp;"
+						       +"("
+						       +js.Stock
+						       +")"
+						       +"</span>"
+						       +"</a><ul class='list2'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'>"
+						       +"<img src='images/plus.png' alt=''>"
+						       +"</a>"
+						       +"<ul class='icon1 sub-icon1 profile_img'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'></a>"
+						       +"<a class='active-icon c1' href='#'>添加至购物袋</a>"
+						       +"<ul class='sub-icon1 list'></ul>"
+						       +"</li>"
+						       +"</ul>"
+						       +"</li>"
+						       +"</ul> "
+						       +"<div class='clear'></div>"
+						       +"</div>";
+					}	
+		    	 }				
+			             $(".box1").html(sb);
+		         },"json");
+			 			
+			});	 
+	});
+	
+	
+
+	
+</script>
+
 <script src="js/jquery.easydropdown.js"></script>
 <script type="text/javascript">
         $(document).ready(function() {
@@ -80,7 +365,7 @@
 	    <div class="cssmenu">
 		   <ul>
 			 <li class="active"><a href="register.html">注册</a></li> 
-			 <li><a href="shop.html">商品列表</a></li> 
+			 <li><a href="shopselectall">商品列表</a></li> 
 			  <li><a href="checkout.html">购物车</a></li> 
 			 <li><a href="checkout.html">我的账户</a></li> 
 		   </ul>
@@ -140,16 +425,13 @@
          <div class="wrap">
      	    <div class="rsidebar span_1_of_left">
 				   <section class="sky-form">
-                   	  <h4>场合</h4>
+                   	  <h4>品牌</h4>
 						<div class="row row1 scroll-pane" style="overflow: hidden; padding: 0px; width: 274px;">
 						 <div class="jspContainer" style="width: 274px; height: 200px;">
 						 <div class="jspPane" style="padding: 20px; top: 0px; left: 0px; width: 234px;">
 						 <div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>竞技(20)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>运动鞋(20)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>休闲(20)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>休闲(20)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>其他(20)</label>
+						        <label  class="checkbox"> <input type="radio" class="checkboxs" checked="checked"  name="checkbox0" value="0"><i></i><sapn>全部</sapn></label>
+								<label th:each="lb,user:${type }" class="checkbox"> <input type="radio" class="checkboxs" name="checkbox0" th:value="${lb.grsonid}" ><i></i><sapn th:text="${lb.grsonname}"></sapn></label>
 						    </div></div></div></div>
 				</section>
 		       <section class="sky-form">
@@ -158,11 +440,11 @@
 						<div class="jspContainer" style="width: 274px; height: 200px;">
 						<div class="jspPane" style="padding: 20px; top: 0px; left: 0px; width: 234px;">
 						<div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 50.00及以下(10)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 100.00及以下(12)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 200.00及以下(12)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 300.00及以下(12)</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 400.00及以下(12)</label>
+						        <label class="checkbox"><input type="radio"name="checkbox1" checked="checked" class="checkbox1" value="0"><i></i>全部</label>
+								<label class="checkbox"><input type="radio"name="checkbox1" class="checkbox1" value="1000"><i></i>￥1000.00及以下</label>
+								<label class="checkbox"><input type="radio"name="checkbox1" class="checkbox1" value="1500"><i></i>￥1500.00及以下</label>
+								<label class="checkbox"><input type="radio"name="checkbox1" class="checkbox1" value="2000"><i></i>￥2000.00及以下</label>
+								<label class="checkbox"><input type="radio"name="checkbox1" class="checkbox1" value="3000"><i></i>￥3000.00及以下</label>
 							</div></div></div></div>
 		       </section>
 		</div>
@@ -171,24 +453,26 @@
               <div class="sort">
                	<div class="sort-by">
 		            <label>排序方式</label>
-		            <select>
-		                   <option value="">选项 </option>
-		                   <option value="">价格：从高到低</option>
-		                   <option value="">价格：从低到高 </option>
+		            <select class="orde">
+		                   <option value="0">选项 </option>
+		                   <option value="1">价格：从低到高</option>
+		                   <option value="2">价格：从高到低 </option>
 		            </select>
                </div>
     		</div>
 	          <div class="pager">   
 	          	<ul>
-	          		<li><a href="#" class="previous">上一页</a> &nbsp;&nbsp;
-	          		<a href="#" class="previous">1/3页</a>&nbsp;&nbsp;
-	          		<a href="#" class="previous">下一页</a></li>
+	          		<li><a href="javascript:void(0)" onclick="GotoPagess('1')" class="previous">上一页</a> &nbsp;&nbsp;
+	          		<span class="page" th:text="${pages}" ></span>/<span class="pages" th:text="${plist}"></span>页&nbsp;&nbsp;
+	          		    <a href="javascript:void(0)" onclick="GotoPagess('2')" class="previous">下一页</a></li>
 	          	</ul>
 	          </div>
 	       </div>
 			    
-			    <div class="box1"style="height:auto" >
-				   <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
+			    <div class="box1" style="height:auto">
+			    
+			     <div id="shophtml" class="col_1_of_single1 span_1_of_single1" th:each="li,user:${shoplist}">
+				   <a href="single.html">
 				     <div class="view1 view-fifth1">
 				  	  <div class="top_box">
 				         <div class="grid_img">
@@ -197,7 +481,7 @@
 	                       		<div class="info">快速浏览</div>
 			                  </div>
 	                    </div>
-                       <div class="price">$480</div>
+                       <div class="price" th:text="'￥'+${li.price}"></div>
 					   </div>
 					    </div>
 					   <span class="rating1">
@@ -212,49 +496,7 @@
 				        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1">
 				        <label for="rating-input-1-1" class="rating-star"></label>
 				       &nbsp;
-		        	  （45）
-		    	      </span>
-						 </a><ul class="list2">
-						 <a href="single.html">
-						  </a><li><a href="single.html">
-						  	<img src="images/plus.png" alt="">
-						  	</a>
-						  	<ul class="icon1 sub-icon1 profile_img">
-						  <a href="single.html">
-							  </a><li><a href="single.html"></a>
-							  <a class="active-icon c1" href="#">添加至购物袋</a>
-								<ul class="sub-icon1 list"></ul>
-							  </li>
-							 </ul>
-						   </li>
-					     </ul>
-			    	    <div class="clear"></div>
-			    	</div>
-			    	<div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-				     <div class="view1 view-fifth1">
-				  	  <div class="top_box">
-				         <div class="grid_img">
-						   <div class="css3"><img src="images/pic11.jpg" alt=""></div>
-					          <div class="mask1">
-	                       		<div class="info">快速浏览</div>
-			                  </div>
-	                    </div>
-                       <div class="price">$480</div>
-					   </div>
-					    </div>
-					   <span class="rating1">
-				        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
-				        <label for="rating-input-1-5" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1">
-				        <label for="rating-input-1-4" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1">
-				        <label for="rating-input-1-3" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1">
-				        <label for="rating-input-1-2" class="rating-star"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1">
-				        <label for="rating-input-1-1" class="rating-star"></label>
-				       &nbsp;
-		        	  （45）
+				       <span th:text="'('+${li.Stock}+')'"></span>
 		    	      </span>
 						 </a><ul class="list2">
 						 <a href="single.html">
@@ -273,94 +515,16 @@
 			    	    <div class="clear"></div>
 			    	</div>
 			    	
-			    	<div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-				     <div class="view1 view-fifth1">
-				  	  <div class="top_box">
-				         <div class="grid_img">
-						   <div class="css3"><img src="images/pic11.jpg" alt=""></div>
-					          <div class="mask1">
-	                       		<div class="info">快速浏览</div>
-			                  </div>
-	                    </div>
-                       <div class="price">$480</div>
-					   </div>
-					    </div>
-					   <span class="rating1">
-				        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
-				        <label for="rating-input-1-5" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1">
-				        <label for="rating-input-1-4" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1">
-				        <label for="rating-input-1-3" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1">
-				        <label for="rating-input-1-2" class="rating-star"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1">
-				        <label for="rating-input-1-1" class="rating-star"></label>
-				       &nbsp;
-		        	  （45）
-		    	      </span>
-						 </a><ul class="list2">
-						 <a href="single.html">
-						  </a><li><a href="single.html">
-						  	<img src="images/plus.png" alt="">
-						  	</a>
-						  	<ul class="icon1 sub-icon1 profile_img">
-						  <a href="single.html">
-							  </a><li><a href="single.html"></a>
-							  <a class="active-icon c1" href="#">添加至购物袋</a>
-								<ul class="sub-icon1 list"></ul>
-							  </li>
-							 </ul>
-						   </li>
-					     </ul>
-			    	    <div class="clear"></div>
-			    	</div>  
-			    	<div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-				     <div class="view1 view-fifth1">
-				  	  <div class="top_box">
-				         <div class="grid_img">
-						   <div class="css3"><img src="images/pic11.jpg" alt=""></div>
-					          <div class="mask1">
-	                       		<div class="info">快速浏览</div>
-			                  </div>
-	                    </div>
-                       <div class="price">$480</div>
-					   </div>
-					    </div>
-					   <span class="rating1">
-				        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
-				        <label for="rating-input-1-5" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1">
-				        <label for="rating-input-1-4" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1">
-				        <label for="rating-input-1-3" class="rating-star1"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1">
-				        <label for="rating-input-1-2" class="rating-star"></label>
-				        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1">
-				        <label for="rating-input-1-1" class="rating-star"></label>
-				       &nbsp;
-		        	  （45）
-		    	      </span>
-						 </a><ul class="list2">
-						 <a href="single.html">
-						  </a><li><a href="single.html">
-						  	<img src="images/plus.png" alt="">
-						  	</a>
-						  	<ul class="icon1 sub-icon1 profile_img">
-						  <a href="single.html">
-							  </a><li><a href="single.html"></a>
-							  <a class="active-icon c1" href="#">添加至购物袋</a>
-								<ul class="sub-icon1 list"></ul>
-							  </li>
-							 </ul>
-						   </li>
-					     </ul>
-			    	    <div class="clear"></div>
-			    	</div>  
-			  </div>
-			    	<!--这里粘贴-->
-				  <div class="clear"></div>
-			  </div>
+			    	
+			 
+			    <!--这里粘贴-->
+			    	
+			    	  
+				<div class="clear"></div>
+			 	</div>
+			  
+			  
+			  
 			  </div>
 			  <div class="clear"></div>
 			</div>

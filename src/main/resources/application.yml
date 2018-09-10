@@ -4,21 +4,22 @@ mybatis:
   configuration:
     auto-mapping-behavior: full
     use-generated-keys: true
-
+     
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql:///thefoot
     username: root
     password: 123
-
+    
+    
   jackson:
     date-format: yyyy-MM-dd HH:mm
     time-zone: GMT+8
     
   resources:
     static-locations: classpath:/
- 
+   
 #thymeleaf start
   thymeleaf:
     encoding: UTF-8

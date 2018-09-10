@@ -55,5 +55,43 @@
 		INNER JOIN size s ON sk.`sizeid` = s.`sizeid`
 		WHERE sk.shopid = #{shopid}
 	</select>
+	
+	<!-- 前台shop页面查询 -->
+	<select id="selectshopall" resultType="map">
+        SELECT * FROM `shop` 
+        <where>					
+           <if test="grsonid !=null and grsonid!=0">
+               and `grsonid` = #{grsonid}
+           </if>
+           <if test="price !=null and price != 0">
+               and   `Oriprice` &lt; #{price}
+           </if>
+          </where>
+          
+           ORDER BY `Oriprice`
+           <if test="orde==2">
+           desc
+           </if>
+	</select>
+	
+	<select id="selectgrson" resultType="map">
+	   SELECT * FROM `grsontype`
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>
