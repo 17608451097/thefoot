@@ -40,19 +40,22 @@ $(function(){
 	  	var href ='shop.html';
 	 	if(title=='商品'){
 			href='<iframe src="shop.html" width="100%" height="100%" frameborder="0"></iframe>';
+			id = 'sp';
 	 		//var href ='shop.html';
 		}else if(title=='用户'){
 			href='<iframe src="user.html" width="100%" height="100%" frameborder="0"></iframe>';
+			id = 'yh';
 			//var href ='user.html';
 		}else if(title=='订单'){
 			//var href ='order.html';
+			id = 'dd';
 			href='<iframe src="order.html" width="100%" height="100%" frameborder="0"></iframe>';
 		} 
 		if($('#tt').tabs('exists',title)){
 		 	$('#tt').tabs('select',title)
 		}else{
 		  	$('#tt').tabs('add',{  
-		  		id:'sp',      
+		  		id:id,      
 			    title:title, 
 			    closable:true,
 			   	content:href

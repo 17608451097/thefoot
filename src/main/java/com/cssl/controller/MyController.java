@@ -17,6 +17,8 @@ import com.alibaba.fastjson.JSON;
 import com.cssl.service.OrderService;
 import com.cssl.service.ShopService;
 import com.cssl.service.UserService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 
 @Controller
 @RequestMapping("/templates/htpage")
@@ -32,14 +34,16 @@ public class MyController {
 	private OrderService osic;
 
 	@RequestMapping("/shop")
-	public void shop(HttpServletResponse response) throws IOException {
-		
+	public void shop(String shopname,String rows,String page,HttpServletResponse response) throws IOException {
+		System.out.println(shopname);
 		//这是后台商品数据展示代码
 		response.setCharacterEncoding("GBK");
 		response.setContentType("text/heml;charset=GBK");
 		PrintWriter out = response.getWriter();
-		List<Map<String, Object>> list = ssic.getShop();
+		Page<Integer> pages = PageHelper.startPage(Integer.valueOf(page),Integer.valueOf(rows));
+		List<Map<String,Object>> list = ssic.getShop(shopname);
 		String json = JSON.toJSONString(list);
+		json = "{\"total\":"+pages.getTotal()+",\"rows\":"+json+"}";
 		System.out.println(json);
 		out.write(json);
 		out.flush();
@@ -48,10 +52,11 @@ public class MyController {
 	
 	
 	@RequestMapping("/user")
-	public void  user(HttpServletResponse response)throws IOException {
+	public void  user(String rows,String page,HttpServletResponse response)throws IOException {
 		response.setCharacterEncoding("GBK");
 		response.setContentType("text/heml;charset=GBK");
 		PrintWriter out = response.getWriter();
+		Page<Integer> pages = PageHelper.startPage(Integer.valueOf(page),Integer.valueOf(rows));
 		List<Map<String, Object>> list = usic.getuser();
 		if(list != null && list.size() != 0){
 			for (int i = 0; i < list.size(); i++) {
@@ -60,6 +65,7 @@ public class MyController {
 			}
 		}
 		String json = JSON.toJSONString(list);
+		json = "{\"total\":"+pages.getTotal()+",\"rows\":"+json+"}";
 		out.write(json);
 		out.flush();
 		out.close();
@@ -78,10 +84,11 @@ public class MyController {
 	}
 	
 	@RequestMapping("/order")
-	public void order(HttpServletResponse response) throws IOException {
+	public void order(String rows,String page,HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("GBK");
 		response.setContentType("text/heml;charset=GBK");
 		PrintWriter out = response.getWriter();
+		Page<Integer> pages = PageHelper.startPage(Integer.valueOf(page),Integer.valueOf(rows));
 		List<Map<String, Object>> list = osic.getOrder();
 		if(list!=null&&list.size()!=0){
 			for (int i = 0; i < list.size(); i++) {
@@ -90,6 +97,7 @@ public class MyController {
 			}
 		}
 		String json = JSON.toJSONString(list);
+		json = "{\"total\":"+pages.getTotal()+",\"rows\":"+json+"}";
 		out.write(json);
 		out.flush();
 		out.close();

@@ -10,7 +10,7 @@ import com.cssl.pojo.Shopstock;
 
 public interface ShopService {
 
-	public List<Map<String,Object>> getShop();
+	public List<Map<String,Object>> getShop(String shopname);
 	
 	public boolean addproduct(Shop shop);
 	

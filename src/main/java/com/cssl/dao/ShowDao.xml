@@ -20,28 +20,18 @@
 		SELECT *FROM `shop`
 		LIMIT 0,3
 	</select>
+	
 	<select id="getShopThree_Six" resultType="map">
-		SELECT *FROM `shop`
+		SELECT * FROM `shop`
 		LIMIT 3,3
-		SELECT *FROM `shop` LIMIT 3,3
 	</select>
 	
-	<select id="getShopAll" resultType="map">
-          SELECT se.`sizename`,cd.`colorname`,sp.`shopname`,sp.`price`,sp.`proreview`,sp.`Oriprice`
-FROM `shopstock` sk
-INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
-INNER JOIN `colors` cd ON sk.`cololid`=cd.`colorid`
-INNER JOIN `shop` sp ON sk.`shopid`=sp.`shopid`
-WHERE sk.`shopid`=#{id}
-GROUP BY cd.`colorname`
-	</select>
-		<select id="getShopsizename" resultType="map">
- SELECT se.`sizename`
-FROM `shopstock` sk
-INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
-WHERE sk.`shopid`=#{id}
-GROUP BY se.`sizename`
->>>>>>> branch 'master' of git@github.com:17608451097/thefoot.git
+	<select id="getShopsizename" resultType="map">
+ 		  SELECT se.`sizename`
+		  FROM `shopstock` sk
+		  INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
+		  WHERE sk.`shopid`=#{id}
+		  GROUP BY se.`sizename`
 	</select>
 
 	<select id="getShopAll" resultType="map">
@@ -52,13 +42,6 @@ GROUP BY se.`sizename`
 		INNER JOIN `shop` sp ON sk.`shopid`=sp.`shopid`
 		WHERE sk.`shopid`=#{id}
 		GROUP BY cd.`colorname`
-	</select>
-	<select id="getShopsizename" resultType="map">
-		SELECT se.`sizename`
-		FROM `shopstock` sk
-		INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
-		WHERE sk.`shopid`=#{id}
-		GROUP BY se.`sizename`
 	</select>
 
 	<select id="getShopImg" resultType="map">
