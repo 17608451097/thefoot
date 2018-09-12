@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 
 <script type="text/javascript">
+
 </script>
 </head>
 <body>
@@ -52,24 +53,6 @@
 				<td class="ss">描述</td>
 				<td class="xx"><textarea name="proreview" /></textarea>
 			</tr>
-			<!-- <tr>
-				<td class="ss">尺码</td>
-				<td class="xx">
-					<select name="sizeid" >
-						<option selected="selected" value="0">请选择尺码</option>
-						<option th:each="n,map:${sizels}" th:value="${n.sizeid}" th:text="${n.sizename}"></option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td class="ss">颜色</td>
-				<td class="xx">
-					<select name="colorid">
-						<option value="0">请选择颜色</option>
-						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
-					</select>
-				</td>
-			</tr> -->
 			<tr>
 				<td class="ss">分类</td>
 				<td class="xx">
@@ -83,10 +66,6 @@
 				<td class="ss">商品图片</td>
 				<td class="sc"><input name="file" type="file" /></td>
 			</tr>
-			<!-- <tr>
-				<td class="ss">商品数量</td>
-				<td class="xx"><input name="stock" type="number" value="0" /></td>
-			</tr> -->
 			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
 		</table>
 	</form>

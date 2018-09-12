@@ -35,7 +35,6 @@ public class MyController {
 
 	@RequestMapping("/shop")
 	public void shop(String shopname,String rows,String page,HttpServletResponse response) throws IOException {
-		System.out.println(shopname);
 		//这是后台商品数据展示代码
 		response.setCharacterEncoding("GBK");
 		response.setContentType("text/heml;charset=GBK");
@@ -44,7 +43,6 @@ public class MyController {
 		List<Map<String,Object>> list = ssic.getShop(shopname);
 		String json = JSON.toJSONString(list);
 		json = "{\"total\":"+pages.getTotal()+",\"rows\":"+json+"}";
-		System.out.println(json);
 		out.write(json);
 		out.flush();
 		out.close();
