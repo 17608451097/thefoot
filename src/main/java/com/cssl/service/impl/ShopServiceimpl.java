@@ -18,9 +18,9 @@ public class ShopServiceimpl implements ShopService {
 	public ShopDao sdao;
 	
 	@Override
-	public List<Map<String, Object>> getShop() {
+	public List<Map<String, Object>> getShop(String shopname) {
 		
-		return sdao.getShop();
+		return sdao.getShop(shopname);
 	}
 
 	@Override

@@ -9,6 +9,11 @@
 		`shopid`,`shopname`,`price`,`Oriprice`,`prodetails`,`proreview`,gt.`grsonname`,`filename`,`Stock`
 		FROM `shop` sp
 		INNER JOIN `grsontype` gt ON sp.`grsonid` = gt.`grsonid`
+		<where>
+			<if test="shopname!=null and shopname != ''">
+				and sp.`shopname` LIKE CONCAT('%',#{shopname},'%')
+			</if>
+		</where>
 	</select>
 
 	<insert id="addproduct">

@@ -81,12 +81,46 @@
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
     <script type="text/javascript">
+
+     var colorid=null;
+     var size=null;
+
+
+    
+    function select(obj) {
+    	$(".ss").attr("style", "color:white");
+		 document.getElementById($(obj).html()).style.color="red";
+		  size=$(obj).html(); 
+	}
+    function show(obj) {
+    	$(".ss1").attr("style", "color:white")
+		 document.getElementById('1'+$(obj).html()).style.color="red";
+ 	 $('.etalage_thumb_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
+	 $('.etalage_source_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
+
+	 colorid=  $('#2'+$(obj).html()).val()
+	}
+
+ function add() {
+	 if(colorid!=null && size!=null){
+		 
+		 
+		 alert(size);
+		alert(colorid);
+		alert($('#shopid').val());
+	 }
+
+	
+} 
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
                 event.preventDefault();
                 $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1200);
             });
+
         });
+
+  
     </script>
 </head>
 <body>
@@ -151,7 +185,7 @@
                 <ul id="etalage">
                 	<!-- 详细商品图片,上边图片为原图,下边为悬浮显示图片 -->
                     <li th:each="o,p:${ic}">
-                            <img class="etalage_thumb_image" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${o.filename}"/>
+                            <img  class="etalage_thumb_image" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${o.filename}"/>
                             <img class="etalage_source_image" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${o.filename}"/>
                     </li>
 
@@ -163,38 +197,36 @@
                 <h3 class="m_3" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.shopname}"></h3>
 
                 <div class="price_single">
-                    <span class="reducedfrom" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'$'+${m.price}"></span>
-                    <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.Oriprice}"></span><a href="#">点击报价</a>
+                    <span class="reducedfrom" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'原价:￥'+${m.Oriprice}+'.00'"></span>
+                    <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'折扣:￥'+${m.price} +'.00'"></span>
+                    <input type="hidden" th:each="m,map:${sa}"  id="shopid" th:if="${map.index} ==0" th:value="${m.shopid}">
+                    
                 </div>
                 <ul class="options">
                     <h4 class="m_9" >选择尺寸</h4>
-                    <li th:each="m1,map:${sz}" ><a href="#"  th:text="${m1.sizename}"></a></li>
+                    <li th:each="m1,map:${sz}">
+                    <a onclick="select(this)" th:id="${m1.sizename}"  class="ss"  th:text="${m1.sizename}"></a></li>
                     <div class="clear"></div>
                 </ul>
                 <br/>
                  <ul class="options">
                     <h4 class="m_9">选择颜色</h4>
-                    <li th:each="m,map:${sa}" ><a href="#"  th:text="${m.colorname}"></a></li>
+                    <li th:each="m,map:${sa}" >
+                    <input type="hidden"  th:id="'2'+${m.colorname}" th:value="${m.colorid}"  class="we">
+                    <input type="hidden"  th:id="${m.colorname}" th:value="${m.filename}"  class="ww">
+                    <a onclick='show(this)' th:id="'1'+${m.colorname}"  class="ss1"   th:text="${m.colorname}"></a></li>
                     <div class="clear"></div>
                 </ul>
                 <div class="btn_form">
                     <form>
-                        <input type="submit" value="buy now" title="">
+                        <input type="submit" value="点击购买" title="">
                     </form>
                 </div>
                 <ul class="add-to-links">
-                    <li><img src="images/wish.png" alt=""/><a href="#">加入购物车</a></li>
+                    <li><img src="images/wish.png" alt=""/><a onclick='add()' >加入购物车</a></li>
                 </ul>
                 <p class="m_desc">产品描述</p>
 
-                <div class="social_single">
-                    <ul>
-                        <li class="fb"><a href="#"><span> </span></a></li>
-                        <li class="tw"><a href="#"><span> </span></a></li>
-                        <li class="g_plus"><a href="#"><span> </span></a></li>
-                        <li class="rss"><a href="#"><span> </span></a></li>
-                    </ul>
-                </div>
             </div>
             <div class="clear"></div>
 
@@ -202,7 +234,7 @@
             <ul id="flexiselDemo3">
                 <li th:each="h,jk:${show}"><img height="150px" width="230px" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${h.filename}" /></a>
                     <div class="grid-flex"><a th:href="@{showSingle(id=${h.shopid})}"  th:text="${h.shopname}"></a>
-                        <p th:text="'RS  '+${h.price}"></p></div>
+                        <p th:text="'￥  '+${h.price}+'.00'"></p></div>
                 </li>
             </ul>
             
@@ -256,10 +288,6 @@
             <div class="toogle">
                 <h3 class="m_3" >产品 详情</h3>
                 <p class="m_text" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.proreview}"></p>
-            </div>
-            <div class="toogle">
-                <h3 class="m_3">产品 评论</h3>
-                <p class="m_text">Lorem ipsum dolor sit amet</p>
             </div>
         </div>
         <div class="clear"></div>

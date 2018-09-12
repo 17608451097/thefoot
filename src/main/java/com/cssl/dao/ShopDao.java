@@ -10,7 +10,7 @@ import com.cssl.pojo.Shopstock;
 
 public interface ShopDao {
 	
-	public List<Map<String,Object>> getShop();
+	public List<Map<String,Object>> getShop(@Param("shopname")String shopname);
 	
 	public int addproduct(Shop shop);
 	

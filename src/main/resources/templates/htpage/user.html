@@ -33,7 +33,10 @@ $(function(){
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
 	    fitColumns:false,	  //匹配列宽
-	    fit:true,
+	    fit:true, 
+	    pagination:true,
+        pageSize: 5,
+        pageList: [5, 10, 15, 20],
 	    queryParams:{
   			name: 'easyui'		  			
   		},
@@ -42,10 +45,10 @@ $(function(){
 		        {field:'userid',title:'ID',width:50,align:'right'},
 		        {field:'NAME',title:'名称',width:242,align:'center'},
 		        {field:'companyname',title:'真实姓名',width:100,align:'center'},
-		        {field:'email',title:'邮箱',width:150,align:'center'},
+		        {field:'email',title:'邮箱',width:220,align:'center'},
 		        {field:'address',title:'住址',width:200,align:'center'},
 		        {field:'phone',title:'联系电话',width:130,align:'center'},
-		        {field:'DATE',title:'注册时间',width:130,align:'center'},
+		        {field:'DATE',title:'注册时间',width:150,align:'center'},
 		        {field:'countrycord',title:'国家代码',width:130,align:'center'}
 		    ]],toolbar: [{
 			  	text: '删除用户',

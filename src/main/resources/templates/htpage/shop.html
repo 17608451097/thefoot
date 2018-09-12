@@ -153,23 +153,25 @@ $(function(){
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
 	    fitColumns:true,	  //匹配列宽
-	    fit:true,			  //匹配父容器
+	    fit:false,		  //匹配父容器
+	    height:720,
 	    pagination:true,
-        pageSize: 5,
-        pageList: [5, 10, 15, 20],
+	    pagePosition:'bottom',
+        pageSize: 12,
+        pageList: [12, 20, 30],
 	    queryParams:{
   			name: 'easyui'		  			
   		},
         loadMsg: '正在加载数据.......',
 		 columns:[[			            
-		        {field:'shopid',title:'ID',width:50,align:'right'},
+		        {field:'shopid',title:'ID',width:80,align:'center'},
 		        {field:'shopname',title:'名称',width:180,align:'center'},
 		        {field:'price',title:'价格',width:100,align:'center'},
 		        {field:'Oriprice',title:'原价',width:100,align:'center'},
 		        {field:'prodetails',title:'详情',width:200,align:'center'},
 		        {field:'proreview',title:'描述',width:300,align:'center'},
 		        {field:'grsonname',title:'类别名',width:100,align:'center'},
-		        {field:'filename',title:'图片',width:50,align:'right',
+		        {field:'filename',title:'图片',width:80,align:'center',
 		        	formatter: function(value,row,index){
 						return '<img height="46px" src="'+"http://193.112.4.251:2333/thefootimg/shopimg/"+row.filename+'"/>';
 					}
@@ -279,9 +281,30 @@ $(function(){
 	        }
 	    }		 
 	});
+
+	var pager = $('#dg').datagrid('getPager');
+    pager.pagination({
+        beforePageText: '第',
+        afterPageText: '页, 共 {pages} 页',
+        displayMsg:'显示第 {from} 到 {to} 条记录，共有 {total} 条记录'
+    });
+  	
+	$("#bt").click(function(){
+		var input = $("#input").val();
+		//$.post("shop?shopname="+input+"&rows=5&page=1","",function(json){
+			$('#dg').datagrid('load',{
+				shopname:input
+			});	
+		//},"json")
+	});
+        
 })
 </script>
 
+	<span style="margin-left: 582px;">
+		<input id="input" placeholder = "根据商品名称查询" type="text" style="width:200px;border-radius: 5px;"><button id="bt" >点击查询</button>
+	</span>
+	<p></p>
 	<!-- 商品展示datagrid -->
 	<table id="dg"></table>
 	
