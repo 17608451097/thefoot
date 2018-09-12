@@ -7,9 +7,9 @@
 	<select id="getType" resultType="map">
 		SELECT * FROM `type`
 	</select>
-
+	
 	<select id="getSonType" resultType="map">
-		SELECT * FROM `sontype`
+		SELECT *  FROM `sontype` 
 	</select>
 
 	<select id="getGrsontype" resultType="map">
@@ -17,38 +17,39 @@
 	</select>
 
 	<select id="getShopOne_Three" resultType="map">
-		SELECT *FROM `shop`
-		LIMIT 0,3
+		SELECT *FROM `shop` LIMIT 0,3
 	</select>
-	
 	<select id="getShopThree_Six" resultType="map">
-		SELECT * FROM `shop`
-		LIMIT 3,3
+		SELECT *FROM `shop` LIMIT 3,3
 	</select>
 	
-	<select id="getShopsizename" resultType="map">
- 		  SELECT se.`sizename`
-		  FROM `shopstock` sk
-		  INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
-		  WHERE sk.`shopid`=#{id}
-		  GROUP BY se.`sizename`
-	</select>
-
 	<select id="getShopAll" resultType="map">
-		SELECT se.`sizename`,cd.`colorname`,sp.`shopname`,sp.`price`,sp.`proreview`
-		FROM `shopstock` sk
-		INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
-		INNER JOIN `colors` cd ON sk.`colorid`=cd.`colorid`
-		INNER JOIN `shop` sp ON sk.`shopid`=sp.`shopid`
-		WHERE sk.`shopid`=#{id}
-		GROUP BY cd.`colorname`
+ SELECT sk.`shopid`,se.`sizename`,cd.`colorname`,sp.`shopname`,sp.`price`,sp.`proreview`,sp.`Oriprice`,sg.`filename`,cd.`colorid`
+FROM `shopstock` sk
+INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
+INNER JOIN `colors` cd ON sk.`colorid`=cd.`colorid`
+INNER JOIN `shop` sp ON sk.`shopid`=sp.`shopid`
+INNER JOIN `shopimg` sg ON sk.`colorid`=sg.`colorsid`
+WHERE sk.`shopid`=#{id} AND sg.`shopid`=#{id}
+GROUP BY cd.`colorname`
+	</select>
+		<select id="getShopsizename" resultType="map">
+ SELECT se.`sizename`
+FROM `shopstock` sk
+INNER JOIN `size` se ON sk.`sizeid`=se.`sizeid`
+WHERE sk.`shopid`=#{id}
+GROUP BY se.`sizename`
 	</select>
 
-	<select id="getShopImg" resultType="map">
-		SELECT shopid,shopname,price,filename FROM `shop`
+			<select id="getShopImg" resultType="map">
+	SELECT shopid,shopname,price,filename FROM `shop`
 	</select>
-
-	<select id="getImgColor" resultType="map">
-		SELECT filename FROM `shopimg` WHERE shopid=#{id}
+	
+				<select id="getImgColor" resultType="map">
+		SELECT sg.filename,cs.`colorname` FROM 
+	`shopimg` sg
+	INNER JOIN `colors` cs ON sg.`colorsid`=cs.`colorid`
+	
+	WHERE sg.shopid=#{id}
 	</select>
 </mapper>
