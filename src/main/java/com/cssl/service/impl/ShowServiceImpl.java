@@ -40,4 +40,24 @@ public class ShowServiceImpl implements ShowService {
 		return sdao.getShopThree_Six();
 	}
 
+	@Override
+	public List<Map<String, Object>> getShopAll(int id) {
+		return sdao.getShopAll(id);
+	}
+
+	@Override
+	public List<Map<String, Object>> getShopsizename(int id) {
+		return sdao.getShopsizename(id);
+	}
+
+	@Override
+	public List<Map<String, Object>> getShopImg() {
+		return sdao.getShopImg();
+	}
+
+	@Override
+	public List<Map<String, Object>> getImgColor(int id) {
+		return sdao.getImgColor(id);
+	}
+
 }

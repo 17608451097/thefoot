@@ -99,7 +99,7 @@
 			<!-- 每个标题的li -->
 			<li class="grid" th:each="n,map:${list}">
 			<!-- 这里是标题，标题！ -->
-			<a class="color2" href="#" th:text="${n.typename}">男装</a>
+			<a class="color2" href="#" th:text="${n.typename}"></a>
 
 			<div class="megapanel" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
 						<div class="row">
@@ -107,7 +107,7 @@
 								<div class="h_nav">
 									<h4 th:text="${n1.sontypename}"></h4>
 									<ul th:each="n2,map:${list2}" th:if="${n1.sontypeid}==${n2.sontypeid}">
-										<li><a href="shop.html" th:text="${n2.grsonname}">最新上市</a></li>
+										<li><a href="shop.html" th:text="${n2.grsonname}"></a></li>
 									</ul>
 								</div>
 							</div>
@@ -404,7 +404,7 @@
 			<div class="content-bottom">
 				<div class="box1" >
 					<div class="col_1_of_3 span_1_of_3" th:each="n3,map:${list3}">
-						<a href="single.html">
+						<a th:href="@{showSingle(id=${n3.shopid})}">
 							<div class="view view-fifth">
 								<div class="top_box">
 									<h3 class="m_1">
@@ -449,12 +449,10 @@
 						</span>
 						</a>
 						<ul class="list">
-							<a href="single.html"> </a>
 							<li><a href="single.html"> <img src="images/plus.png"
 									alt="">
 							</a>
 								<ul class="icon1 sub-icon1 profile_img">
-									<a href="single.html"> </a>
 									<li><a href="single.html"></a><a class="active-icon c1"
 										href="#"><font style="vertical-align: inherit;"><font
 												style="vertical-align: inherit;">添加至购物袋 </font></font></a>
@@ -482,7 +480,7 @@
 					
 					
 				<div class="col_1_of_3 span_1_of_3" th:each="n4,map:${list4}">
-						<a href="single.html">
+							<a th:href="@{showSingle(id=${n4.shopid})}">
 							<div class="view view-fifth">
 								<div class="top_box">
 									<h3 class="m_1">
@@ -527,13 +525,13 @@
 						</span>
 						</a>
 						<ul class="list">
-							<a href="single.html"> </a>
-							<li><a href="single.html"> <img src="images/plus.png"
+							<a href="showSingle"> </a>
+							<li><a href="showSingle"> <img src="images/plus.png"
 									alt="">
 							</a>
 								<ul class="icon1 sub-icon1 profile_img">
 									<a href="single.html"> </a>
-									<li><a href="single.html"></a><a class="active-icon c1"
+									<li><a href="showSingle"></a><a class="active-icon c1"
 										href="#"><font style="vertical-align: inherit;"><font
 												style="vertical-align: inherit;">添加至购物袋 </font></font></a>
 										<ul class="sub-icon1 list">

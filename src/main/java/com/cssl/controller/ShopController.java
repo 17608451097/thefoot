@@ -30,7 +30,7 @@ import com.github.pagehelper.PageInfo;
 public class ShopController {
 	
 	@Autowired
-	private ShopDao sdao;
+	private ShopDao sdao; 
 	
 	
 	@RequestMapping("/shopselectall")
@@ -41,23 +41,17 @@ public class ShopController {
 		response.setContentType("text/html;charset=utf-8");
 		List<Map<String, Object>> typelist =sdao.selectgrson();
 		re.setAttribute("type",typelist);
-		System.out.println("orde:"+orde);
 		
 		String page = pages == null ? "0" : pages;
 		String order =orde ==null ? "0" :orde;
 		String prices =price ==null ? "999999" :price;
 		String pps =pp ==null ?"0":pp;
 		
-		System.out.println(prices);
-		
 		PageHelper.startPage(Integer.valueOf(page),6);
 		List<Map<String,Object>> list =sdao.selectshopall(pps,prices,order);
 		Page<Map<String, Object>> ma =(Page<Map<String, Object>>) list;
-		for (Map<String, Object> m : list) {
-			System.out.println(m.get("Oriprice"));
-		}
-		
-		List<Integer> plist = new ArrayList<Integer>();
+		List<Integer> plist = new ArrayList<Integer>();        
+
 		for (int i = 0; i < ma.getPages(); i++) {
 			plist.add(i);
 		}
@@ -83,7 +77,6 @@ public class ShopController {
 			out.close();
 		}
 	return null;
-	
 	}	
 		
 	

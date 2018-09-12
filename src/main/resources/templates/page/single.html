@@ -115,344 +115,66 @@
     </div>
 </div>
 <div class="header-bottom">
-		<div class="wrap">
-			<!-- start header menu -->
-			<ul class="megamenu skyblue">
-				<li><a class="color1" href="#">首页</a></li>
-				<li class="grid"><a class="color2" href="#">男装</a>
-					<div class="megapanel">
+	<div class="wrap">
+		
+		
+			<ul class="megamenu skyblue"  >
+			<!-- 每个标题的li -->
+			<li class="grid" th:each="n,map:${list}">
+			<!-- 这里是标题，标题！ -->
+			<a class="color2" href="#" th:text="${n.typename}"></a>
+
+			<div class="megapanel" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
 						<div class="row">
-							<div class="col1">
+							<div class="col1" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
 								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">最新上市</a></li>
-									</ul>
-								</div>
-								<div class="h_nav">
-									<h4 class="top">男装</h4>
-									<ul>
-										<li><a href="shop.html">最新上市</a></li>
+									<h4 th:text="${n1.sontypename}"></h4>
+									<ul th:each="n2,map:${list2}" th:if="${n1.sontypeid}==${n2.sontypeid}">
+										<li><a href="shop.html" th:text="${n2.grsonname}"></a></li>
 									</ul>
 								</div>
 							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格区</h4>
-									<ul>
-										<li><a href="shop.html">潮牌</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
 							<img src="images/nav_img.jpg" alt="" />
 						</div>
-					</div></li>
-				<li class="active grid"><a class="color4" href="#">女装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>商品</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>饰品</h4>
-									<ul>
-										<li><a href="shop.html">头饰</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>我的公司</h4>
-									<ul>
-										<li><a href="shop.html">风格</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>账户</h4>
-									<ul>
-										<li><a href="shop.html">登陆</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">风格</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<img src="images/nav_img1.jpg" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color5" href="#">童装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-								<div class="h_nav">
-									<h4 class="top">男款</h4>
-									<ul>
-										<li><a href="shop.html">新款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>我的风格</h4>
-									<ul>
-										<li><a href="shop.html">男子气概</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<img src="images/nav_img2.jpg" alt="" />
-						</div>
-					</div></li>
-				<li><a class="color6" href="#">销售</a>
-					<div class="megapanel">
-						<div class="row">
-							<!-- <div class="col1">
-							<div class="h_nav">
-								<h4>shop</h4>
-								<ul>
-									<li><a href="shop.html">new arrivals</a></li>
-									<li><a href="shop.html">men</a></li>
-									<li><a href="shop.html">women</a></li>
-									<li><a href="shop.html">accessories</a></li>
-									<li><a href="shop.html">kids</a></li>
-									<li><a href="shop.html">brands</a></li>
-								</ul>	
-							</div>	
-							<div class="h_nav">
-								<h4 class="top">my company</h4>
-								<ul>
-									<li><a href="shop.html">trends</a></li>
-									<li><a href="shop.html">sale</a></li>
-									<li><a href="shop.html">style videos</a></li>
-									<li><a href="shop.html">accessories</a></li>
-									<li><a href="shop.html">kids</a></li>
-									<li><a href="shop.html">style videos</a></li>
-								</ul>	
-							</div>												
-						</div> -->
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color7" href="#">定制</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color8" href="#">商城</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>自我风格</h4>
-									<ul>
-										<li><a href="shop.html">爆款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格</h4>
-									<ul>
-										<li><a href="shop.html">爆款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div></li>
-				<li><a class="color9" href="#">足球</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color10" href="#">跑鞋</a></li>
-				<li><a class="color11" href="#">原件</a></li>
-				<li><a class="color12" href="#">篮球</a></li>
+					</div>
+			</li>
+				
 			</ul>
 			<div class="clear"></div>
 		</div>
 	</div>
 <div class="single">
     <div class="wrap">
-        <div class="rsidebar span_1_of_left">
-            <section class="sky-form">
-                <h4>类别</h4>
-                <div class="row row1 scroll-pane">
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>类别</label>
-                    </div>
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>运动鞋</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>休闲鞋</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>高跟鞋(38)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>其它(1)</label>
-                    </div>
-                </div>
-            </section>
-            <section class="sky-form">
-                <h4>价钱</h4>
-                <div class="row row1 scroll-pane">
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i> 50.00及以下</label>
-                    </div>
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>  100.00及以下</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$  200.00及以下</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$ 300.00及以下</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$  400.00及以下</label>
-                    </div>
-                </div>
-            </section>
-            <section class="sky-form">
-                <h4>颜色</h4>
-                <div class="row row1 scroll-pane">
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>红</label>
-                    </div>
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i></label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>黑色</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>黄色</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>橙色</label>
-                    </div>
-                </div>
-            </section>
-        </div>
         <div class="cont span_2_of_3">
             <div class="labout span_1_of_a1">
                 <!-- start product_slider -->
                 <ul id="etalage">
                 	<!-- 详细商品图片,上边图片为原图,下边为悬浮显示图片 -->
-                    <li>
-                        <a href="optionallink.html">
-                            <img class="etalage_thumb_image" src="images/t1.jpg"/>
-                            <img class="etalage_source_image" src="images/t2.jpg"/>
-                        </a>
+                    <li th:each="o,p:${ic}">
+                            <img class="etalage_thumb_image" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${o.filename}"/>
+                            <img class="etalage_source_image" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${o.filename}"/>
                     </li>
-                    <!-- 详细商品图片下面的轮换小图,上边图片为原图,下边为悬浮显示图片 -->
-                    <li>
-                        <img class="etalage_thumb_image" src="images/t1.jpg"/>
-                        <img class="etalage_source_image" src="images/t2.jpg"/>
-                    </li>
-                    <li>
-                        <img class="etalage_thumb_image" src="images/t3.jpg"/>
-                        <img class="etalage_source_image" src="images/t3.jpg"/>
-                    </li>
-                    <li>
-                        <img class="etalage_thumb_image" src="images/t4.jpg"/>
-                        <img class="etalage_source_image" src="images/t4.jpg"/>
-                    </li>
-                    <li>
-                        <img class="etalage_thumb_image" src="images/t5.jpg"/>
-                        <img class="etalage_source_image" src="images/t5.jpg"/>
-                    </li>
-                    <li>
-                        <img class="etalage_thumb_image" src="images/t6.jpg"/>
-                        <img class="etalage_source_image" src="images/t6.jpg"/>
-                    </li>
-                    <li>
-                        <img class="etalage_thumb_image" src="images/t1.jpg"/>
-                        <img class="etalage_source_image" src="images/t1.jpg"/>
-                    </li>
+
                 </ul>
                 <!-- end product_slider -->
             </div>
             
             <div class="cont1 span_2_of_a1">
-                <h3 class="m_3">LOREM存有胡萝卜</h3>
+                <h3 class="m_3" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.shopname}"></h3>
 
                 <div class="price_single">
-                    <span class="reducedfrom">$66.00</span>
-                    <span class="actual">$12.00</span><a href="#">点击报价</a>
+                    <span class="reducedfrom" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'$'+${m.price}"></span>
+                    <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.Oriprice}"></span><a href="#">点击报价</a>
                 </div>
                 <ul class="options">
-                    <h4 class="m_9">选择尺寸</h4>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
+                    <h4 class="m_9" >选择尺寸</h4>
+                    <li th:each="m1,map:${sz}" ><a href="#"  th:text="${m1.sizename}"></a></li>
                     <div class="clear"></div>
                 </ul>
                 <br/>
                  <ul class="options">
                     <h4 class="m_9">选择颜色</h4>
-                    <li><a href="#">黄色</a></li>
-                    <li><a href="#">绿色</a></li>
-                    <li><a href="#">蓝色</a></li>
-                    <li><a href="#">黑色</a></li>
+                    <li th:each="m,map:${sa}" ><a href="#"  th:text="${m.colorname}"></a></li>
                     <div class="clear"></div>
                 </ul>
                 <div class="btn_form">
@@ -478,25 +200,9 @@
 
 
             <ul id="flexiselDemo3">
-                <li><img src="images/pic11.jpg"/>
-                    <div class="grid-flex"><a href="#">Bloch</a>
-                        <p>Rs 850</p></div>
-                </li>
-                <li><img src="images/pic10.jpg"/>
-                    <div class="grid-flex"><a href="#">Capzio</a>
-                        <p>Rs 850</p></div>
-                </li>
-                <li><img src="images/pic9.jpg"/>
-                    <div class="grid-flex"><a href="#">Zumba</a>
-                        <p>Rs 850</p></div>
-                </li>
-                <li><img src="images/pic8.jpg"/>
-                    <div class="grid-flex"><a href="#">Bloch</a>
-                        <p>Rs 850</p></div>
-                </li>
-                <li><img src="images/pic7.jpg"/>
-                    <div class="grid-flex"><a href="#">Capzio</a>
-                        <p>Rs 850</p></div>
+                <li th:each="h,jk:${show}"><img height="150px" width="230px" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${h.filename}" /></a>
+                    <div class="grid-flex"><a th:href="@{showSingle(id=${h.shopid})}"  th:text="${h.shopname}"></a>
+                        <p th:text="'RS  '+${h.price}"></p></div>
                 </li>
             </ul>
             
@@ -548,8 +254,8 @@
             </script>
             <script type="text/javascript" src="js/jquery.flexisel.js"></script>
             <div class="toogle">
-                <h3 class="m_3">产品 详情</h3>
-                <p class="m_text">Lorem ipsum dolor sit amet</p>
+                <h3 class="m_3" >产品 详情</h3>
+                <p class="m_text" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.proreview}"></p>
             </div>
             <div class="toogle">
                 <h3 class="m_3">产品 评论</h3>
@@ -654,7 +360,6 @@
 					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商店发现者</font></font></a></li>
 					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客户服务</font></font></a></li>
 					   <li><a href="shop.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">常问问题</font></font></a></li>
-					  
 		            </ul>
 				</div>
 				<div class="clear"></div>
@@ -676,8 +381,6 @@
 					scrollSpeed: 1200,
 					easingType: 'linear' 
 		 		};
-				
-				
 				$().UItoTop({ easingType: 'easeOutQuart' });
 				
 			});

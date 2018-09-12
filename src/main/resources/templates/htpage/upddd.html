@@ -1,0 +1,81 @@
+<HTML xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="static/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+
+
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+	$("form").submit(function(){
+		var id = $("#options").val();
+		if(id>0){
+			return true;
+		}else{
+			alert('请选择状态在进行修改!');
+			return false;
+		}
+	});
+})
+</script>
+<div style="text-align: center;">
+<style type="text/css">
+.ss{
+		padding-left: 120px;
+	}
+	.ss,.xx{
+		padding-bottom: 30px;
+	}
+	
+	.sc{
+		padding-left: 100px;
+		padding-bottom: 30px;
+	}
+	#sss,#ssf{
+		padding-top: 62px;
+	} 
+</style>
+	<form action="updzt" method="post" target="_top">
+		<table style="margin-left: 112px;margin-top: -60px;">
+			<tr>
+				<td class="ss" id="ssfs"></td>
+				<td class="xx" id="sss"><input name="orderid" th:value="${orderid}" style="display: none;" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="szs" id="ssf"></td>
+				<td class="xxss" id="sss4"><span><strong name="ddbh" th:text="${ddbh}"></strong></span></td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf1"></td>
+				<td class="xx" id="sss2"><span name="name" th:text="'下单人姓名:   '+${name}"></span></td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx">
+					<select name="ordertypeid" id="options" >
+						<option value="0">请选择状态</option>
+						<option th:each="n,map:${typelist}" th:value="${n.ordertypeid}" th:selected="${ordertypeid} eq ${n.ordertypeid}"  th:text="${n.ordertypename}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx"><span  name="date" th:text="${date}">22</span></td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx"><span  name="price" th:text="'总价: ￥'+${price}+'.00'">22</span></td>
+			</tr>
+			<tr><td></td><td><button type="submit">点击修改</button></td></tr>
+		</table>
+	</form>
+</div>
+</body>
+</HTML>

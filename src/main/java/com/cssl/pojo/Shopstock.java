@@ -7,7 +7,7 @@ import lombok.Setter;
 public class Shopstock {
 	private int sid;
 	private int shopid;
-	private int cololid;
+	private int colorid;
 	private int sizeid;
 	private int stock;
 }

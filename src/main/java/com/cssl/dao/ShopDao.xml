@@ -55,7 +55,6 @@
 		INNER JOIN size s ON sk.`sizeid` = s.`sizeid`
 		WHERE sk.shopid = #{shopid}
 	</select>
-	
 	<!-- 前台shop页面查询 -->
 	<select id="selectshopall" resultType="map">
         SELECT * FROM `shop` 
@@ -78,20 +77,28 @@
 	   SELECT * FROM `grsontype`
 	</select>
 	
+	<select id="getshopstock" resultType="int">
+		SELECT SUM(stock) FROM shopstock WHERE shopid=#{shopid}
+	</select>
 	
+	<insert id="addkc">
+		INSERT INTO shopstock(`shopid`,`colorid`,`sizeid`,`stock`) VALUES (#{shopid},#{colorid},#{sizeid},#{stock})
+	</insert>
 	
+	<update id="updshop">
+		UPDATE shop SET Stock=#{stock} WHERE shopid = #{shopid}
+	</update>
 	
+	<update id="updshopkc">
+		UPDATE `shopstock` SET colorid=#{colorid},sizeid=#{sizeid},stock=#{stock} WHERE sid=#{sid}
+	</update>
 	
+	<select id="updhx" resultType="map">
+		SELECT * FROM shopstock WHERE sid = #{sid}
+	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<delete id="delkc">
+		DELETE FROM shopstock WHERE sid = #{sid}
+	</delete>
 
 </mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.OrderDao">
+
+	<select id="getOrder" resultType="map">
+		select o.`orderid`,o.`ordernumber`,ot.`ordertypeid`,ot.ordertypename,o.orderdate,o.orderprice,u.companyname from orders o
+		inner join ordertype ot on o.ordertypeid = ot.ordertypeid
+		inner join users u on o.userid = u.userid
+	</select>
+	
+	<select id="getordertype" resultType="map">
+		SELECT * FROM ordertype
+	</select>
+	
+	<update id="updateordertype">
+		UPDATE orders SET ordertypeid = #{ordertypeid} WHERE orderid=#{orderid}
+	</update>
+	
+	<update id="updatedetails">
+		UPDATE `orderdetails` SET `orderdetailstypeid`=#{orderdetailstypeid} WHERE `orderid`=#{orderid}
+	</update>
+	
+	<delete id="deldd">
+		DELETE FROM `orders` WHERE orderid = #{orderid}
+	</delete>
+	
+	<delete id="deldddetalis">
+		DELETE FROM `orderdetails` WHERE orderid = #{orderid}
+	</delete>
+	
+	<select id="getddxq" resultType="map">
+		SELECT o.`detailsid`,o.`orderdetailstypeid`,o.`orderid`,s.`shopname`,o.`shopprice`,o.`sale`,ot.`orderdetailstypename`,s.`filename` FROM orderdetails o
+		INNER JOIN orderdetailstype ot ON o.`orderdetailstypeid` = ot.`orderdetailstypeid`
+		INNER JOIN shop s ON o.`shopid` = s.`shopid`
+		WHERE o.`orderid` = #{orderid}
+	</select>
+	
+	<select id="getddtype" resultType="map">
+		SELECT * FROM `orderdetailstype`
+	</select>
+	
+	<update id="upddet">
+		UPDATE `orderdetails` SET `orderdetailstypeid`=#{orderdetailstypeid} WHERE detailsid = #{detailsid} 
+	</update>
+	
+	<delete id="delxq">
+		DELETE FROM `orderdetails` WHERE detailsid = #{detailsid}
+	</delete>
+	
+</mapper>

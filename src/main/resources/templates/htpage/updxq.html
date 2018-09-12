@@ -1,0 +1,77 @@
+<HTML xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="static/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+
+
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+	$("form").submit(function(){
+		var id = $("#options").val();
+		if(id>0){
+			return true;
+		}else{
+			alert('请选择状态在进行修改!');
+			return false;
+		}
+	});
+})
+</script>
+<div style="text-align: center;">
+<style type="text/css">
+.ss{
+		padding-left: 120px;
+	}
+	.ss,.xx{
+		padding-bottom: 30px;
+	}
+	
+	.sc{
+		padding-left: 100px;
+		padding-bottom: 30px;
+	}
+	#sss,#ssf{
+		padding-top: 62px;
+	} 
+</style>
+	<form action="updxq" method="post" target="_top">
+		<table style="margin-left: 112px;margin-top: -60px;">
+			<tr>
+				<td class="ss" id="ssfs"></td>
+				<td class="xx" id="sss"><input name="detailsid" th:value="${detailsid}" style="display: none;" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="szs" id="ssf"></td>
+				<td class="xxss" id="sss4"><span><strong name="shopname" th:text="${shopname}"></strong></span></td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf1"></td>
+				<td class="xx" id="sss2"><span name="shopprice" th:text="'商品单价 : '+${shopprice}"></span></td>
+			</tr>
+			<tr>
+				<td class="ss"></td>
+				<td class="xx">
+					<select name="orderdetailstypeid" id="options" >
+						<option value="0">请选择状态</option>
+						<option th:each="n,map:${typelist}" th:value="${n.orderdetailstypeid}" th:selected="${orderdetailstypeid} eq ${n.orderdetailstypeid}"  th:text="${n.orderdetailstypename}"></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf1"></td>
+				<td class="xx" id="sss2"><span name="sale" th:text="'下单数量: '+${sale}"></span></td>
+			</tr>
+			<tr><td></td><td><button type="submit">点击修改</button></td></tr>
+		</table>
+	</form>
+</div>
+</body>
+</HTML>

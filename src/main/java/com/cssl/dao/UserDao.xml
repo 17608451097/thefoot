@@ -9,7 +9,11 @@
 	</select>
 	
 	<select id="getuser" resultType="map">
-		SELECT * FROM users u INNER JOIN`country` c ON  c.`countryid` =u.`countryid` WHERE u.isadmin=0
+		SELECT * FROM users u INNER JOIN`country` c ON  c.`countryid` =u.`countryid` WHERE u.isadmin=0 ORDER BY userid ASC
 	</select>
+	
+	<delete id="deluser">
+		DELETE FROM users WHERE userid = #{userid}
+	</delete>
 	
 </mapper>

@@ -12,11 +12,50 @@
 <body>
 <script type="text/javascript">
 $(function(){
+	function delkc(xx){
+		var flag = confirm("确定要删除这条商品库存吗,商品库存删除之后,商品不会删除。");
+		if(flag){
+			$.post("delkc?sid="+xx.sid+"&shopid="+xx.shopid,function(row){
+				if(row>0){
+					var ss = $('#dc').datagrid('getRowIndex',xx);
+					$('#dc').datagrid('deleteRow',ss);
+					alert('删除成功!');
+				}else{
+					alert('删除失败!');
+				}
+			});
+		}
+	}
+
+	function updkc(xx){
+		$('#dv').dialog({    
+		    title: '商品库存修改',
+		  	width:600,
+		   	height:550,
+		    closed: false,    
+		    cache: false,    
+		    href: 'shopkccz?gn=update&shopid='+xx.shopid+'&sid='+xx.sid+'&shopname='+xx.shopname, 
+		    modal: true   
+		});
+	}
+	
+	function addkc(xx,shopname){
+		$('#dv').dialog({    
+		    title: '商品库存新增',
+		  	width:600,
+		   	height:550,
+		    closed: false,    
+		    cache: false,    
+		    href: 'shopkccz?gn=ss&sid=0&shopid='+xx.shopid+'&shopname='+shopname,    
+		    modal: true   
+		});
+	}
+	
 	function addshop(){
 		$('#dq').dialog({    
 		    title: '商品新增',
 		  	width:600,
-		   	height:650,
+		   	height:550,
 		    closed: false,    
 		    cache: false,    
 		    href: 'showoption?gn=ss',    
@@ -28,7 +67,7 @@ $(function(){
 		$('#dq').dialog({    
 		    title: '商品修改',
 		  	width:600,
-		   	height:650,
+		   	height:550,
 		    closed: false,    
 		    cache: false,    
 		    href: 'showoption?shopid='+ss.shopid+'&gn=update',    
@@ -36,30 +75,31 @@ $(function(){
 		});
 	}
 
-	function kccz(id){
+	function kccz(id,shopname){
 		var $dgg =$('#dc').datagrid({
 			url:'kccz?shopid='+id.shopid+'&now='+new Date(),
 		    striped:true,    	//斑马线效果
 		    singleSelect:true,
 		    fitColumns:false,	  //匹配列宽
-		    fit:false,			  //匹配父容器
+		    fit:true,			  //匹配父容器
 		    queryParams:{
 	  			name: 'easyui'		  			
 	  		},
 	        loadMsg: '正在加载数据.......',
 			 columns:[[
-					{field:'sid',title:'库存ID',width:50,align:'right'},			            
-			        {field:'shopid',title:'商品ID',width:50,align:'right'},
-			        {field:'shopname',title:'商品名称',width:200,align:'center'},
+					{field:'sid',title:'库存ID',width:50,align:'right',height: 50,hidden:'true'},			            
+			        {field:'shopid',title:'商品ID',width:110,align:'center'},
+			        {field:'shopname',title:'商品名称',width:230,align:'center'},
 			        {field:'colorname',title:'颜色',width:100,align:'center'},
 			        {field:'sizename',title:'尺码',width:100,align:'center'},
-			        {field:'stock',title:'存量',width:122,align:'center'}
+			        {field:'stock',title:'存量',width:142,align:'center'}
 			    ]],
 			  	toolbar: [{
 				  	text: '添加商品库存',
 			  		iconCls: 'icon-add',
 			  		handler: function(){
-			  			//addshop();
+			  			var xx = $('#dc').datagrid('getSelected');
+			  			addkc(id,shopname);
 			  		}
 			  	},'-',{
 				  	text: '取消选中',
@@ -86,7 +126,7 @@ $(function(){
 		});   
 		$('#dd').dialog({    
 		    title: '库存操作',
-		  	width:800,
+		  	width:700,
 		   	height:500,
 		    closed: false,    
 		    cache: false,
@@ -112,8 +152,8 @@ $(function(){
 		url:'shop',
 	    striped:true,    	//斑马线效果
 	    singleSelect:true,
-	    fitColumns:false,	  //匹配列宽
-	    fit:false,			  //匹配父容器
+	    fitColumns:true,	  //匹配列宽
+	    fit:true,			  //匹配父容器
 	    pagination:true,
         pageSize: 5,
         pageList: [5, 10, 15, 20],
@@ -123,7 +163,7 @@ $(function(){
         loadMsg: '正在加载数据.......',
 		 columns:[[			            
 		        {field:'shopid',title:'ID',width:50,align:'right'},
-		        {field:'shopname',title:'名称',width:200,align:'center'},
+		        {field:'shopname',title:'名称',width:180,align:'center'},
 		        {field:'price',title:'价格',width:100,align:'center'},
 		        {field:'Oriprice',title:'原价',width:100,align:'center'},
 		        {field:'prodetails',title:'详情',width:200,align:'center'},
@@ -153,7 +193,7 @@ $(function(){
 			  		 }else{
 			  			 update(xx);
 				  	 }
-		  			//update();		
+		  			//update();
 		  		}
 		  	},'-',{
 			  	text: '删除',
@@ -174,7 +214,7 @@ $(function(){
 		  			 if(xx==null){
 			  			 alert('请选中一条数据在操作!');
 			  		 }else{
-			  			 kccz(xx);
+			  			 kccz(xx,xx.shopname);
 				  	 }
 		  		}
 		  	},'-',{
@@ -218,8 +258,25 @@ $(function(){
 		    	del(xx.shopid,xx);
 	        } else if(item.name=='kccz'){
 	        	var xx = $('#dg').datagrid('getSelected')	
-		  		kccz(xx);
+		  		kccz(xx,xx.shopname);
 		    }
+	    }		 
+	});
+
+	//库存右键菜单点击事件			
+	$('#mc').menu({    
+	    onClick:function(item){ 			       
+	        if(item.name=='edit'){
+	        	//修改商品库存
+	        	var xx = $('#dc').datagrid('getSelected');
+	        	updkc(xx);
+	        }else if(item.name=='exit'){
+				$('#mm').menu('hide');
+		    }else if(item.name=='remove'){
+			    //删除商品库存
+		    	var xx = $('#dc').datagrid('getSelected');
+		    	delkc(xx);
+	        }
 	    }		 
 	});
 })
@@ -254,5 +311,8 @@ $(function(){
 		<div class="menu-sep"></div>
 		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
 	</div>
+	
+	<!-- 商品库存dialog -->
+	<div id="dv"></div>
 </body>
 </html>
