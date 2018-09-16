@@ -28,6 +28,7 @@ public interface ShopDao {
 	
 	public List<Map<String,Object>> getshop(String shopid);
 	
+	public int addimg(@Param("colorid")String colorid,@Param("shopid")String shopid,@Param("filename")String filename);
 
 	//shop前台页面查询
 	public List<Map<String,Object>> selectshopall(@Param("grsonid") String grsonid,@Param("price")String price,@Param("orde")String orde);
@@ -45,4 +46,6 @@ public interface ShopDao {
 	public List<Shopstock> updhx(String sid);
 
 	public int delkc(String sid);
+	
+	public int delshopimg(String s_sid);
 }

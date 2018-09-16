@@ -6,16 +6,17 @@
 <script type="text/javascript" src="static/jquery.min.js"></script>
 <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="static/locale/easyui-lang-zh_CN.js"></script>
-<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(function(){
 	function delkc(xx){
 		var flag = confirm("确定要删除这条商品库存吗,商品库存删除之后,商品不会删除。");
 		if(flag){
-			$.post("delkc?sid="+xx.sid+"&shopid="+xx.shopid,function(row){
+			$.post("delkc?sid="+xx.sid+"&shopid="+xx.shopid+"&s_sid="+xx.s_sid,function(row){
 				if(row>0){
 					var ss = $('#dc').datagrid('getRowIndex',xx);
 					$('#dc').datagrid('deleteRow',ss);
@@ -27,7 +28,7 @@ $(function(){
 		}
 	}
 
-	function updkc(xx){
+	/* function updkc(xx){
 		$('#dv').dialog({    
 		    title: '商品库存修改',
 		  	width:600,
@@ -37,7 +38,7 @@ $(function(){
 		    href: 'shopkccz?gn=update&shopid='+xx.shopid+'&sid='+xx.sid+'&shopname='+xx.shopname, 
 		    modal: true   
 		});
-	}
+	} */
 	
 	function addkc(xx,shopname){
 		$('#dv').dialog({    
@@ -87,10 +88,12 @@ $(function(){
 	  		},
 	        loadMsg: '正在加载数据.......',
 			 columns:[[
-					{field:'sid',title:'库存ID',width:50,align:'right',height: 50,hidden:'true'},			            
+					{field:'sid',title:'库存ID',width:50,align:'right',height: 50,hidden:'true'},
+					{field:'filename',title:'图片',width:142,align:'center',hidden:'true'},	
+					{field:'s_sid',title:'imgID',width:110,align:'center',hidden:'true'},		            
 			        {field:'shopid',title:'商品ID',width:110,align:'center'},
-			        {field:'shopname',title:'商品名称',width:230,align:'center'},
-			        {field:'colorname',title:'颜色',width:100,align:'center'},
+			        {field:'shopname',title:'商品名称',width:200,align:'center'},
+			        {field:'colorname',title:'颜色',width:120,align:'center'},
 			        {field:'sizename',title:'尺码',width:100,align:'center'},
 			        {field:'stock',title:'存量',width:142,align:'center'}
 			    ]],
@@ -291,26 +294,25 @@ $(function(){
   	
 	$("#bt").click(function(){
 		var input = $("#input").val();
-		//$.post("shop?shopname="+input+"&rows=5&page=1","",function(json){
 			$('#dg').datagrid('load',{
 				shopname:input
-			});	
-		//},"json")
+			});
 	});
         
 })
 </script>
-
-	<span style="margin-left: 582px;">
-		<input id="input" placeholder = "根据商品名称查询" type="text" style="width:200px;border-radius: 5px;"><button id="bt" >点击查询</button>
+	<span style="margin-left: 582px;"> <input id="input"
+		placeholder="根据商品名称查询" type="text"
+		style="width: 200px; border-radius: 5px;">
+	<button id="bt">点击查询</button>
 	</span>
 	<p></p>
 	<!-- 商品展示datagrid -->
 	<table id="dg"></table>
-	
+
 	<!-- 商品操作dialog -->
 	<div id="dq"></div>
-	
+
 	<!-- 商品右键菜单 -->
 	<div id="mm" class="easyui-menu" style="width: 120px; display: none;">
 		<div data-options="name:'add',iconCls:'icon-add'">添加</div>
@@ -320,21 +322,21 @@ $(function(){
 		<div class="menu-sep"></div>
 		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
 	</div>
-	
+
 	<!-- 商品库存dialog -->
 	<div id="dd">
 		<!-- 库存展示datagrid -->
 		<table id="dc"></table>
 	</div>
-	
+
 	<!-- 商品库存右键菜单 -->
 	<div id="mc" class="easyui-menu" style="width: 120px; display: none;">
-		<div data-options="name:'edit',iconCls:'icon-edit'">修改商品库存</div>
+	<!-- 	<div data-options="name:'edit',iconCls:'icon-edit'">修改商品库存</div> -->
 		<div data-options="name:'remove',iconCls:'icon-remove'">删除商品库存</div>
 		<div class="menu-sep"></div>
 		<div data-options="name:'exit',iconCls:'icon-exit'">退出</div>
 	</div>
-	
+
 	<!-- 商品库存dialog -->
 	<div id="dv"></div>
 </body>

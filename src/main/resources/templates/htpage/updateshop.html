@@ -9,8 +9,6 @@
 	href="static/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="static/themes/icon.css">
 
-<script type="text/javascript">
-</script>
 </head>
 <body>
 <div style="text-align: center;">
@@ -30,6 +28,38 @@
 		padding-top: 30px;
 	}
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("form").submit(function(){
+			var price =  $("input[name=price]").val();
+			var oriprice =  $("input[name=oriprice]").val();
+			var prodetails =  $("textarea[name=prodetails]").val();
+			var proreview =  $("textarea[name=proreview]").val();
+			var grsonid =  $("#grson").val(); 
+			if(price==""){
+				alert("商品价格不能为空!");
+				return false;
+			}
+			if(oriprice==""){
+				alert("商品原价不能为空!");
+				return false;
+			}
+			if(prodetails==""){
+				alert("商品详情不能为空!");
+				return false;
+			}
+			if(proreview==""){
+				alert("商品描述不能为空!");
+				return false;
+			}
+			if(grsonid==0){
+				alert("请选择商品分类!");
+				return false;
+			}
+			return true;
+		})
+	});
+</script>
 	<form action="updateshop" enctype="multipart/form-data"  method="post"  target="_top">
 		<table th:each="nb,map:${shopls}">
 			<tr>
@@ -58,7 +88,7 @@
 			<tr>
 				<td class="ss">分类</td>
 				<td class="xx">
-					<select name="grsonid" >
+					<select name="grsonid" id="grson" >
 						<option value="0">请选择分类</option>
 						<option th:each="n,map:${typels}"  th:selected="${n.grsonid eq nb.grsonid}"  th:value="${n.grsonid}" th:text="${n.grsonname}">NIKE</option>
 					</select>

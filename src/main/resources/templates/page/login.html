@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>jQuery背景切换注册登录模板</title>
+<title>加百利商城登陆</title>
 <link rel="stylesheet" href="css/style1.css" />
 </meta>
 </head>
@@ -21,6 +21,9 @@
 		</div>
 		<div>
 			<input type="password" name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
+		</div>
+		<div>
+			<input type="text" name="veryCode" placeholder="验证码" style="width:90px; margin-left: 2px;" oncontextmenu="return false" onpaste="return false" /><img id="veryCode" width="80px"  style="vertical-align: middle;padding-left: 10px" height ="35px" src="/templates/htpage/yzm" /><a href="#"  onclick="veryCode.src='/templates/htpage/yzm?'+Math.random();" style="font-size: 12px;">看不清?点击更换</a>
 		</div>
 		<button id="submit" type="submit">登 录</button>
 	</form>

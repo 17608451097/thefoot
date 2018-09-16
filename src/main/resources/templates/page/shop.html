@@ -12,9 +12,11 @@
 
   function GotoPagess(i){
 	var page =$(".page").html();
-     var ss=$(".ss").html();
+     var ss=$(".pages").html();
       if(i=="1"){  
-      GotoPages(--page);
+          if(page!=1){
+        	  GotoPages(--page);
+              }
     }else if(i=="2"){
       if(page!=ss){
        GotoPages(++page);
@@ -103,7 +105,7 @@
 						       +"</div>"
 						       +"</div>"
 						       +"<div class='price'>￥"
-						       +js.price
+						       +js.Oriprice
 						       +"</div>"
 						       +"</div>"
 						       +"</div>"
@@ -160,7 +162,7 @@
 						       +"</div>"
 						       +"</div>"
 						       +"<div class='price'>￥"
-						       +js.price
+						       +js.Oriprice
 						       +"</div>"
 						       +"</div>"
 						       +"</div>"
@@ -194,7 +196,7 @@
 			var  pp= $("input[name='checkbox0']:checked").val();	
 			var  price= $("input[name='checkbox1']:checked").val();	
 			var  orde = $(".orde").val();
-			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde"+orde,function(json){
+			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
 		         var sb ="";
 		    	 for (var i = 0; i < json.length; i++) {
 						var js = json[i];
@@ -213,7 +215,7 @@
 						       +"</div>"
 						       +"</div>"
 						       +"<div class='price'>￥"
-						       +js.price
+						       +js.Oriprice
 						       +"</div>"
 						       +"</div>"
 						       +"</div>"
@@ -436,7 +438,7 @@
 	                       		<div class="info">快速浏览</div>
 			                  </div>
 	                    </div>
-                       <div class="price" th:text="'￥'+${li.price}"></div>
+                       <div class="price" th:text="'￥'+${li.Oriprice}"></div>
 					   </div>
 					    </div>
 					   <span class="rating1">

@@ -54,10 +54,7 @@ public class ProductController {
 			shop.setFilename(time + uuid + file.getOriginalFilename());
 			file.transferTo(fs);
 			if (ssic.addproduct(shop)) {
-				int res = ssic.getaddshopid();
-				/*
-				 * shop.setShopid(res); ssic.addshopstock(shop);
-				 */
+				 ssic.getaddshopid();
 			}
 		}
 		return "redirect:layout.html";
@@ -90,6 +87,8 @@ public class ProductController {
 					time + uuid + file.getOriginalFilename());
 			shop.setFilename(time + uuid + file.getOriginalFilename());
 			file.transferTo(fs);
+			ssic.updateshop(shop);
+		}else {
 			ssic.updateshop(shop);
 		}
 		return "redirect:layout.html";

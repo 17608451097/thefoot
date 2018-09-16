@@ -44,4 +44,8 @@ public interface ShopService {
 	public List<Shopstock> updhx(String sid);
 	
 	public int delkc(String sid);
+
+	public int addimg(@Param("colorid")String colorid,@Param("shopid")String shopid,@Param("filename")String filename);
+	
+	public int delshopimg(String s_sid);
 }

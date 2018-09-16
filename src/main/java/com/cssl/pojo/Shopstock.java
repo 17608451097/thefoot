@@ -10,4 +10,5 @@ public class Shopstock {
 	private int colorid;
 	private int sizeid;
 	private int stock;
+	private int s_sid;
 }

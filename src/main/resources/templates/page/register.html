@@ -2,55 +2,112 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>jQuery背景切换注册登录模板</title>
-
-</meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>加百利商城用户注册</title></meta>
 <link rel="stylesheet" href="css/style1.css" />
 </head>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		 $("#btn").click(function(){
+			var phone = $("input[name=phone]").val();
+			if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(phone))){
+				$("#nr").text("手机号不正确");
+			}else{
+				$.get("dxApi?phone="+phone,"",function(row){
+					if(row==1){
+						$("#nr").text("验证码已发送");
+							setTimeout(function() {
+							$("#nr").text("")}
+			           	  ,3000)
+						}else{
+							$("#nr").text("短信未成功发送,请检查电话号码是否正确");
+							setTimeout(function() {
+								$("#nr").text("")}
+			            	 ,3000)
+						}
+					});
+			}
+		}) ;
+		
+		$("#btn").click(function(){
+			var countdown=60;
+		         var obj = $("#btn");
+		         settime(obj) ;
+		     function settime(obj) { //发送验证码倒计时
+		         if (countdown == 0) {
+		             obj.attr('disabled',false);
+		             //obj.removeattr("disabled");
+		             obj.val("获取验证码");
+		             countdown = 60;
+		             return;
+		         } else {
+		             obj.attr('disabled',true);
+		             obj.val("重新发送" + countdown + "s");
+		             countdown--;
+		         }
+		         setTimeout(function() {
+		                 settime(obj) }
+		             ,1000)
+		     }
+		});
+});
+</script>
 
 <body>
 
-<div class="register-container">
-	<h1>加百利商城</h1>
-	
-	<div class="connect">
-		<p>用户注册</p>
+	<div class="register-container">
+		<h1>加百利商城</h1>
+
+		<div class="connect">
+			<p>用户注册</p>
+		</div>
+
+		<form action="login.html" method="post" id="registerForm">
+			<div>
+				<input type="text" name="username" class="username"
+					placeholder="您的用户名" autocomplete="off" />
+			</div>
+			<div>
+				<input type="password" name="password" class="password"
+					placeholder="输入密码" oncontextmenu="return false"
+					onpaste="return false" />
+			</div>
+			<div>
+				<input type="password" name="confirm_password"
+					class="confirm_password" placeholder="再次输入密码"
+					oncontextmenu="return false" onpaste="return false" />
+			</div>
+			<div>
+				<input type="text" name="phone_number" class="phone_number"
+					placeholder="输入手机号码" autocomplete="off" id="number" />
+			</div>
+			<div>
+				<input type="text" name="code" placeholder="手机验证码" style="width: 160px; margin-left: 2px; display: inline-block;" oncontextmenu="return false" onpaste="return false" />
+				<input type="button" id="btn" style="display: inline-block; width: 100px;" value="获取验证码" /><span id="nr" style="font-size: 16px;color:green;"></span>
+			</div>
+			<div>
+				<input type="email" name="email" class="email" placeholder="输入邮箱地址"
+					oncontextmenu="return false" onpaste="return false" />
+			</div>
+
+			<button type="submit" id="submit">注 册</button>
+		</form>
+		<a href="login.html">
+			<button type="button" class="register-tis">已经有账号？</button>
+		</a>
+
 	</div>
-	
-	<form action="login.html" method="post" id="registerForm">
-		<div>
-			<input type="text" name="username" class="username" placeholder="您的用户名" autocomplete="off"/>
-		</div>
-		<div>
-			<input type="password" name="password" class="password" placeholder="输入密码" oncontextmenu="return false" onpaste="return false" />
-		</div>
-		<div>
-			<input type="password" name="confirm_password" class="confirm_password"  placeholder="再次输入密码" oncontextmenu="return false" onpaste="return false" />
-		</div>
-		<div>
-			<input type="text" name="phone_number" class="phone_number" placeholder="输入手机号码" autocomplete="off" id="number"/>
-		</div>
-		<div>
-			<input type="email" name="email" class="email" placeholder="输入邮箱地址" oncontextmenu="return false" onpaste="return false" />
-		</div>
-
-		<button type="submit" id="submit" >注 册</button>
-	</form>
-	<a href="login.html">
-		<button type="button" class="register-tis">已经有账号？</button>
-	</a>
-
-</div>
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/com.js"></script>
-<!--背景图片自动更换-->
-<script src="js/supersized.3.2.7.min.js"></script>
-<script src="js/supersized-init.js"></script>
-<!--表单验证-->
-<script src="js/jquery.validate.min.js?var1.14.0"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/com.js"></script>
+	<!--背景图片自动更换-->
+	<script src="js/supersized.3.2.7.min.js"></script>
+	<script src="js/supersized-init.js"></script>
+	<!--表单验证-->
+	<script src="js/jquery.validate.min.js?var1.14.0"></script>
 
 </body>
 </html>

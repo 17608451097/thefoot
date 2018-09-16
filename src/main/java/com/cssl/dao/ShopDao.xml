@@ -39,7 +39,10 @@
 
 	<update id="updateshop">
 		UPDATE shop SET
-		price=#{price},Oriprice=#{oriprice},prodetails=#{prodetails},proreview=#{proreview},grsonid=#{grsonid},filename=#{filename}
+		price=#{price},Oriprice=#{oriprice},prodetails=#{prodetails},proreview=#{proreview},grsonid=#{grsonid}
+		<if test="filename!=null and filename!='' ">
+			,filename=#{filename}
+		</if>
 		WHERE shopid=#{shopid}
 	</update>
 
@@ -53,7 +56,7 @@
 
 	<select id="getshop" resultType="map">
 		SELECT
-		sk.`sid`,sk.`shopid`,sp.shopname,c.`colorname`,s.`sizename`,sk.`stock`
+		sk.`sid`,sk.`shopid`,sp.shopname,c.`colorname`,s.`sizename`,sk.`stock`,sk.`s_sid`
 		FROM shopstock sk
 		INNER JOIN shop sp ON sk.`shopid` = sp.`shopid`
 		INNER JOIN colors c ON sk.`colorid` = c.`colorid`
@@ -71,9 +74,11 @@
                and   `Oriprice` &lt; #{price}
            </if>
           </where>
-          
-           ORDER BY `Oriprice`
+           <if test="orde==1">
+            ORDER BY `Oriprice`
+           </if>
            <if test="orde==2">
+           ORDER BY `Oriprice`
            desc
            </if>
 	</select>
@@ -87,7 +92,7 @@
 	</select>
 	
 	<insert id="addkc">
-		INSERT INTO shopstock(`shopid`,`colorid`,`sizeid`,`stock`) VALUES (#{shopid},#{colorid},#{sizeid},#{stock})
+		INSERT INTO shopstock(`shopid`,`colorid`,`sizeid`,`stock`,`s_sid`) VALUES (#{shopid},#{colorid},#{sizeid},#{stock},#{s_sid})
 	</insert>
 	
 	<update id="updshop">
@@ -106,4 +111,11 @@
 		DELETE FROM shopstock WHERE sid = #{sid}
 	</delete>
 
+	<insert id="addimg">
+		INSERT INTO `shopimg`(`shopid`,`colorsid`,`filename`) VALUES (#{shopid},#{colorid},#{filename})
+	</insert>
+	
+	<delete id="delshopimg">
+		DELETE FROM `shopimg` WHERE sid = #{s_sid}
+	</delete>
 </mapper>

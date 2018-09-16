@@ -30,11 +30,42 @@
 		padding-top: 30px;
 	}
 </style>
-	<form action="addkc" method="post" target="_top">
-		<table style="margin-left: 63px;margin-top: -27px;">
+<script type="text/javascript">
+$(function(){
+	$("form").submit(function(){
+		var stock =  $("input[name=stock]").val();
+		var sizeid =  $("#sizeid").val(); 
+		var colorid =  $("#colorid").val(); 
+		if(sizeid==0){
+			alert("请选择商品尺码!");
+			return false;
+		}
+		if(colorid==0){
+			alert("请选择商品颜色!");
+			return false;
+		}
+		var files = $('input[name="file"]').prop('files');//获取到文件列表
+		if(files.length == 0){
+		  alert('请选择商品图片');
+		  return false;
+		}
+		if(stock==0){
+			alert("商品数量不能为0!");
+			return false;
+		}
+		return true;
+	})
+});
+</script>
+	<form action="addkc"  enctype="multipart/form-data"  method="post" target="_top">
+		<table style="margin-left: 33px;margin-top: -65px;">
 			<tr>
 				<td class="ss" id="ssf"></td>
 				<td class="xx" id="sss"><input name="shopid" th:value="${shopid}" style="display: none;" type="text"/></td>
+			</tr>
+			<tr>
+				<td class="ss" id="ssf"></td>
+				<td class="xx" id="sss"><input name="filename" th:value="${filename}" style="display: none;" type="text"/></td>
 			</tr>
 			<tr>
 				<td class="ss" id="ssf">商品名称</td>
@@ -43,7 +74,7 @@
 			<tr>
 				<td class="ss">尺码</td>
 				<td class="xx">
-					<select name="sizeid" >
+					<select name="sizeid" id="sizeid" >
 						<option selected="selected" value="0">请选择尺码</option>
 						<option th:each="n,map:${sizels}" th:value="${n.sizeid}" th:text="${n.sizename}"></option>
 					</select>
@@ -52,11 +83,15 @@
 			<tr>
 				<td class="ss">颜色</td>
 				<td class="xx">
-					<select name="colorid">
+					<select name="colorid" id="colorid">
 						<option value="0">请选择颜色</option>
 						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
 					</select>
 				</td>
+			</tr>
+			<tr>
+				<td class="ss">商品图片</td>
+				<td class="sc"><input name="file" type="file" /></td>
 			</tr>
 			<tr>
 				<td class="ss">商品数量</td>

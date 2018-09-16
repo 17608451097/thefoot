@@ -42,6 +42,16 @@ $(function(){
 		padding-top: 62px;
 	} 
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("form").submit(function(){
+			var options =  $("#options").val(); 
+			if(options==0){
+				alert("请选择订单状态!");
+				return false;
+			}
+	});
+</script>
 	<form action="updzt" method="post" target="_top">
 		<table style="margin-left: 112px;margin-top: -60px;">
 			<tr>

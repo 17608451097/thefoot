@@ -120,8 +120,6 @@
                 </td>
             </tr>
 
-
-
             <!--          注释以下代码 可禁止自己输入价格-->
             <tr>
                 <td>
@@ -133,18 +131,18 @@
                     <input name="price" id="price" type="text" value=""   class="input_text"> 元</td>
             </tr>
             <!--              注释结束位置            -->
+            
             <tr>
                 <td>
                     <div align="right">用户：</div>
                 </td>
-
-                <td><input name="pay_id" id="pay_id" type="text" value="" class="input_text"
-                           style=" width:200px;"   ></td>
-
+                <td><input name="pay_id" id="pay_id" type="text" value="" class="input_text" style=" width:200px;"   ></td>
             </tr>
+            
              <tr style="display: none;">
                 <td><input name="param" id="param" type="text" value="500" class="input_text" style=" width:200px;"   ></td>
             </tr>
+            
             <tr>
                 <td>
                     <div align="right">支付：</div>
@@ -154,16 +152,6 @@
                             <input type="radio" name="type" value="1" checked="checked">
                         </div>
                     </label>
-                    <label>
-                        <div class="type_select wechat_select">
-                            <input type="radio" name="type" value="3">
-                        </div>
-                    </label>
-                    <label>
-                        <div class="qqpay_select type_select">
-                            <input type="radio" name="type" value="2">
-                        </div>
-                    </label>
                 </td>
             </tr>
           
@@ -171,47 +159,11 @@
                 <td>
                     <div align="right"></div>
                 </td>
-                <td><label>
-                        <input type="submit"  id="Submit" class="button button-pill button-primary"
-                               value="支付宝支付">
-
-                    </label></td>
+                <td><label><input type="submit"  id="Submit" class="button button-pill button-primary"  value="支付宝支付"></label></td>
             </tr>
             </tbody>
         </table>
     </div>
 </form>
-<script src="http://codepay.fateqq.com/js/jquery-1.10.2.min.js"></script>
-
-<script type="text/javascript">
-    var type = document.getElementsByName('type');
-    var price = document.getElementById('price');
-    var money = document.getElementById('money');
-    var FormSubmit = document.getElementById('Submit');
-    for (var i = 0; i < type.length; i++) {
-        type[i].onclick = function () {
-            switch (parseInt(this.value)) {
-                case 1:
-                    FormSubmit.value = '支付宝支付';
-                    break;
-                case 2:
-                    FormSubmit.value = 'QQ钱包支付';
-                    break;
-                case 3:
-                    FormSubmit.value = '微信支付';
-                    break;
-                default:
-                    FormSubmit.value = '支付宝支付';
-            }
-        }
-    }
-    $(".w-pay-money").click(function () {
-        $(".w-pay-money").removeClass('w-pay-money-selected');
-        $(this).addClass('w-pay-money-selected');
-        price.value = $(this).attr('data');
-        money.value = $(this).attr('data');
-    });
-    
-</script>
 </body>
 </html>

@@ -57,19 +57,19 @@ public class ShopServiceimpl implements ShopService {
 
 	@Override
 	public int delshop(String shopid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.delshop(shopid);
 	}
 
 	@Override
 	public int delstock(String shopid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.delstock(shopid);
 	}
  
 	@Override
 	public List<Map<String, Object>> getshop(String shopid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.getshop(shopid);
 	}
 
@@ -80,40 +80,54 @@ public class ShopServiceimpl implements ShopService {
 
 	@Override
 	public List<Map<String, Object>> selectgrson() {
-		return sdao.selectgrson();}
+		return sdao.selectgrson();
+	}
+	
 	public int getshopstock(String shopid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.getshopstock(shopid);
 	}
 
 	@Override
 	public int addkc(Shopstock stock) {
-		// TODO Auto-generated method stub
+		
 		return sdao.addkc(stock);
 	}
 
 	@Override
 	public int updshop(String stock, String shopid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.updshop(stock, shopid);
 	}
 
 	@Override
 	public int updshopkc(Shopstock stock) {
-		// TODO Auto-generated method stub
+		
 		return sdao.updshopkc(stock);
 	}
 
 	@Override
 	public List<Shopstock> updhx(String sid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.updhx(sid);
 	}
 
 	@Override
 	public int delkc(String sid) {
-		// TODO Auto-generated method stub
+		
 		return sdao.delkc(sid);
+	}
+
+	@Override
+	public int addimg(String colorid, String shopid, String filename) {
+		
+		return sdao.addimg(colorid, shopid, filename);
+	}
+
+	@Override
+	public int delshopimg(String s_sid) {
+		
+		return sdao.delshopimg(s_sid);
 	}
 
 }

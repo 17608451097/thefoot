@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import com.cssl.service.ShopService;
 import com.cssl.service.UserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.cssl.VerifyCodeUtils;
 
 @Controller
 @RequestMapping("/templates/htpage")
@@ -65,7 +68,7 @@ public class MyController {
 		String json = JSON.toJSONString(list);
 		json = "{\"total\":"+pages.getTotal()+",\"rows\":"+json+"}";
 		out.write(json);
-		out.flush();
+		out.flush(); 
 		out.close();
 	}
 	
@@ -111,6 +114,23 @@ public class MyController {
 		out.write(json);
 		out.flush(); 
 		out.close();
+	}
+	
+	@RequestMapping("/yzm")
+	public void yzm(HttpServletResponse response,HttpServletRequest request) throws IOException {
+		response.setHeader("Pragma", "No-cache");  
+        response.setHeader("Cache-Control", "no-cache");  
+        response.setDateHeader("Expires", 0);  
+        response.setContentType("image/jpeg");  
+          
+        //生成随机字串  
+        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
+        //存入会话session  
+        HttpSession session = request.getSession(true);  
+        session.setAttribute("rand", verifyCode.toLowerCase()); 
+        //生成图片  
+        int w = 200, h = 80;  
+        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);  
 	}
 	
 }
