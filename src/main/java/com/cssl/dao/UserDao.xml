@@ -16,4 +16,12 @@
 		DELETE FROM users WHERE userid = #{userid}
 	</delete>
 	
+	<select id="getbyuser" resultType="map">
+		 SELECT * FROM users WHERE userid=#{uid}
+	</select>
+	
+	<update id="update">
+		 UPDATE users SET `companyname`=#{companyname},`PASSWORD`=#{password},`email`=#{email},`address`=#{address},`phone`=#{phone} WHERE userid=#{userid}
+	</update>
+	
 </mapper>

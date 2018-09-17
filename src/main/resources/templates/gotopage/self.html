@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+        <meta name="author" content="order by dede58.com"/>
+		<title>加百利商城-个人中心</title>
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+	</head>
+	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#user").submit(function(){
+				var username = $("input[name=username]").val();
+				var password = $("input[name=password]").val();
+				var email = $("input[name=email]").val();
+				var address = $("input[name=address]").val();
+				var phone = $("input[name=phone]").val();
+				var rephone = $("input[name=rephone]").val();
+				var code = $("input[name=recode]").val();
+				var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+				if(username==""){
+					$("#nr").text("用户名不得为空")
+					return false;
+				}
+				if(password==""){
+					$("#nr").text("密码不得为空")
+					return false;
+				}
+				if(email==""){
+					$("#nr").text("邮箱不得为空")
+					return false;
+				}else if(!(isEmail.test(email))){
+					$("#nr").text("邮箱格式不正确")
+					return false;
+				}
+				if(address==""){
+					$("#nr").text("地址不得为空")
+					return false;
+				}
+				if(phone==""){
+					$("#nr").text("电话不得为空")
+					return false;
+				}
+				if(rephone!=phone){
+					$("#nr").text("修改手机号请先进行手机认证!")
+					return false;
+				}
+			});
+			
+					$("#recode").blur(function(){
+						var code = $("input[name=recode]").val();
+						if(code==""){
+							
+						}else{
+							 $.post("dxyz?recode="+code,"",function(row){
+									if(row==1){
+										$("#nr").text("验证码已通过");
+										$("#bc").attr('disabled',false);
+										setTimeout(function() {
+											$("#nr").text("")}
+							             ,3000)
+									}else{
+										$("#nr").text("短信验证码不正确");
+										 $("#bc").attr('disabled',true);
+									}
+							});
+						}
+					});
+			
+			$("#btn").click(function(){
+	             var phone = $("input[name=rephone]").val();
+					if(phone==""){
+						$("#nr").text("电话不得为空")
+					}else{
+						if(!(/^1[3|4|5|7|8][0-9]\d{8}$/.test(phone))){
+							$("#nr").text("电话格式不正确")
+						}else{
+							 $.get("dxapi?phone="+phone,"",function(row){
+									if(row==1){
+										$("#nr").text("验证码已发送至原号码");
+										setTimeout(function() {
+											$("#nr").text("")}
+							             ,3000)
+									}else{
+										$("#nr").text("短信未成功发送,请检查原电话号码是否正确");
+										setTimeout(function() {
+											$("#nr").text("")}
+							             ,3000)
+									}
+							});
+						}
+					}
+				})
+			 
+			$("#btn").click(function(){
+				var phone = $("input[name=rephone]").val();
+				if(phone==""){
+					$("#nr").text("电话不得为空")
+				}else{
+					if(!(/^1[3|4|5|7|8][0-9]\d{8}$/.test(phone))){
+						$("#nr").text("电话格式不正确")
+					}else{
+						 var countdown=60;
+				         var obj = $("#btn");
+				         settime(obj) ;
+				     function settime(obj) { //发送验证码倒计时
+				         if (countdown == 0) {
+				             obj.attr('disabled',false);
+				             //obj.removeattr("disabled");
+				             obj.val("获取验证码");
+				             countdown = 60;
+				             return;
+				         } else {
+				             obj.attr('disabled',true);
+				             obj.val("重新发送(" + countdown + "s)");
+				             countdown--;
+				         }
+				         setTimeout(function() {
+				                 settime(obj) }
+				             ,1000)
+				      }
+					}
+				}
+			});
+		})
+	</script>
+	<body style="background-color: #ccc;">
+	<!-- start header -->
+		<header>
+			<div class="top center">
+				<div class="left fl">
+					
+				</div>
+				<div class="right fr">
+					<div class="gouwuche fr"><a href="./dingdanzhongxin.html">我的订单</a></div>
+					<div class="fr">
+						<ul>
+							<li><a href="/templates/page/login.html" >登录</a></li>
+							<li>|</li>
+							<li><a href="/templates/page/register.html"  >注册</a></li>
+							<li>|</li>
+							<li><a href="/templates/page/showType">商城首页</a></li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</header>
+	<!--end header -->
+	<!-- start banner_x -->
+		<div class="banner_x center">
+				<h2 style="padding-top: 26px;padding-left: 500px;">个人资料修改</h2>
+		</div>
+<!-- end banner_x -->
+<!-- self_info -->
+	<div class="grzxbj" style="background-color: #ccc;">
+		<div class="selfinfo center">
+		<div class="lfnav fl" style="height: 526px;">
+			<div class="ddzx">订单中心</div>
+			<div class="subddzx">
+				<ul>
+					<li><a href="./dingdanzhongxin.html">我的订单</a></li>
+
+				</ul>
+			</div>
+			<div class="ddzx">个人中心</div>
+			<div class="subddzx">
+				<ul>
+					<li><a href="getuser" >我的个人中心</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="rtcont fr" style="height: 526px;" th:each="ns,map:${ulist}" >
+		<form action="updateuser" method="post"  id="user">
+			<div class="grzlbt ml40">我的资料</div>
+			<div class="subgrzl ml40" style="display: none;"><span></span><span><input style="display: none;" th:value="${ns.userid}"  type="text" name="userid"></span></div>
+			<div class="subgrzl ml40" style="display: none;"><span></span><span><input style="display: none;" th:value="${ns.phone}"  type="text" name="rephone"></span></div>
+			<div class="subgrzl ml40" ><span>真实姓名</span><span><input style="width: 300px;height: 30px;border-radius: 5px;" th:value="${ns.companyname}"   type="text" name="companyname"></span></div>
+			<div class="subgrzl ml40"><span>密码</span><span><input style="width: 300px;height: 30px;border-radius: 5px;" th:value="${ns.PASSWORD}"   type="password" name="password"></span></div>
+			<div class="subgrzl ml40"><span>邮箱</span><span><input style="width: 300px;height: 30px;border-radius: 5px;" th:value="${ns.email}"   type="text" name="email"></span></div>
+			<div class="subgrzl ml40"><span>收货地址</span><span><input style="width: 300px;height: 30px;border-radius: 5px;" th:value="${ns.address}"   type="text" name="address"></span></div>
+			<div class="subgrzl ml40"><span>联系电话</span><span><input style="width: 300px;height: 30px;border-radius: 5px;"  th:value="${ns.phone}"  type="text" name="phone"></span></div>
+			<span><input style="width: 200px;height: 30px;border-radius: 5px;margin-left: 250px;" placeholder="验证码"   type="text"  id="recode" name="recode"></span>
+			<span><input style="width: 100px;height: 35px;vertical-align: middle;padding-left: 5;border-radius: 5px;"  id="btn" type="button" value="获取验证码"/></span>
+			<br/><span id="nr" style="padding-left: 249px;color: #BC8B75;"></span>
+			<span style="padding-left: 872px;"><button style="width: 70px;height: 40px;margin-top: 50px;" id="bc" type="submit">保存</button></span>
+		</form>
+		</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+<!-- self_info -->
+		
+		<footer class="mt20 center" style="background-color: #000;">
+		</footer>
+	</body>
+	
+</html>

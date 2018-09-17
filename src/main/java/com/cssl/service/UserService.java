@@ -12,4 +12,8 @@ public interface UserService {
 	public List<Map<String,Object>> getuser();
 	
 	public int deluser(String userid);
+	
+	public List<Map<String,Object>> getbyuser(String uid);
+
+	public int update(Users us);
 }

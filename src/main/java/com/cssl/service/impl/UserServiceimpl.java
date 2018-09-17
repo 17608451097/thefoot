@@ -34,4 +34,16 @@ public class UserServiceimpl implements UserService {
 		return udao.deluser(userid);
 	}
 
+	@Override
+	public List<Map<String, Object>> getbyuser(String uid) {
+		
+		return udao.getbyuser(uid);
+	}
+
+	@Override
+	public int update(Users us) {
+		// TODO Auto-generated method stub
+		return udao.update(us);
+	}
+
 }
