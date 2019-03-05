@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.cssl.dao.ShopDao;
+import com.cssl.dao.TypeDao;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -32,6 +33,8 @@ public class ShopController {
 	@Autowired
 	private ShopDao sdao; 
 	
+	@Autowired
+	private TypeDao tdao; 
 	
 	@RequestMapping("/shopselectall")
 	public ModelAndView SelectAll(ModelAndView mv,HttpServletRequest re,HttpServletResponse response,String pages,
@@ -40,7 +43,11 @@ public class ShopController {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		List<Map<String, Object>> typelist =sdao.selectgrson();
+		List<Map<String, Object>> dhllist=sdao.selectdhlall();
+		List<Map<String, Object>> dhl=tdao.getdhl();
 		re.setAttribute("type",typelist);
+		re.setAttribute("dhllist", dhl);
+		re.setAttribute("dhl", dhllist);
 		
 		String page = pages == null ? "0" : pages;
 		String order =orde ==null ? "0" :orde;
@@ -70,7 +77,6 @@ public class ShopController {
 			op.put("ss", ma.getPages());
 			list.add(op);
 			String json = JSON.toJSONString(list);
-			System.out.println(json);
 			OutputStream out = response.getOutputStream();
 			out.write(json.getBytes());
 			out.flush();

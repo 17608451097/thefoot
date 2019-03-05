@@ -110,8 +110,10 @@
     </style>
 </head>
 <body>
+ <input type="hidden"  class="myzh" th:value="${session.sid}">
 <form name="form1" id="form1" method="get" action="mzf">
     <div>
+    
         <table width="550" border="0" align="center" cellpadding="8" cellspacing="1" bgcolor="#ffffff">
             <tbody>
             <tr>
@@ -128,7 +130,10 @@
 
                 <td>
 
-                    <input name="price" id="price" type="text" value=""   class="input_text"> 元</td>
+                    <input name="price" id="price"  style="display: none;" type="text" value="0.5"   class="input_text">  
+                    <input name="aprice" id="csprice"  readonly="readonly"  type="text"     th:value="${session.sum} "     class="input_text">
+
+                    
             </tr>
             <!--              注释结束位置            -->
             
@@ -136,7 +141,7 @@
                 <td>
                     <div align="right">用户：</div>
                 </td>
-                <td><input name="pay_id" id="pay_id" type="text" value="" class="input_text" style=" width:200px;"   ></td>
+                <td><input name="pay_id" id="pay_id" type="text" th:value="${session.user.name}" class="input_text" style=" width:200px;"   readonly="readonly"></td>
             </tr>
             
              <tr style="display: none;">
@@ -165,5 +170,46 @@
         </table>
     </div>
 </form>
+
+	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+    
+    $(function(){
+      $.load(){
+          setTimeout(function(){
+              $.post("check?param=false");
+              },300000)
+    	  
+          }
+
+        })
+
+	  
+	</script>
+	<script type="text/javascript">
+        var sid=$('.myzh').val();
+	    var socket;
+	    if(typeof(WebSocket) == undefined) {
+	        console.log("您的浏览器不支持WebSocket");
+	    }else{
+	        //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+	        socket = new WebSocket("ws://localhost:8080/webSocket/"+sid);
+
+	        //打开事件
+	        socket.onopen = function() {
+	        	
+	        };
+
+	        //获得消息事件
+	        socket.onmessage = function(msg) {
+	            if (msg.data == "101") {
+	                alert("对不起，你的账号已经在其它地方登录，若非本人操作，请及时更换密码...");
+	                location.href="http://localhost:8080/templates/page/login.html";
+	                return;
+	            }
+	        }
+	        };
+
+</script>
 </body>
 </html>

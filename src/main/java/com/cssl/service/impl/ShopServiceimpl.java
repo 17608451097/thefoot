@@ -129,5 +129,37 @@ public class ShopServiceimpl implements ShopService {
 		
 		return sdao.delshopimg(s_sid);
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectorde(int typeid,int userid) {
+		return sdao.selectorde(typeid,userid);
+	}
 
+	@Override
+	public int updateordetype(int oid, int orderid) {
+		return sdao.updateordetype(oid, orderid);
+	}
+	@Override
+	public List<Map<String, Object>> selectordes() {
+		return sdao.selectordes();
+	}
+
+	@Override
+	public int deleteordebyid(int oid) {
+		return sdao.deleteordebyid(oid);
+	}
+
+	@Override
+	public int deleteordesbyid(int oid) {
+		return sdao.deleteordesbyid(oid);
+	}
+	@Override
+	public List<Map<String, Object>> selectdhlall() {
+		return sdao.selectdhlall();
+	}
+
+	@Override
+	public int updateordebyid(int ordeid) {
+		return sdao.updateordebyid(ordeid);
+	}
 }

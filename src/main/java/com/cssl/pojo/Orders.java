@@ -12,4 +12,6 @@ public class Orders {
 	private Date orderdate;
 	private int orderprice;
 	private int userid;
+	
+	private String ordernumber;
 }

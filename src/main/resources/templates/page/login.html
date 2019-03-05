@@ -14,16 +14,18 @@
 	<div class="connect">
 		<p>用户登陆</p>
 	</div>
-	
+	<div style="background-color: rgba(255,255,255,0.8);width: 489px;margin-left: 640px;height: 411px;border-radius: 20px;">
 	<form action="login" method="post" id="loginForm">
 		<div>
 			<input type="text" name="username" class="username" placeholder="用户名" autocomplete="off"/>
+			
 		</div>
 		<div>
 			<input type="password" name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
 		</div>
 		<div>
-			<input type="text" name="veryCode" placeholder="验证码" style="width:90px; margin-left: 2px;" oncontextmenu="return false" onpaste="return false" /><img id="veryCode" width="80px"  style="vertical-align: middle;padding-left: 10px" height ="35px" src="/templates/htpage/yzm" /><a href="#"  onclick="veryCode.src='/templates/htpage/yzm?'+Math.random();" style="font-size: 12px;">看不清?点击更换</a>
+			<input  type="text" name="veryCode" placeholder="验证码" style="width:90px; margin-left: 2px;" oncontextmenu="return false" onpaste="return false" /><img id="veryCode" width="80px"  style="vertical-align: middle;padding-left: 10px" height ="35px" src="/templates/htpage/yzm" /><a href="#"  onclick="veryCode.src='/templates/htpage/yzm?'+Math.random();" style="font-size: 12px;">看不清?点击更换</a>
+				 <label visible="flase"   id="username-error" class="" th:class="error" th:text="${session.ss}" ></label>
 		</div>
 		<button id="submit" type="submit">登 录</button>
 	</form>
@@ -31,7 +33,7 @@
 	<a href="register.html">
 		<button type="button" class="register-tis">还没有账号？</button>
 	</a>
-
+	</div>
 </div>
 
 <script src="js/jquery.min.js"></script>

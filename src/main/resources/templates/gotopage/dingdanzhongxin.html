@@ -1,13 +1,509 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
         <meta name="author" content="order by dede58.com"/>
-		<title>加百利商城-个人中心</title>
-		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+		<title>小米商城-个人中心</title>
 		<link rel="stylesheet" type="text/css" href="./css/style.css">	
+		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+		<script type="text/javascript">
+
+               $(function() {
+            	    $(".ordedate").live("change",function(){
+                	    var date =$(".ordedate").val();
+                	    alert(date);
+   					 $.get("order?page=1"+"&ordate="+date,function(jsonq){
+                         var html ="";
+                         var json =jsonq.orde;
+                         var jsons =jsonq.ordes;
+                      for (var i = 0; i < json.length; i++){
+                          var js = json[i];
+                          $(".page").html(js.pages);
+                          if(js.ordernumber != null){
+                          html+="<div class='ddxq'>"
+           			          +"<div class='shopdml'>"
+        				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+        				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+        				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+        				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+        				                if(js.ordertypename =='未支付'){
+        				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+        				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+     				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+        				                }else {
+        				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+             				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+								        }
+                            for (var j = 0; j < jsons.length; j++) {
+                           	   var jss = jsons[j];
+                           	     if(js.orderid == jss.orderid){
+                   			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+                   				          +"<span class='shopname'>"+jss.shopname+"<br>"
+                   				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+                   				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+                   				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+                   				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"  
+                   				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+                   				          +"</span><br>"
+                   				  if(jss.orderdetailstypename =='未发货' && js.ordertypename != '未支付'){html+="<a href='#'  class='orde_tq'>(我要退款)</a>"}
+                   				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                   			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                   			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+                   			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                   				          html+="</div></div>"
+                               	    }
+						       }  
+                          } 
+                          html+="</div>";
+                          }
+                        $(".max").html(html);
+					  },"json");
+            	    });
+			    });
+                
+
+
+		
+
+        	   //分页判断上下页
+        	   function GotoPagess(i){
+        			var page =$(".page").html(); //当前页码
+        		    var pages=$(".pages").html();//总记录数
+        		  if(i=="1"){  
+        		      if(page!=1){
+        		          GotoPages(--page);
+        		              }
+        		                 }
+      		      else if(i=="2"){
+        		      if(page!=pages){
+        		          GotoPages(++page);
+        		               }
+        		                  }
+        		                       };
+
+        		                       
+        	   function Gotoorde(s){
+        		   $.get("order?page="+1+"&typeid="+s,function(jsonq){
+                       var html ="";
+                       var json =jsonq.orde;
+                       var jsons =jsonq.ordes;
+                   for (var i = 0; i < json.length; i++){
+                           var js = json[i];
+                           $(".page").html(js.pages);
+                           if(js.ordernumber != null){
+                           html+="<div class='ddxq'>"
+            			          +"<div class='shopdml'>"
+         				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+         				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+         				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+         				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+         				                if(js.ordertypename =='未支付'){
+         				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+         				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+      				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+         				                }else {
+         				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+              				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+									        }
+                             for (var j = 0; j < jsons.length; j++) {
+                            	   var jss = jsons[j];
+                            	     if(js.orderid == jss.orderid){
+                    			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+                    				          +"<span class='shopname'>"+jss.shopname+"<br>"
+                    				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+                    				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+                    				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+                    				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"
+                    				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+                    				          +"</span><br>"
+                    				  if(jss.orderdetailstypename =='未发货' && s !=1 && js.ordertypename !='未支付'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                    				  if(jss.orderdetailstypename =='配送中' && s !=1){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                    			      if(jss.orderdetailstypename =='已收货' && s !=1){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                    			      if(jss.orderdetailstypename =='已发货' && s !=1){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+                    			      if(jss.orderdetailstypename =='已发货' && s !=1){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                    				          html+="</div></div>"
+                                	    }
+							       }  
+                           } 
+                           html+="</div>";
+                           }
+                         $(".max").html(html);
+					 },"json");
+        		        };        		                       
+
+
+
+        	   function GotoPages(page){
+					 $.get("order?page="+page,function(jsonq){
+                             var html ="";
+                             var json =jsonq.orde;
+                             var jsons =jsonq.ordes;
+                          for (var i = 0; i < json.length; i++){
+                              var js = json[i];
+                              $(".page").html(js.pages);
+                              if(js.ordernumber != null){
+                              html+="<div class='ddxq'>"
+               			          +"<div class='shopdml'>"
+            				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+            				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+            				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+            				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+            				                if(js.ordertypename =='未支付'){
+            				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+            				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+         				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+            				                }else {
+            				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                 				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+									        }
+                                for (var j = 0; j < jsons.length; j++) {
+                               	   var jss = jsons[j];
+                               	     if(js.orderid == jss.orderid){
+                       			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+                       				          +"<span class='shopname'>"+jss.shopname+"<br>"
+                       				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+                       				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+                       				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+                       				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"  
+                       				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+                       				          +"</span><br>"
+                       				  if(jss.orderdetailstypename =='未发货' && js.ordertypename != '未支付'){html+="<a href='#'  class='orde_tq'>(我要退款)</a>"}
+                       				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                       			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                       			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+                       			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                       				          html+="</div></div>"
+                                   	    }
+							       }  
+                              } 
+                              html+="</div>";
+                              }
+                            $(".max").html(html);
+						  },"json");
+    				  };
+
+    				  //删除
+    				  function Gotodelbyid(oid){
+    					  var fl =confirm("你确定要删除该订单吗？");
+                             if(fl){
+                				 $.get("order?page=1"+"&delid="+oid,function(jsonq){
+                    				 if(jsonq.deljg ==1){
+                                              alert("删除成功");
+                        				 }else {
+											  alert("删除失败");
+										       }
+                                     var html ="";
+                                     var json =jsonq.orde;
+                                     var jsons =jsonq.ordes;
+                                  for (var i = 0; i < json.length; i++){
+                                      var js = json[i];
+                                      $(".page").html(js.pages);
+                                      if(js.ordernumber != null){
+                                      html+="<div class='ddxq'>"
+                       			          +"<div class='shopdml'>"
+                    				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+                    				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+                    				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+                    				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+                    				                if(js.ordertypename =='未支付'){
+                    				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+                    				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                 				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+                    				                }else {
+                    				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                         				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+        									        }
+                                        for (var j = 0; j < jsons.length; j++) {
+                                       	   var jss = jsons[j];
+                                       	     if(js.orderid == jss.orderid){
+                               			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+                               				          +"<span class='shopname'>"+jss.shopname+"<br>"
+                               				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+                               				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+                               				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+                               				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"
+                               				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+                               				          +"</span><br>"
+                               				  if(jss.orderdetailstypename =='未发货' && js.ordertypename !='未支付'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                               				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                               			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                               			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+                               			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                               				          html+="</div></div>"
+                                           	    }
+        							       }  
+                                      } 
+                                      html+="</div>";
+                                      }
+                                    $(".max").html(html);
+        						  },"json");
+       						  
+                                 }
+    	    				  };
+
+
+    	    				  function Gotodelbyid(oid){
+    	    					  var fl =confirm("你确定要删除该订单吗？");
+    	                             if(fl){
+    	                				 $.get("order?page=1"+"&delid="+oid,function(jsonq){
+    	                    				 if(jsonq.deljg ==1){
+    	                                              alert("删除成功");
+    	                        				 }else {
+    												  alert("删除失败");
+    											       }
+    	                                     var html ="";
+    	                                     var json =jsonq.orde;
+    	                                     var jsons =jsonq.ordes;
+    	                                  for (var i = 0; i < json.length; i++){
+    	                                      var js = json[i];
+    	                                      $(".page").html(js.pages);
+    	                                      if(js.ordernumber != null){
+    	                                      html+="<div class='ddxq'>"
+    	                       			          +"<div class='shopdml'>"
+    	                    				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+    	                    				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+    	                    				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+    	                    				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+    	                    				                if(js.ordertypename =='未支付'){
+    	                    				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+    	                    				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+    	                 				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+    	                    				                }else {
+    	                    				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+    	                         				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+    	        									        }
+    	                                        for (var j = 0; j < jsons.length; j++) {
+    	                                       	   var jss = jsons[j];
+    	                                       	     if(js.orderid == jss.orderid){
+    	                               			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+    	                               				          +"<span class='shopname'>"+jss.shopname+"<br>"
+    	                               				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+    	                               				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+    	                               				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+    	                               				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"
+    	                               				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+    	                               				          +"</span><br>"
+    	                               				  if(jss.orderdetailstypename =='未发货' && js.ordertypename !='未支付'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+    	                               				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+    	                               			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+    	                               			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+    	                               			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+    	                               				          html+="</div></div>"
+    	                                           	    }
+    	        							       }  
+    	                                      } 
+    	                                      html+="</div>";
+    	                                      }
+    	                                    $(".max").html(html);
+    	        						  },"json");
+    	       						  
+    	                                 }
+    	    	    				  };
+    	    				  
+
+    				  function updatebyid(ordeid,oid,pd){
+        				  if(ordeid == '未发货' || ordeid == '配送中'||ordeid == '已收货'){
+        					  var fl =confirm("你确定要进行退款吗(与商家协商后即可退款)？");
+        					      if(fl){ 
+ 	                				 $.get("order?page=1"+"&upid="+oid+"&upoid=5",function(jsonq){
+	                    				 if(jsonq.upjg ==1){
+	                                              alert("申请退款成功！");
+	                        				 }else {
+												  alert("申请退款失败");
+											       }
+	                                     var html ="";
+	                                     var json =jsonq.orde;
+	                                     var jsons =jsonq.ordes;
+	                                  for (var i = 0; i < json.length; i++){
+	                                      var js = json[i];
+	                                      $(".page").html(js.pages);
+	                                      if(js.ordernumber != null){
+	                                      html+="<div class='ddxq'>"
+	                       			          +"<div class='shopdml'>"
+	                    				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+	                    				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+	                    				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+	                    				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+	                    				                if(js.ordertypename =='未支付'){
+	                    				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+	                    				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+	                 				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+	                    				                }else {
+	                    				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+	                         				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+	        									        }
+	                                        for (var j = 0; j < jsons.length; j++) {
+	                                       	   var jss = jsons[j];
+	                                       	     if(js.orderid == jss.orderid){
+	                               			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+	                               				          +"<span class='shopname'>"+jss.shopname+"<br>"
+	                               				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+	                               				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+	                               				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+	                               				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"
+	                               				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+	                               				          +"</span><br>"
+	                               				  if(jss.orderdetailstypename =='未发货' && js.ordertypename !='未支付'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+	                               				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+	                               			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+	                               			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+	                               			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+	                               				          html+="</div></div>"
+	                                           	    }
+	        							       }  
+	                                      } 
+	                                      html+="</div>";
+	                                      }
+	                                    $(".max").html(html);
+	        						  },"json");
+
+            					      }
+            				         }
+        				  if(ordeid == '已发货' && pd == '0'){
+        					  var fl =confirm("确认收货后(商家支持7天无理由退款)");
+        					      if(fl){ 	                				
+            					       $.get("order?page=1"+"&upid="+oid+"&upoid=3",function(jsonq){
+	                    				 if(jsonq.upjg ==1){
+                                             alert("已成功确认收货！");
+                       				 }else {
+											  alert("操作失败(可能是网络的原因哦)！");
+										       }
+                                    var html ="";
+                                    var json =jsonq.orde;
+                                    var jsons =jsonq.ordes;
+                                 for (var i = 0; i < json.length; i++){
+                                     var js = json[i];
+                                     $(".page").html(js.pages);
+                                     if(js.ordernumber != null){
+                                     html+="<div class='ddxq'>"
+                      			          +"<div class='shopdml'>"
+                   				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+                   				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+                   				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+                   				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+                   				                if(js.ordertypename =='未支付'){
+                   				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+                   				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+                   				                }else {
+                   				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                        				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+       									        }
+                                       for (var j = 0; j < jsons.length; j++) {
+                                      	   var jss = jsons[j];
+                                      	     if(js.orderid == jss.orderid){
+                              			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+                              				          +"<span class='shopname'>"+jss.shopname+"<br>"
+                              				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+                              				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+                              				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+                              				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"
+                              				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+                              				          +"</span><br>"
+                              				  if(jss.orderdetailstypename =='未发货' && js.ordertypename !='未支付'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                              				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                              			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                              			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+                              			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                              				          html+="</div></div>"
+                                          	    }
+       							       }  
+                                     } 
+                                     html+="</div>";
+                                     }
+                                   $(".max").html(html);
+       						  },"json");
+
+       					      }
+        					      } if(ordeid == '已发货' && pd == '1'){
+                					  var fl =confirm("你确定要进行退款吗(与商家协商后即可退款)？");
+            					      if(fl){ 	                				
+                					       $.get("order?page=1"+"&upid="+oid+"&upoid=5",function(jsonq){
+    	                    				 if(jsonq.upjg ==1){
+                                                 alert("申请退款成功！");
+                           				 }else {
+    											  alert("操作失败(可能是网络的原因哦)！");
+    										       }
+                                        var html ="";
+                                        var json =jsonq.orde;
+                                        var jsons =jsonq.ordes;
+                                     for (var i = 0; i < json.length; i++){
+                                         var js = json[i];
+                                         $(".page").html(js.pages);
+                                         if(js.ordernumber != null){
+                                         html+="<div class='ddxq'>"
+                          			          +"<div class='shopdml'>"
+                       				          +"<span class='shopbtn'><input class='shoppl' type='checkbox'></span>"
+                       				          +"<span class='shopbh'>订单编号:"+js.ordernumber+"</span>"
+                       				          +"<span class='shopsj'>交易时间:"+js.orderdate+"</span>"
+                       				          +"<span class='shopzt'>订单状态:"+js.ordertypename+"</span>"
+                       				                if(js.ordertypename =='未支付'){
+                       				            html+="<a class='shopzf' href ='#'>(点我支付)</a>"
+                       				                +"<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                    				                    +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+                       				                }else {
+                       				            html+="<span class='shopdel'><img height='14px' width='14px' src='./image/del_dd.png'>"
+                            				            +"<a href='javascript:void(0)' onclick='javascript:Gotodelbyid("+js.orderid+")'>删除该订单</a></span></div>"
+           									        }
+                                           for (var j = 0; j < jsons.length; j++) {
+                                          	   var jss = jsons[j];
+                                          	     if(js.orderid == jss.orderid){
+                                  			         html+="<div class='shopsrc'><span class='shopimg'><img width='85px' height='85px;'src='http://193.112.4.251:2333/thefootimg/shopimg/"+jss.filename+"'></span>"
+                                  				          +"<span class='shopname'>"+jss.shopname+"<br>"
+                                  				          +"<a href='#'><img width='17px' height='17px;' title='正品保证' src='./image/h1.png'>&nbsp<img title='如图描述' width='17px' height='17px;' src='./image/h2.png'></span></a>"
+                                  				          +"<div class='price_1277' ><span>"+jss.Oriprice+"</span></div>"
+                                  				          +"<div class='price_1278'><span>"+jss.sale+"</span></div>"
+                                  				          +" <div class='price_1279' ><span>￥"+jss.sale * jss.Oriprice+".00</span></div>"
+                                  				          +"<div class='price_1280' ><span>&nbsp"+jss.orderdetailstypename 
+                                  				          +"</span><br>"
+                                  				  if(jss.orderdetailstypename =='未发货' && js.ordertypename !='未支付'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                                  				  if(jss.orderdetailstypename =='配送中'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                                  			      if(jss.orderdetailstypename =='已收货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                                  			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(确认收货)</a><br>"}
+                                  			      if(jss.orderdetailstypename =='已发货'){html+="<a href='#' class='orde_tq'>(我要退款)</a>"}
+                                  				          html+="</div></div>"
+                                              	    }
+           							       }  
+                                         } 
+                                         html+="</div>";
+                                         }
+                                       $(".max").html(html);
+           						  },"json");
+
+           					      }
+            					      }
+            				         }
+		</script>
+		
 	</head>
 	<body>
+	<!-- start header -->
+		<header>
+			<div class="top center">
+				<div class="left fl">
+				</div>
+				<div class="right fr">
+					<div class="gouwuche fr"><a href="">我的订单</a></div>
+					<div class="fr">
+						<ul>
+							<li><a href="getuser">个人中心</a></li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</header>
+	<!--end header -->
+	<!-- start banner_x -->
+		<div class="banner_x center">
+			<div class="nav fl">
+				<ul>
+					<li><a href="">首页</a></li>
+					<li><a href="">账户设置</a></li>
+				</ul>
+			</div>
+		</div>
+<!-- end banner_x -->
 <!-- self_info -->
 	<div class="grzxbj">
 		<div class="selfinfo center">
@@ -15,30 +511,32 @@
 			<div class="ddzx">订单中心</div>
 			<div class="subddzx">
 				<ul>
-					<li><a href="#">我的订单</a></li>
+					<li><a href="order">我的订单</a></li>
 				</ul>
 			</div>
 			<div class="ddzx">个人中心</div>
 			<div class="subddzx">
 				<ul>
-					<li><a href="self.html">我的个人中心</a></li>
+					<li><a href="getuser">我的个人中心</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="rtcont fr">
 			<div class="ddzxbt">
 			   <ul class="dh_1">
-						<li><a href="#">全部订单</a></li>
-						<li><a href="#">待付款</a></li>
-						<li><a href="#">待发货</a></li>
-						<li><a href="#">待收货</a></li>
-						<li><a href="#">待评价</a></li>
+						<li><a href="javascript:void(0)" onclick="Gotoorde('0')" >全部订单</a></li>
+						<li><a href="javascript:void(0)" onclick="Gotoorde('1')" >待付款</a></li>
+						<li><a href="javascript:void(0)" onclick="Gotoorde('2')" >已付款</a></li>
 				</ul>
-				<span class="del_1"><img src="./image/del_dd.png"> <a class="del_dd" href="#">订单回收站</a></span>
 			</div>
 			
 			<div class="page_1">
-			<span class="page_2"> <button class="btn_page">上一页</button> <span>1</span>/<span>2</span> <button class="btn_page">上一页</button> </span>
+			<div class="ordebyid">
+			</div> 
+			<span class="page_2"> 
+			<button class="btn_page"  onclick="GotoPagess('1')">上一页</button> 
+			<a class="page">1</a>/<span class="pages" th:text="${pages }"></span>
+		    <button class="btn_page" onclick="GotoPagess('2')">下一页</button> </span>
 			</div>
 			
 			<div class="shop_ls">
@@ -50,50 +548,40 @@
                   <li>交易状态</li>
               </ul>
             </div>
-            
-			<div class="ddxq">
-			  <div class="shopdml">
+			<div class="max">
+			
+			<div class="ddxq" th:each="li,user:${orde }">
+			
+			  	<div class="shopdml">
 				<span class="shopbtn"><input class="shoppl" type="checkbox"> </span>
-				<span class="shopbh">订单编号:46789098754346</span>
-				<span class="shopsj">交易时间:2018-12-2</span>
-				<span class="shopdel"><img height="14px" width="14px" src="./image/del_dd.png"><a href="#">删除该订单</a></span>
+				<span class="shopbh" th:text="'订单编号:'+${li.ordernumber }" >订单编号:46789098754346</span>
+				<span class="shopsj" th:text="'交易时间:'+${li.orderdate }">交易时间:2018-12-2</span>
+				<span class="shopzt" th:text="'订单状态:'+${li.ordertypename }">订单状态:未支付</span>
+				<a class="shopzf"  th:href ="@{/templates/page/ordezfm(orderid=${li.orderid },orderprice=${li.orderprice } )}"  th:text="${li.ordertypename } eq 已支付  ? ' ':'(点我支付)'">点我支付</a>
+				<span class="shopdel"><img height="14px" width="14px" src="./image/del_dd.png">
+				<a href="javascript:void(0)" th:onclick="'javascript:Gotodelbyid(\''+${li.orderid }+'\')'">删除该订单</a></span>
 			  </div>
-			  <div class="shopsrc">
-				<span class="shopimg"><img width="85px" height="85px;" src="./image/liebiao_hongmin4_dd.jpg"></span>
-				<span class="shopname">Nike Air Jordan XXX <br>
-				<a href="#"><img width="17px"  height="17px;" title="正品保证" src="./image/h1.png">&nbsp<img title="如图描述" width="17px" height="17px;" src="./image/h2.png"></span></a>
-				<div class="price_1277" ><span>￥10.00</span></div>
-				<div class="price_1278" ><span>1</span></div>
-				 <div class="price_1279" ><span>￥20.00</span></div>
-				  <div class="price_1280" ><span>已发货</span></div>
-			  </div>
-			   <div class="shopsrc">
-				<span class="shopimg"><img width="85px" height="85px;" src="./image/liebiao_hongmin4_dd.jpg"></span>
-				<span class="shopname">Nike Air Jordan XXX <br>
-				<a href="#"><img width="17px"  height="17px;" title="正品保证" src="./image/h1.png">&nbsp<img title="如图描述" width="17px" height="17px;" src="./image/h2.png"></span></a>
-				<div class="price_1277" ><span>￥10.00</span></div>
-				<div class="price_1278" ><span>1</span></div>
-				 <div class="price_1280" ><span>已发货</span></div>
+			  
+			  <div class="shopsrc" th:each="ors,users:${ordes }" th:if="${li.orderid} == ${ors.orderid}">
+				<span class="shopimg"><img width="85px" height="85px;" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${ors.filename}" ></span>
+				<span class="shopname" th:text="${ors.shopname }">Nike Air Jordan XXX <br>
+				<a href="#"><img width="17px" height="17px" title="正品保证" src="./image/h1.png">&nbsp
+				            <img title="如图描述" width="17px" height="17px" src="./image/h2.png"></span></a>
+				<div class="price_1277" ><span th:text="'￥'+${ors.Oriprice }">￥10.00</span></div>
+				<div class="price_1278" ><span th:text="${ors.sale }">1</span></div>
+				<div class="price_1279" ><span th:text="${ors.sale } * ${ors.Oriprice }">￥20.00</span></div>
+				<div class="price_1280" >&nbsp<span th:text="${ors.orderdetailstypename }">已发货</span> <br>
+				                         <a href="javascript:void(0)" th:onclick="'javascript:updatebyid(\''+${ors.orderdetailstypename }+'\',\''+${ors.detailsid}+'\')'" class="orde_tq" th:if="${ors.orderdetailstypename } eq '配送中'" >(我要退款)</a>
+				                         <a href="javascript:void(0)" th:onclick="'javascript:updatebyid(\''+${ors.orderdetailstypename }+'\',\''+${ors.detailsid}+'\')'" class="orde_tq" th:if="${ors.orderdetailstypename } eq '已收货'" >(我要退款)</a>
+				                         <a href="javascript:void(0)" th:onclick="'javascript:updatebyid(\''+${ors.orderdetailstypename }+'\',\''+${ors.detailsid}+'\',\''+0+'\')'" class="orde_tq" th:if="${ors.orderdetailstypename } eq '已发货'" >(确认收货)</a><br>
+				                         <a href="javascript:void(0)" th:onclick="'javascript:updatebyid(\''+${ors.orderdetailstypename }+'\',\''+${ors.detailsid}+'\',\''+1+'\')'" class="orde_tq" th:if="${ors.orderdetailstypename } eq '已发货'" >(我要退款)</a>
+				                         
+				                         </div>
 			  </div>
 			</div>
 			
-			<div class="ddxq">
-			  <div class="shopdml">
-				<span class="shopbtn"><input class="shoppl" type="checkbox"> </span>
-				<span class="shopbh">订单编号:46789098754346</span>
-				<span class="shopsj">交易时间:2018-12-2</span>
-				<span class="shopdel"><img height="14px" width="14px" src="./image/del_dd.png"><a href="#">删除该订单</a></span>
-			  </div>
-			   <div class="shopsrc">
-				<span class="shopimg"><img width="85px" height="85px;" src="./image/liebiao_hongmin4_dd.jpg"></span>
-				<span class="shopname">Nike Air Jordan XXX <br>
-				<a href="#"><img width="17px"  height="17px;" title="正品保证" src="./image/h1.png">&nbsp<img title="如图描述" width="17px" height="17px;" src="./image/h2.png"></span></a>
-				<div class="price_1277" ><span>￥10.00</span></div>
-				<div class="price_1278" ><span>1</span></div>
-				 <div class="price_1280" ><span>已发货</span></div>
-			  </div>
 			</div>
-		
+			
 		</div>
 		<div class="clear"></div>
 		</div>
@@ -101,8 +589,7 @@
 <!-- self_info -->
 		
 		<footer class="mt20 center">			
-			<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
-			<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
+			<div class="mt20">加百利商城|多看书城|加百利路由器|视频电话|加百利天猫店|加百利淘宝直营店|加百利网盟|加百利移动|隐私政策|Select Region</div>
 			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
 		</footer>
 	</body>

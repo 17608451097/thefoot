@@ -48,4 +48,17 @@ public interface ShopDao {
 	public int delkc(String sid);
 	
 	public int delshopimg(String s_sid);
+	
+	public List<Map<String, Object>>selectorde(@Param("typeid")int typeid,@Param("userid")int userid);
+	
+	public int updateordetype(@Param("oid")int oid,@Param("orderid")int orderid);
+	
+	public List<Map<String, Object>>selectordes();
+	
+	public int deleteordebyid(int oid);
+	
+	public int deleteordesbyid(int oid);
+	public List<Map<String, Object>>selectdhlall();
+	
+	public int updateordebyid(@Param("ordeid")int ordeid);
 }

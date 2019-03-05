@@ -48,24 +48,23 @@ public class DxApiController {
 		
 		@RequestMapping("/getuser")
 		public String getuser(HttpServletRequest req) {
-			req.getSession().setAttribute("user","1");
-			String uid = (String) req.getSession().getAttribute("user");
-			List<Map<String,Object>> list = usic.getbyuser(uid);
+			 Users us = (Users) req.getSession().getAttribute("user");
+			List<Map<String,Object>> list = usic.getbyuser(us.getUserid()+"");
 			req.setAttribute("ulist", list);
 			return "gotopage/self";
 		}
 		
 		@RequestMapping("/updateuser")
-		public String updateuser(Users us) {
+		public String updateuser(Users us,HttpServletRequest req) {
 			usic.update(us);
+			req.getSession().removeAttribute("rodon");
 			return "redirect:getuser";
 		}
 		
 		@RequestMapping("/dxyz")
 		public void dxyz(String recode,HttpServletRequest req,HttpServletResponse response) throws IOException {
-			System.out.println(recode);
 			PrintWriter out  = response.getWriter();
-			int code = (int) req.getSession().getAttribute("rodon");
+			int code = (int) req.getSession().getAttribute("rodon");    
 			String codes=code+"";
 			if(codes.equals(recode)) {
 				out.println(1);

@@ -8,27 +8,119 @@
 <link href="css/form.css" rel="stylesheet" type="text/css" media="all">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<style type="text/css">
+ .h_nav *{display: inline-block;vertical-align: middle;
+ }
+ .s686 {
+ display: inline-block;
+           border-top: 1px solid;
+           border-color: black;
+ }
+.ch-1{
+  height: 22px;
+  width: 167px;
+  margin-top: -22px;
+  margin-left: 363px;
+}
+.ch-2{
+  height: 22px;
+  width: 59px;
+  margin-top: -22px;
+  margin-left: 529px;
+}
+
+.orde{
+  height: 22px;
+  width: 120px;
+  margin-top: 1px;
+  margin-left: 3px;
+}
+
+</style>
+
 <script type="text/javascript">
+
+   $(function(){
+	   $(".ch-2").click(function(){
+		    var  ch =$(".ch-1").val();
+			var  price= $("input[name='checkbox1']:checked").val();	
+			var  orde = $(".orde").val();
+			$("#qb").attr("checked",true);
+			 $.get("shopselectall?pages="+1+"&ch="+ch+"&price="+price+"&orde="+orde,function(json){
+		         var sb ="";
+		    	 for (var i = 0; i < json.length; i++) {
+						var js = json[i];
+						$(".page").html(js.pages);
+						$(".pages").html(js.ss);
+						if(js.shopname !=null){
+						sb += "<div id='shophtml' class='col_1_of_single1 span_1_of_single1'>"
+						       +"<a href='single.html'>"
+						       +"<div class='view1 view-fifth1'>"
+						       +"<div class='top_box'>"
+						       +"<div class='grid_img'>"
+						       +"<div class='css3'><img height='230px' width='280px' src='http://193.112.4.251:2333/thefootimg/shopimg/"+js.filename
+						       +" ' alt=''></div>"
+						       +"<div class='mask1'>"
+						       +"<div class='info'>快速浏览</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<div class='price'>￥"
+						       +js.Oriprice
+						       +"</div>"
+						       +"</div>"
+						       +"</div>"
+						       +"<span class='rating1'>"
+						       +"<input type='radio' class='rating-input' id='rating-input-1-5' name='rating-input-1'>"
+						       +"&nbsp;"
+						       +"库存余量：("
+						       +js.Stock
+						       +")"
+						       +"</span>"
+						       +"</a><ul class='list2'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'>"
+						       +"<img src='images/plus.png' alt=''>"
+						       +"</a>"
+						       +"<ul class='icon1 sub-icon1 profile_img'>"
+						       +"<a href='single.html'>"
+						       +"</a><li><a href='single.html'></a>"
+						       +"<a class='active-icon c1' href='#'>添加至购物袋</a>"
+						       +"<ul class='sub-icon1 list'></ul>"
+						       +"</li>"
+						       +"</ul>"
+						       +"</li>"
+						       +"</ul> "
+						       +"<div class='clear'></div>"
+						       +"</div>";
+					}	
+		    	 }				
+			             $(".box1").html(sb);
+		         },"json");
+	});
+	
+});
 
   function GotoPagess(i){
 	var page =$(".page").html();
      var ss=$(".pages").html();
       if(i=="1"){  
           if(page!=1){
-        	  GotoPages(--page);
+              GotoPages(--page);
               }
     }else if(i=="2"){
       if(page!=ss){
        GotoPages(++page);
        }
     }
-        }
+        };
 
+  
   function GotoPages(page){ 
 	  var  pp= $("input[name='checkbox0']:checked").val();	
 	  var  price= $("input[name='checkbox1']:checked").val();	
       var  orde = $(".orde").val();
-     $.get("shopselectall?pages="+page+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
+	  var  ch =$(".ch-1").val();
+     $.get("shopselectall?pages="+page+"&pp="+pp+"&price="+price+"&orde="+orde+"&ch="+ch,function(json){
          var sb ="";
     	 for (var i = 0; i <json.length; i++) {
 				var js = json[i];
@@ -140,10 +232,11 @@
 			});	 
 
 		$(".orde").change(function(){
+		    var  ch =$(".ch-1").val();
 			var  pp= $("input[name='checkbox0']:checked").val();	
 			var  price= $("input[name='checkbox1']:checked").val();	
 			var  orde = $(".orde").val();
-			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
+			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde+"&ch="+ch,function(json){
 		         var sb ="";
 		    	 for (var i = 0; i < json.length; i++) {
 						var js = json[i];
@@ -196,7 +289,8 @@
 			var  pp= $("input[name='checkbox0']:checked").val();	
 			var  price= $("input[name='checkbox1']:checked").val();	
 			var  orde = $(".orde").val();
-			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde,function(json){
+		    var  ch =$(".ch-1").val();
+			 $.get("shopselectall?pages="+1+"&pp="+pp+"&price="+price+"&orde="+orde+"&ch="+ch,function(json){
 		         var sb ="";
 		    	 for (var i = 0; i < json.length; i++) {
 						var js = json[i];
@@ -245,7 +339,7 @@
 			             $(".box1").html(sb);
 		         },"json");
 			 			
-			});	 
+			});	 	
 	});	
 </script>
 <script src="js/jquery.easydropdown.js"></script>
@@ -338,43 +432,33 @@
 		<div class="clear"></div>
  	</div>
    </div>
-   </div><div class="header-bottom">
+   </div>
+   <div class="header-bottom">
 		<div class="wrap">
 			<!-- 导航栏 -->
 			<ul class="megamenu skyblue">
 				<li>
-				      <a class="color1" href="#">首页</a>
+				      <a class="color1" href="showType">首页</a>
 				</li>
 				<li class="grid"> 
-				      <a class="color2" href="#">男装</a>
+				      <a class="color2" href="#">Exclusive定制</a>
 					<div class="megapanel">
 						<div class="row">
 							
-							<div class="col1">
+							<div class="col1" th:each="li,user:${dhl }">
 								<div class="h_nav">
-									<h4>流行</h4>
+								<img height="34px" width="40px" th:src="'http://193.112.4.251:2333/thefootimg/pageimg/logo/' +${li.brandlogo}"><a th:href="@{shopselectall(pp=${li.bid})}" th:text="${li.grsonname}"></a>
 									<ul>
-										<li><a href="shop.html">最新上市</a></li>
+									    <li class="s686">&nbsp</li>
+										<li><img height="70px" width="160px" th:src="'http://193.112.4.251:2333/thefootimg/pageimg/dhl/'+${li.branddhl}"></li>
 									</ul>
 								</div>
 							</div>
-							
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格区</h4>
-									<ul>
-										<li><a href="shop.html">潮牌</a></li>
-									</ul>
-								</div>
-							</div>
-							
-							<img src="images/nav_img.jpg" alt="" />
 							
 						</div>
 					</div>
 					</li>
 			</ul>
-
 		</div>
 		
 	</div>
@@ -387,8 +471,8 @@
 						 <div class="jspContainer" style="width: 274px; height: 200px;">
 						 <div class="jspPane" style="padding: 20px; top: 0px; left: 0px; width: 234px;">
 						 <div class="col col-4">
-						        <label  class="checkbox"> <input type="radio" class="checkboxs" checked="checked"  name="checkbox0" value="0"><i></i><sapn>全部</sapn></label>
-								<label th:each="lb,user:${type }" class="checkbox"> <input type="radio" class="checkboxs" name="checkbox0" th:value="${lb.grsonid}" ><i></i><sapn th:text="${lb.grsonname}"></sapn></label>
+						        <label  class="checkbox"> <input type="radio" class="checkboxs" checked="checked" id="qb"  name="checkbox0" value="0"><i></i><sapn>全部</sapn></label>
+								<label th:each="lb,user:${type }" class="checkbox"> <input type="radio" th:checked="${ppai } eq ${lb.grsonid} ? 'ture' : 'false' " class="checkboxs" name="checkbox0" th:value="${lb.grsonid}" ><i></i><sapn th:text="${lb.grsonname}"></sapn></label>
 						    </div></div></div></div>
 				</section>
 		       <section class="sky-form">
@@ -416,7 +500,11 @@
 		                   <option value="2">价格：从高到低 </option>
 		            </select>
                </div>
+               <input class="ch-1" type="text"> 
+    		   <input class="ch-2" type="button" value="查找">
     		</div>
+    		  
+    		
 	          <div class="pager">   
 	          	<ul>
 	          		<li><a href="javascript:void(0)" onclick="GotoPagess('1')" class="previous">上一页</a> &nbsp;&nbsp;
@@ -429,7 +517,7 @@
 			    <div class="box1" style="height:auto">
 			    
 			     <div id="shophtml" class="col_1_of_single1 span_1_of_single1" th:each="li,user:${shoplist}">
-				   <a href="single.html">
+				   <a th:href="@{showSingle(id=${li.shopid})}">
 				     <div class="view1 view-fifth1">
 				  	  <div class="top_box">
 				         <div class="grid_img">
@@ -438,7 +526,7 @@
 	                       		<div class="info">快速浏览</div>
 			                  </div>
 	                    </div>
-                       <div class="price" th:text="'￥'+${li.Oriprice}"></div>
+                       <div class="price" th:text="'￥'+${li.price}"></div>
 					   </div>
 					    </div>
 					   <span class="rating1">
@@ -501,19 +589,7 @@
        	 	<div class="wrap">
        	 		<div class="section group">
 				<div class="col_1_of_middle span_1_of_middle">
-					<dl id="sample" class="dropdown">
-			        <dt><a href="#"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请选择一个国家</font></font></span></a></dt>
-			        <dd>
-			            <ul style="display: none;">
-			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">澳大利亚</font></font><img class="flag flagvisibility" src="images/as.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AS</font></font></span></a></li>
-			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">斯里兰卡</font></font><img class="flag flagvisibility" src="images/srl.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SL</font></font></span></a></li>
-			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Newziland </font></font><img class="flag flagvisibility" src="images/nz.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NZ</font></font></span></a></li>
-			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">巴基斯坦</font></font><img class="flag flagvisibility" src="images/pk.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pk</font></font></span></a></li>
-			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英国</font></font><img class="flag flagvisibility" src="images/uk.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英国</font></font></span></a></li>
-			                <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">美国</font></font><img class="flag flagvisibility" src="images/us.png" alt=""><span class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">美国</font></font></span></a></li>
-			            </ul>
-			         </dd>
-   				    </dl>
+				
    				 </div>
 				<div class="col_1_of_middle span_1_of_middle">
 					<ul class="f_list1">
@@ -601,6 +677,58 @@
 				$().UItoTop({ easingType: 'easeOutQuart' });
 				
 			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+		 		};
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+
+
+		     var color=null;
+		     var size=null;
+
+		    function select(obj) {
+		    	$(".ss").attr("style", "color:white");
+				 document.getElementById($(obj).html()).style.color="red";
+			     size=obj.id; 
+			}
+		    function show(obj) {
+		    	$(".ss1").attr("style", "color:white")
+				 document.getElementById(obj.id).style.color="red";
+		 	 $('.etalage_thumb_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
+			 $('.etalage_source_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
+			 color=obj.id;
+			};
+
+		    function add() {
+			 if(color!=null && size!=null){
+				 var shopid=$('#shopid').val();
+				 $.post("add?shopid="+shopid+"&size="+size+"&color="+color,function(json){
+		              if(json=="true"){
+		                  alert("加入成功！");
+		                }else if(json=="login"){
+		                      alert("登陆后在来逛逛吧!");
+		                      location.href="login.html";
+		                      }
+					 
+					 },"JSON")
+			 }else{
+		         alert("选个心爱的尺码跟颜色先啦~~");
+				 }
+
+		};
+
+		 
+
+			
 		</script>
         <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><span id="toTopHover" style="opacity: 1;"></span></a>       
 </body></html>

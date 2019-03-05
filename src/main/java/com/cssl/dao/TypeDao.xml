@@ -7,4 +7,12 @@
 	<select id="gettype" resultType="map">
 		SELECT * FROM grsontype
 	</select>
+	
+	<select id="getdhl" resultType="map">
+	   SELECT b.`bid`, s.`shopname`,s.`shopid`
+              FROM `shop` s
+              INNER JOIN `brand` b 
+              ON s.`grsonid`=b.`bid`
+	</select >
+	
 </mapper>

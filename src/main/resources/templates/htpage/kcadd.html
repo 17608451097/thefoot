@@ -1,4 +1,4 @@
-‘【//2<HTML xmlns:th="http://www.thymeleaf.org">
+<HTML xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -15,20 +15,20 @@
 <body>
 <div style="text-align: center;">
 <style type="text/css">
-	.ss{
+	.mc{
 		padding-left: 120px;
 	}
-	.ss,.xx{
+	.mc,.vc{
 		padding-bottom: 30px;
 	}
 	
-	.sc{
+	.qw{
 		padding-left: 100px;
 		padding-bottom: 30px;
 	}
-	#sss,#ssf{
+	#ed,#we{
 		padding-top: 30px;
-	}
+	} 
 </style>
 <script type="text/javascript">
 $(function(){
@@ -60,20 +60,20 @@ $(function(){
 	<form action="addkc"  enctype="multipart/form-data"  method="post" target="_top">
 		<table style="margin-left: 33px;margin-top: -65px;">
 			<tr>
-				<td class="ss" id="ssf"></td>
-				<td class="xx" id="sss"><input name="shopid" th:value="${shopid}" style="display: none;" type="text"/></td>
+				<td class="ss" id="we"></td>
+				<td class="xx" id="ed"><input name="shopid" th:value="${shopid}" style="display: none;" type="text"/></td>
 			</tr>
 			<tr>
-				<td class="ss" id="ssf"></td>
-				<td class="xx" id="sss"><input name="filename" th:value="${filename}" style="display: none;" type="text"/></td>
+				<td class="ss" id="we"></td>
+				<td class="xx" id="ed"><input name="filename" th:value="${filename}" style="display: none;" type="text"/></td>
 			</tr>
 			<tr>
-				<td class="ss" id="ssf">商品名称</td>
-				<td class="xx" id="sss"><input name="shopname" th:value="${shopname}" readonly="readonly" type="text"/></td>
+				<td class="mc" id="we">商品名称</td>
+				<td class="vc" id="ed"><input name="shopname" th:value="${shopname}" readonly="readonly" type="text"/></td>
 			</tr>
 			<tr>
-				<td class="ss">尺码</td>
-				<td class="xx">
+				<td class="mc">尺码</td>
+				<td class="vc">
 					<select name="sizeid" id="sizeid" >
 						<option selected="selected" value="0">请选择尺码</option>
 						<option th:each="n,map:${sizels}" th:value="${n.sizeid}" th:text="${n.sizename}"></option>
@@ -81,8 +81,8 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="ss">颜色</td>
-				<td class="xx">
+				<td class="mc">颜色</td>
+				<td class="vc">
 					<select name="colorid" id="colorid">
 						<option value="0">请选择颜色</option>
 						<option th:each="n,map:${colorls}" th:value="${n.colorid}" th:text="${n.colorname}"></option>
@@ -90,12 +90,12 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="ss">商品图片</td>
-				<td class="sc"><input name="file" type="file" /></td>
+				<td class="mc">商品图片</td>
+				<td class="qw"><input name="file" type="file" /></td>
 			</tr>
 			<tr>
-				<td class="ss">商品数量</td>
-				<td class="xx"><input name="stock" type="number" value="0" /></td>
+				<td class="mc">商品数量</td>
+				<td class="vc"><input name="stock" type="number" value="0" /></td>
 			</tr>
 			<tr><td></td><td><button type="submit">点击新增</button></td></tr>
 		</table>

@@ -82,36 +82,7 @@
     <script type="text/javascript" src="js/easing.js"></script>
     <script type="text/javascript">
 
-     var colorid=null;
-     var size=null;
-
-
     
-    function select(obj) {
-    	$(".ss").attr("style", "color:white");
-		 document.getElementById($(obj).html()).style.color="red";
-		  size=$(obj).html(); 
-	}
-    function show(obj) {
-    	$(".ss1").attr("style", "color:white")
-		 document.getElementById('1'+$(obj).html()).style.color="red";
- 	 $('.etalage_thumb_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
-	 $('.etalage_source_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
-
-	 colorid=  $('#2'+$(obj).html()).val()
-	}
-
- function add() {
-	 if(colorid!=null && size!=null){
-		 
-		 
-		 alert(size);
-		alert(colorid);
-		alert($('#shopid').val());
-	 }
-
-	
-} 
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
                 event.preventDefault();
@@ -127,21 +98,22 @@
 <div class="header-top">
     <div class="wrap">
         <div class="logo">
-            <a href="index.html"><img src="images/logo.png" alt=""/></a>
+            <a href="showType"><img width="120px" src="images/logo.jpg" alt="showType"></a>
         </div>
         <div class="cssmenu">
 		   <ul>
-			 <li class="active"><a href="register.html">注册</a></li> 
-			 <li><a href="shop.html">商品列表</a></li> 
-			  <li><a href="checkout.html">购物车</a></li> 
-			 <li><a href="checkout.html">我的账户</a></li> 
+		   
+		   <input type="hidden"  class="myzh" th:value="${session.sid}">
+			 <li><a href="shopselectall">商品列表</a></li> 
+			  <li><a href="ts" >购物车</a></li> 
+			 <li><a href="/templates/gotopage/getuser">我的账户</a></li> 
 		   </ul>
 		</div>
         <ul class="icon2 sub-icon2 profile_img">
             <li><a class="active-icon c2" href="#"> </a>
                 <ul class="sub-icon2 list">
-                    <li><h3>制品</h3><a href=""></a></li>
-                    <li><p>的的Lorem存有胡萝卜，提高 <a href="">本科开发商，但直径</a></p></li>
+                    <li><h3></h3><a href=""></a></li>
+                    <li><p><a href=""></a></p></li>
                 </ul>
             </li>
         </ul>
@@ -149,33 +121,33 @@
     </div>
 </div>
 <div class="header-bottom">
-	<div class="wrap">
-		
-		
-			<ul class="megamenu skyblue"  >
-			<!-- 每个标题的li -->
-			<li class="grid" th:each="n,map:${list}">
-			<!-- 这里是标题，标题！ -->
-			<a class="color2" href="#" th:text="${n.typename}"></a>
-
-			<div class="megapanel" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
+		<div class="wrap">
+			<!-- 导航栏 -->
+			<ul class="megamenu skyblue">
+				<li>
+				      <a class="color1" href="showType">首页</a>
+				</li>
+				<li class="grid"> 
+				      <a class="color2" href="#">Exclusive定制</a>
+					<div class="megapanel">
 						<div class="row">
-							<div class="col1" th:each="n1,map:${list1}" th:if="${n.typeid} ==${n1.typeid}">
+							
+							<div class="col1" th:each="li,user:${dhl }">
 								<div class="h_nav">
-									<h4 th:text="${n1.sontypename}"></h4>
-									<ul th:each="n2,map:${list2}" th:if="${n1.sontypeid}==${n2.sontypeid}">
-										<li><a href="shop.html" th:text="${n2.grsonname}"></a></li>
+								<img height="34px" width="40px" th:src="'http://193.112.4.251:2333/thefootimg/pageimg/logo/' +${li.brandlogo}"><a th:href="@{shopselectall(pp=${li.bid})}" th:text="${li.grsonname}"></a>
+									<ul>
+									    <li class="s686">&nbsp</li>
+										<li><img height="70px" width="160px" th:src="'http://193.112.4.251:2333/thefootimg/pageimg/dhl/'+${li.branddhl}"></li>
 									</ul>
 								</div>
 							</div>
-							<img src="images/nav_img.jpg" alt="" />
+							
 						</div>
 					</div>
-			</li>
-				
+					</li>
 			</ul>
-			<div class="clear"></div>
 		</div>
+		
 	</div>
 <div class="single">
     <div class="wrap">
@@ -197,14 +169,14 @@
                 <h3 class="m_3" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.shopname}"></h3>
 
                 <div class="price_single">
-                    <span class="reducedfrom" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'原价:￥'+${m.Oriprice}+'.00'"></span>
-                    <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'折扣:￥'+${m.price} +'.00'"></span>
+                    <span class="reducedfrom" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'$'+${m.price}"></span>
+                   <span class="actual" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="'￥'+${m.Oriprice} + '.00'"></span>
                     <input type="hidden" th:each="m,map:${sa}"  id="shopid" th:if="${map.index} ==0" th:value="${m.shopid}">
                     
                 </div>
                 <ul class="options">
                     <h4 class="m_9" >选择尺寸</h4>
-                    <li th:each="m1,map:${sz}">
+                    <li th:each="m1,map:${sz}" >
                     <a onclick="select(this)" th:id="${m1.sizename}"  class="ss"  th:text="${m1.sizename}"></a></li>
                     <div class="clear"></div>
                 </ul>
@@ -212,21 +184,18 @@
                  <ul class="options">
                     <h4 class="m_9">选择颜色</h4>
                     <li th:each="m,map:${sa}" >
-                    <input type="hidden"  th:id="'2'+${m.colorname}" th:value="${m.colorid}"  class="we">
                     <input type="hidden"  th:id="${m.colorname}" th:value="${m.filename}"  class="ww">
-                    <a onclick='show(this)' th:id="'1'+${m.colorname}"  class="ss1"   th:text="${m.colorname}"></a></li>
+                    <a onclick='show(this)' th:id="${m.colorid}"  class="ss1"   th:text="${m.colorname}"></a></li>
                     <div class="clear"></div>
                 </ul>
                 <div class="btn_form">
-                    <form>
+                   <!--  <form>
                         <input type="submit" value="点击购买" title="">
-                    </form>
+                    </form> -->
                 </div>
                 <ul class="add-to-links">
-                    <li><img src="images/wish.png" alt=""/><a onclick='add()' >加入购物车</a></li>
+                    <li><img src="images/wish.png" alt=""/><a href="" onclick="add()">加入购物车</a></li>
                 </ul>
-                <p class="m_desc">产品描述</p>
-
             </div>
             <div class="clear"></div>
 
@@ -234,7 +203,7 @@
             <ul id="flexiselDemo3">
                 <li th:each="h,jk:${show}"><img height="150px" width="230px" th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${h.filename}" /></a>
                     <div class="grid-flex"><a th:href="@{showSingle(id=${h.shopid})}"  th:text="${h.shopname}"></a>
-                        <p th:text="'￥  '+${h.price}+'.00'"></p></div>
+                        <p th:text="'RS  '+${h.price}"></p></div>
                 </li>
             </ul>
             
@@ -289,6 +258,10 @@
                 <h3 class="m_3" >产品 详情</h3>
                 <p class="m_text" th:each="m,map:${sa}" th:if="${map.index} ==0" th:text="${m.proreview}"></p>
             </div>
+            <div class="toogle">
+                <h3 class="m_3">产品 评论</h3>
+                <p class="m_text"></p>
+            </div>
         </div>
         <div class="clear"></div>
     </div>
@@ -298,7 +271,7 @@
        		<div class="wrap">
        			   <div class="col_1_of_footer-top span_1_of_footer-top">
 				  	 <ul class="f_list">
-				  	 	<li><img src="images/f_icon.png" alt=""><span class="delivery">超过100英镑的所有订单免费送货*</span></li>
+				  	 	<li><img src="images/f_icon.png" alt=""><span class="delivery">超过100元的所有订单免费送货*</span></li>
 				  	 </ul>
 				   </div>
 				   <div class="col_1_of_footer-top span_1_of_footer-top">
@@ -400,6 +373,31 @@
        	 </div>
        	 
        </div>
+         <script type="text/javascript">
+        var sid=$('.myzh').val();
+	    var socket;
+	    if(typeof(WebSocket) == undefined) {
+	        console.log("您的浏览器不支持WebSocket");
+	    }else{
+	        //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+	        socket = new WebSocket("ws://localhost:8080/webSocket/"+sid);
+
+	        //打开事件
+	        socket.onopen = function() {
+	        	
+	        };
+
+	        //获得消息事件
+	        socket.onmessage = function(msg) {
+	            if (msg.data == "101") {
+	                alert("对不起，你的账号已经在其它地方登录，若非本人操作，请及时更换密码...");
+	                location.href="http://localhost:8080/templates/page/login.html";
+	                return;
+	            }
+	        }
+	        };
+
+</script>
        <script type="text/javascript">
 			$(document).ready(function() {
 			
@@ -412,6 +410,45 @@
 				$().UItoTop({ easingType: 'easeOutQuart' });
 				
 			});
+
+
+		     var color=null;
+		     var size=null;
+
+		    function select(obj) {
+		    	$(".ss").attr("style", "color:white");
+				 document.getElementById($(obj).html()).style.color="red";
+			     size=obj.id; 
+			}
+		    function show(obj) {
+		    	$(".ss1").attr("style", "color:white")
+				 document.getElementById(obj.id).style.color="red";
+		 	 $('.etalage_thumb_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
+			 $('.etalage_source_image').attr("src","http://193.112.4.251:2333/thefootimg/shopimg/"+$("#"+$(obj).html()).val());
+			 color=obj.id;
+			};
+
+		    function add() {
+			 if(color!=null && size!=null){
+				 var shopid=$('#shopid').val();
+				 $.post("add?shopid="+shopid+"&size="+size+"&color="+color,function(json){
+		              if(json=="true"){
+		                  alert("加入成功！");
+		                }else if(json=="login"){
+		                      alert("登陆后在来逛逛吧!");
+		                      location.href="login.html";
+		                      }
+					 
+					 },"JSON")
+			 }else{
+		         alert("选个心爱的尺码跟颜色先啦~~");
+				 }
+
+		};
+
+		 
+
+			
 		</script>
         <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><span id="toTopHover" style="opacity: 1;"></span></a>       
 </body></html>

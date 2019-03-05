@@ -20,5 +20,9 @@ public class TypeServiceimpl implements TypeService {
 		
 		return tdao.gettype();
 	}
+	@Override
+	public List<Map<String, Object>> getdhl() {
+		return tdao.getdhl();
+	}
 
 }

@@ -8,10 +8,13 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql:///thefoot
+    url: jdbc:mysql://193.112.4.251:3306/thefoot
     username: root
-    password: 123
-    
+    password: 123 
+  mvc:
+    favicon:
+     enabled: false
+
     
   jackson:
     date-format: yyyy-MM-dd HH:mm
@@ -28,3 +31,4 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 #thymeleaf end
+

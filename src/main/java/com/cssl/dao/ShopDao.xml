@@ -118,4 +118,49 @@
 	<delete id="delshopimg">
 		DELETE FROM `shopimg` WHERE sid = #{s_sid}
 	</delete>
+<select id ="selectorde" resultType="map">
+        SELECT o.`orderid`,o.`ordertypeid`,ot.`ordertypename`,o.`orderdate`,o.`ordernumber`,o.`orderprice`
+        FROM  `orders` o
+        INNER JOIN `ordertype` ot ON o.`ordertypeid`=ot.`ordertypeid`
+        <where>
+            <if test="typeid !=null and typeid !=0" >
+                 and  o.`ordertypeid`=#{typeid}
+            </if>
+            <if test="userid !=null and userid !=0" >
+                 and  o.`userid` =#{userid}
+            </if>
+        </where>
+    </select>
+
+   <update id="updateordetype">
+         UPDATE `orderdetails`SET `orderdetailstypeid`=#{orderid} 
+         WHERE `detailsid` = #{oid}
+    </update>
+
+    <select id="selectordes" resultType="map">
+        SELECT od.`detailsid`,od.`orderid`,sp.`shopname`,sp.`filename`,sp.`Oriprice`,od.`sale`,otp.`orderdetailstypename`
+        FROM `orderdetails` od
+        INNER JOIN `orders` o ON o.`orderid`= od.`orderid`
+        INNER JOIN `shop` sp ON od.`shopid`=sp.`shopid`
+        INNER JOIN `orderdetailstype` otp ON otp.`orderdetailstypeid` =od.`orderdetailstypeid`
+    </select>
+
+    <delete id="deleteordebyid">
+       DELETE  FROM `orders` WHERE `orderid` = #{oid}
+    </delete>
+
+    <delete id="deleteordesbyid">
+       DELETE  FROM `orderdetails` WHERE `orderid` = #{oid}
+    </delete>
+	<select id ="selectdhlall" resultType="map">
+	  SELECT  b.`bid`,g.`grsonname`,b.`brandlogo`,b.`branddhl`
+      FROM `brand` b
+      INNER JOIN `grsontype` g 
+      ON b.`bid`=g.`grsonid`
+	</select>
+	
+
+	   <update id="updateordebyid">
+       UPDATE `orders` SET (`ordertypeid`=2) WHERE `orderid`=#{ordeid}
+    </update>
 </mapper>

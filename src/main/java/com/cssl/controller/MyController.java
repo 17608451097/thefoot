@@ -3,7 +3,6 @@ package com.cssl.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+import com.cssl.VerifyCodeUtils;
 import com.cssl.service.OrderService;
 import com.cssl.service.ShopService;
 import com.cssl.service.UserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.cssl.VerifyCodeUtils;
 
 @Controller
 @RequestMapping("/templates/htpage")
@@ -133,4 +132,9 @@ public class MyController {
         VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);  
 	}
 	
+	@RequestMapping("/zx")
+	public String zx() {
+		
+		return "redirect:/templates/page/zx.html";
+	}
 }

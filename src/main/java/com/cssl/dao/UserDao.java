@@ -18,4 +18,7 @@ public interface UserDao {
 	public List<Map<String,Object>> getbyuser(String uid);
 	
 	public int update(Users us);
+	
+	public int updateRepeat(@Param("repeat")int repeat,@Param("userid")int userid);
+
 }

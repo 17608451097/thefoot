@@ -17,6 +17,7 @@
 				var phone = $("input[name=phone]").val();
 				var rephone = $("input[name=rephone]").val();
 				var code = $("input[name=recode]").val();
+				var ns = $("#ns").val();
 				var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 				if(username==""){
 					$("#nr").text("用户名不得为空")
@@ -41,12 +42,14 @@
 					$("#nr").text("电话不得为空")
 					return false;
 				}
-				if(rephone!=phone){
+				if(ns==1){
+						return true;
+				}else if(rephone!=phone){
 					$("#nr").text("修改手机号请先进行手机认证!")
 					return false;
 				}
 			});
-			
+
 					$("#recode").blur(function(){
 						var code = $("input[name=recode]").val();
 						if(code==""){
@@ -55,6 +58,7 @@
 							 $.post("dxyz?recode="+code,"",function(row){
 									if(row==1){
 										$("#nr").text("验证码已通过");
+										$("#ns").attr("value",'1')
 										$("#bc").attr('disabled',false);
 										setTimeout(function() {
 											$("#nr").text("")}
@@ -132,13 +136,9 @@
 					
 				</div>
 				<div class="right fr">
-					<div class="gouwuche fr"><a href="./dingdanzhongxin.html">我的订单</a></div>
+					<div class="gouwuche fr"><a href="">我的订单</a></div>
 					<div class="fr">
 						<ul>
-							<li><a href="/templates/page/login.html" >登录</a></li>
-							<li>|</li>
-							<li><a href="/templates/page/register.html"  >注册</a></li>
-							<li>|</li>
 							<li><a href="/templates/page/showType">商城首页</a></li>
 						</ul>
 					</div>
@@ -160,14 +160,14 @@
 			<div class="ddzx">订单中心</div>
 			<div class="subddzx">
 				<ul>
-					<li><a href="./dingdanzhongxin.html">我的订单</a></li>
+					<li><a href="order">我的订单</a></li>
 
 				</ul>
 			</div>
 			<div class="ddzx">个人中心</div>
 			<div class="subddzx">
 				<ul>
-					<li><a href="getuser" >我的个人中心</a></li>
+					<li><a href="" >我的个人中心</a></li>
 				</ul>
 			</div>
 		</div>
@@ -185,6 +185,7 @@
 			<span><input style="width: 200px;height: 30px;border-radius: 5px;margin-left: 250px;" placeholder="验证码"   type="text"  id="recode" name="recode"></span>
 			<span><input style="width: 100px;height: 35px;vertical-align: middle;padding-left: 5;border-radius: 5px;"  id="btn" type="button" value="获取验证码"/></span>
 			<br/><span id="nr" style="padding-left: 249px;color: #BC8B75;"></span>
+			<br/><input id="ns" style="display: none" value="" />
 			<span style="padding-left: 872px;"><button style="width: 70px;height: 40px;margin-top: 50px;" id="bc" type="submit">保存</button></span>
 		</form>
 		</div>

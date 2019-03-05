@@ -22,7 +22,6 @@ import javax.sql.DataSource;
 public class MyBatisConfig {
 
     /**
-<<<<<<< HEAD
      *  第三种方式 代码中指定xml和实体类的对应关系
     */
 

@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/templates/page")
 public class mzfController {
-	
+	String i="false";
 	@RequestMapping("/mzf")
 	public void mzf(String price,String type,String pay_id,String param,HttpServletResponse response) throws Exception {
-		String token = "hMsMVR1xI3yPq6kB64Umch2iMBJmV0fT"; //记得更改 http://codepay.fateqq.com 后台可设置
-		String codepay_id ="109711" ;//记得更改 http://codepay.fateqq.com 后台可获得
+		String token = "hMsMVR1xI3yPq6kB64Umch2iMBJmV0fT";   //记得更改 http://codepay.fateqq.com 后台可设置
+		String codepay_id ="109711" ;                                              //记得更改 http://codepay.fateqq.com 后台可获得
 		
-		String notify_url="demo.greatap.cn";//通知地址
-		String return_url="demo.greatap.cn";//支付后同步跳转地址
+		String notify_url="demo.greatap.cn";                                     //通知地址
+		String return_url="http://127.0.0.1:8080/templates/page/hd";//支付后同步跳转地址
 
 		if(price==null){ 
 			price="1";
@@ -31,8 +31,9 @@ public class mzfController {
 	
 	@RequestMapping("/hd")
 	public String hd(String param) {
-		System.out.println(param);
-		return "page/login";
+		param="true";
+		i=param;
+		return "check?param="+i;
 	}
 
 }

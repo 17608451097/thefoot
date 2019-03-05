@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.ShopCatDao">
+	
+	<select id="getShangping" resultType="Shop">
+		SELECT * FROM shop WHERE shopid=#{shopid}
+	</select>
+	
+	<insert id="addShopCat"  parameterType="ShopCat">
+	   INSERT INTO `shopcat`(`shopid`,`counts`,`color`,`size`,`price`,`userid`) VALUES(#{shopid},#{counts},#{color},#{size},#{price},#{userid});
+	</insert>
+	
+	<update id="updateShopCat" >
+	   UPDATE `shopcat` SET counts=#{counts} WHERE s_cat_id=#{s_cat_id};	
+	</update>
+	
+	<delete id="delShopCat">
+     DELETE FROM `shopcat` WHERE `shopid`= #{shopid}
+	</delete>
+	
+	<select id="getCat" resultType="ShopCat">
+		SELECT s_cat_id,`shopid`,`counts`,`color`,`size`,`price`,`userid` FROM shopcat WHERE userid=#{userid} ;
+	</select>
+	
+	<select id="getsum" resultType="int">
+		SELECT sum(price*counts)money FROM shopcat WHERE userid=#{userid} ;
+	</select>
+	
+	<select id="getcount" resultType="int">
+		SELECT sum(counts) FROM shopcat WHERE userid=#{userid} and shopid=#{shopid} ;
+	</select>
+		
+    <delete id="clearShopCat">
+     DELETE FROM `shopcat` WHERE `userid`= #{userid}
+	</delete>
+		
+	<insert id="addorders" parameterType="Orders">
+	INSERT INTO `orders`(`ordertypeid`,`orderdate`,`orderprice`,`userid`,`ordernumber`)VALUES(#{ordertypeid},#{orderdate},#{orderprice},#{userid},#{ordernumber});
+	</insert>
+	
+	<select id="selectid" resultType="int" >
+SELECT MAX(orderid) FROM orders;
+	</select>
+	
+	<insert id="addorderdetails" parameterType="Orderdetails">
+	INSERT INTO `orderdetails`(`orderid`,`shopid`,`shopprice`,`sale`,`orderdetailstypeid`) values(#{orderid},#{shopid},#{shopprice},#{sale},#{orderdetailstypeid}); 
+	
+	</insert>
+	
+	
+	<select id="selectorder">
+	SELECT shopid,shopprice,sale orderid FROM `orderdetails` WHERE orderid IN (SELECT orderid FROM orders WHERE userid=#{userid});
+	
+	</select>
+	
+</mapper>

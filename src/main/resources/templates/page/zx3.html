@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <title>客服咨询</title>
+　<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+ .body{
+ background-color：Blue;
+ 
+ }
+        .talk_con{
+            width:600px;
+            height:500px;
+            border:1px solid #666;
+            margin:50px auto 0;
+            background:#f9f9f9;
+        }
+        .talk_show{
+            width:580px;
+            height:420px;
+            border:1px solid #666;
+            background:#fff;
+            margin:10px auto 0;
+            overflow:auto;
+        }
+        .talk_input{
+            width:580px;
+            margin:10px auto 0;
+        }
+        .whotalk{
+            width:80px;
+            height:30px;
+            float:left;
+            outline:none;
+        }
+        .talk_word{
+            width:420px;
+            height:26px;
+            padding:0px;
+            float:left;
+            margin-left:10px;
+            outline:none;
+            text-indent:10px;
+        }        
+        .talk_sub{
+            width:56px;
+            height:30px;
+            float:left;
+            margin-left:10px;
+        }
+        .atalk{
+           margin:10px; 
+        }
+        .atalk span{
+            display:inline-block;
+            background:#0181cc;
+            border-radius:10px;
+            color:#fff;
+            padding:5px 10px;
+        }
+        .btalk{
+            margin:10px;
+            text-align:right;
+        }
+        .btalk span{
+            display:inline-block;
+            background:#ef8201;
+            border-radius:10px;
+            color:#fff;
+            padding:5px 10px;
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+<!-- <div  id="messageall">
+    <div id="message"></div>
+    <input id="text" type="text"/>
+    <button onclick="send()">发送消息</button>
+    <button onclick="closeWebSocket()">退出</button>
+</div> -->
+<div class="talk_con">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="ss">客服状态:未上线</a>
+        <div class="talk_show"  id="message">
+
+             <div class="atalk"><span id="bsay">我是客服，有何贵干</span></div>
+
+        </div>
+        <div class="talk_input">
+
+            <input type="text" class="talk_word" id="text">
+            <!-- <input type="button" value="发送" class="talk_sub" id="talksub"> -->
+                <button onclick="send()" class="talk_sub" id="talksub">发送</button>
+        </div>
+    </div>
+
+
+
+</body>
+
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://localhost:8080/zx");
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+    	
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("客服退出聊天！");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+    		
+
+    		
+        if(innerHTML==document.getElementById('text').value){
+        	document.getElementById('message').innerHTML +='<div class="btalk"><span id="asay">'+innerHTML+'</span></div>';
+            document.getElementById('text').value=null;
+            }else{
+                document.getElementById('message').innerHTML +='<div class="atalk"><span id="asay">'+innerHTML+'</span></div>';
+                document.getElementById('ss').innerHTML ='<a id="ss">客服状态:上线</a>';
+                document.getElementById('text').value=null;
+                
+                }
+
+
+        
+
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+    //发送消息
+    function send() {
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }
+</script>
+</html>

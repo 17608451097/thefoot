@@ -1,9 +1,11 @@
-<html class="translated-ltr"><head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 <title>查看</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="css/style2.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
         $(document).ready(function() {
@@ -30,7 +32,6 @@
                     $(".dropdown dd ul").hide();
             });
 
-
             $("#flagSwitcher").click(function() {
                 $(".dropdown img.flag").toggleClass("flagvisibility");
             });
@@ -51,20 +52,34 @@
 				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
 			});
 		});
+		function del(id,index){ 
+			   var i=confirm("确认删除吗?");
+			   
+			   $.post("delcat?shopid="+id,function(sum){
+                if(sum!=0){  
+			          $("#product_id_"+index).remove();
+			          document.getElementById('sum').value = "￥"+sum;
+                     }
+				   },"JSON");
+		};
+
+		function check(){
+          location.href= "zf";
+           $("#product_id").remove();
+			}
 	</script>
-<link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css"></head>
+</head>
 <body>
   <div class="header-top">
 	 <div class="wrap"> 
 		<div class="logo">
-			<a href="index.html"><img src="images/logo.png" alt=""></a>
+			<a href="showType"><img width="120px" src="images/logo.jpg" alt=""></a>
 	    </div>
 	    <div class="cssmenu">
 		   <ul>
-			 <li class="active"><a href="register.html">注册</a></li> 
-			 <li><a href="shop.html">商品列表</a></li> 
-			  <li><a href="checkout.html">购物车</a></li> 
-			 <li><a href="checkout.html">我的账户</a></li> 
+		    <input type="hidden"  class="myzh" th:value="${session.sid}">
+			 <li><a href="shopselectall">商品列表</a></li> 
+			 <li><a href="/templates/gotopage/getuser">我的账户</a></li> 
 		   </ul>
 		</div>
 		<ul class="icon2 sub-icon2 profile_img">
@@ -77,246 +92,65 @@
 		</ul>
 		<div class="clear"></div>
  	</div>
-   </div><div class="header-bottom">
+   </div>
+   <div class="header-bottom">
 		<div class="wrap">
-			<!-- start header menu -->
+			<!-- 导航栏 -->
 			<ul class="megamenu skyblue">
-				<li><a class="color1" href="#">首页</a></li>
-				<li class="grid"><a class="color2" href="#">男装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">最新上市</a></li>
-									</ul>
-								</div>
-								<div class="h_nav">
-									<h4 class="top">男装</h4>
-									<ul>
-										<li><a href="shop.html">最新上市</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格区</h4>
-									<ul>
-										<li><a href="shop.html">潮牌</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<img src="images/nav_img.jpg" alt="" />
-						</div>
-					</div></li>
-				<li class="active grid"><a class="color4" href="#">女装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>商品</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>饰品</h4>
-									<ul>
-										<li><a href="shop.html">头饰</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>我的公司</h4>
-									<ul>
-										<li><a href="shop.html">风格</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>账户</h4>
-									<ul>
-										<li><a href="shop.html">登陆</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">风格</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<img src="images/nav_img1.jpg" alt="" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color5" href="#">童装</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-								<div class="h_nav">
-									<h4 class="top">男款</h4>
-									<ul>
-										<li><a href="shop.html">新款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>我的风格</h4>
-									<ul>
-										<li><a href="shop.html">男子气概</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<img src="images/nav_img2.jpg" alt="" />
-						</div>
-					</div></li>
-				<li><a class="color6" href="#">销售</a>
-					<div class="megapanel">
-						<div class="row">
-							<!-- <div class="col1">
-							<div class="h_nav">
-								<h4>shop</h4>
-								<ul>
-									<li><a href="shop.html">new arrivals</a></li>
-									<li><a href="shop.html">men</a></li>
-									<li><a href="shop.html">women</a></li>
-									<li><a href="shop.html">accessories</a></li>
-									<li><a href="shop.html">kids</a></li>
-									<li><a href="shop.html">brands</a></li>
-								</ul>	
-							</div>	
-							<div class="h_nav">
-								<h4 class="top">my company</h4>
-								<ul>
-									<li><a href="shop.html">trends</a></li>
-									<li><a href="shop.html">sale</a></li>
-									<li><a href="shop.html">style videos</a></li>
-									<li><a href="shop.html">accessories</a></li>
-									<li><a href="shop.html">kids</a></li>
-									<li><a href="shop.html">style videos</a></li>
-								</ul>	
-							</div>												
-						</div> -->
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color7" href="#">定制</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color8" href="#">商城</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>自我风格</h4>
-									<ul>
-										<li><a href="shop.html">爆款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>风格</h4>
-									<ul>
-										<li><a href="shop.html">爆款上市</a></li>
-									</ul>
-								</div>
-							</div>
-						</div></li>
-				<li><a class="color9" href="#">足球</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>流行</h4>
-									<ul>
-										<li><a href="shop.html">新款</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col1"></div>
-						</div>
-					</div></li>
-				<li><a class="color10" href="#">跑鞋</a></li>
-				<li><a class="color11" href="#">原件</a></li>
-				<li><a class="color12" href="#">篮球</a></li>
+				<li>
+				      <a class="color1" href="showType">首页</a>
+				</li>
+			
 			</ul>
-			<div class="clear"></div>
 		</div>
+		
 	</div>
 	
-	
-       <div class="login">
+	 
+       <div class="login" th:if="${#maps.isEmpty(session.shopmap)}" >
          <div class="wrap">
     	     <h4 class="title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">购物车是空的</font></font></h4>
-    	     <p class="cart"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您的购物车中没有商品。</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">点击</font></font><a href="index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此处</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">继续购物</font></font></p>
+    	     <p class="cart"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您的购物车中没有商品。</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">点击</font></font><a href="shopselectall"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此处</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">继续购物</font></font></p>
     	   </div>
 		</div>
 		
+		
+		
+<div class="wrap" th:if="${!#maps.isEmpty(session.shopmap)}">
+
+	<div id="shopping">
+			<table>
+				<tr>
+				
+					<th>商品名称</th>
+					<th>商品价格</th>
+					<th>购买数量</th>
+					<th>操作</th>
+				</tr>
+				<tr  th:each="map:${session.shopmap}" th:id="'product_id_'+${mapStat.index}">
+				
+					<td class="thumb"><img th:src="'http://193.112.4.251:2333/thefootimg/shopimg/'+${mapStat.current.value.shop.filename}" width="50px" height="50px" /><a href="single.html" th:text="${mapStat.current.value.shop.shopname}" >名称</a></td>
+					<td class="price" id="price_id_1">
+						￥<span id="money" th:text="${mapStat.current.value.shop.oriprice}">1</span>
+					</td>
+					<td class="number">
+						    <input name="changecount" type="button" value="-">
+							<input id="number_id_"+${mapStat.current.key} type="text" name="number"  th:value="${mapStat.current.value.counts}" size="1"/>
+							<input name="changecount" type="button" value="+">
+						    <input type="hidden" th:value="${mapStat.current.key}" />
+					</td>
+		
+					<td class="delete"><a href="#" th:onclick="'javascript:del('+${mapStat.current.key}+','+${mapStat.index}+')'">删除</a></td>
+					
+				</tr>
+				
+			</table> 
+				<div class="button"><input id="sum"  type="button" value="" th:value="'￥'+${session.sum}" onclick="check()" style="background-color:black;color:#EDEDED"/></div>
+		
+	</div>
+	
+</div>
+			
 		
         <div class="footer">
        	  <div class="footer-top">
@@ -443,6 +277,60 @@
 				$().UItoTop({ easingType: 'easeOutQuart' });
 				
 			});
+
+			$(function(){
+				   
+				   $("input[name=changecount]").click(function(){
+					   var flag=$(this).val().trim();
+					   var value=$(this).siblings(":text").val();
+					   if(flag=="+"){
+						   value++;
+						  
+					   }else{
+						   if(value>1){
+						   value--;
+						  
+						   }
+					   }
+					    $(this).siblings(":text").val(value);
+					    var count=$(this).siblings(":text").val();
+					    var id= $(this).siblings(":hidden").val();
+					  
+					   $.post("changecount?count="+count+"&shopid="+id,function(sm){
+                              if(sm!=null){                             	        
+                              document.getElementById('sum').value = "￥"+sm;
+                              }
+						   },"JSON");
+				   });
+				  
+					   
+				});
+				
 		</script>
+		<script type="text/javascript">
+        var sid=$('.myzh').val();
+	    var socket;
+	    if(typeof(WebSocket) == undefined) {
+	        console.log("您的浏览器不支持WebSocket");
+	    }else{
+	        //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+	        socket = new WebSocket("ws://localhost:8080/webSocket/"+sid);
+
+	        //打开事件
+	        socket.onopen = function() {
+	        	
+	        };
+
+	        //获得消息事件
+	        socket.onmessage = function(msg) {
+	            if (msg.data == "101") {
+	                alert("对不起，你的账号已经在其它地方登录，若非本人操作，请及时更换密码...");
+	                location.href="http://localhost:8080/templates/page/login.html";
+	                return;
+	            }
+	        }
+	        };
+
+</script>
         <a href="#" id="toTop" style="display: none;"><span id="toTopHover"></span><span id="toTopHover" style="opacity: 1;"></span></a>       
 </body></html>

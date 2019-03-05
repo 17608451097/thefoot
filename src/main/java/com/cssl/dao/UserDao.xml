@@ -24,4 +24,7 @@
 		 UPDATE users SET `companyname`=#{companyname},`PASSWORD`=#{password},`email`=#{email},`address`=#{address},`phone`=#{phone} WHERE userid=#{userid}
 	</update>
 	
+	<update id="updateRepeat">
+	UPDATE `users` SET `repeat`=#{repeat} WHERE `userid`=#{userid}
+	</update>
 </mapper>

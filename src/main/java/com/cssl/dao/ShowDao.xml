@@ -31,7 +31,6 @@ INNER JOIN `colors` cd ON sk.`colorid`=cd.`colorid`
 INNER JOIN `shop` sp ON sk.`shopid`=sp.`shopid`
 INNER JOIN `shopimg` sg ON sk.`colorid`=sg.`colorsid`
 WHERE sk.`shopid`=#{id} AND sg.`shopid`=#{id}
-GROUP BY cd.`colorname`
 	</select>
 		<select id="getShopsizename" resultType="map">
  SELECT se.`sizename`

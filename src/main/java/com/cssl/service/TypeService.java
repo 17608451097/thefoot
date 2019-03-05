@@ -6,4 +6,6 @@ import java.util.Map;
 public interface TypeService {
 	
 	public List<Map<String,Object>> gettype();
+	
+	public List<Map<String,Object>> getdhl();
 }

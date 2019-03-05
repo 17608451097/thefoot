@@ -2,12 +2,54 @@
 .nav fl{
 	margin-left: 40px;
 }
+.orde_tq{
+	font-size: 13px;
+	font-family: '微软雅黑'; 
+	color: #e27e7e;
+}
+.ordedate{
+	height: 25px;
+	width: 119px;
+	margin-left: 409px;
+	margin-top: -26px;
+}
+.ordebyid{
+	height: 38px;
+	width: 345px;
+}
+.ordeid{
+	height: 27px;
+	width: 239px;
+	margin-left: 49px;
+	margin-top: 7px;
+}
+.orde_btn{
+	height: 27px;
+	width: 65px;
+	margin-left: 287px;
+	margin-top: -27px;
+}
+.shopzf{
+		margin-left: -87px;
+	    margin-top: -27px;
+	    font-size: 12px;
+        font-family: '微软雅黑'; 
+        color: #ff781d;
+}
 .shopsj{
 	     display:inline-block;
          padding-left: 52px;
          padding-top: 10px;
          font-size: 13px;
-         
+}
+.shopzt{
+	  	 display:inline-block;
+	  	 width:182px;
+	  	 height:22px;
+         padding-left: 70px;
+         padding-top: 10px;
+         font-size: 13px;
+         font-family: serif;
 }
 .shopdj{
 	     padding-left:50px;
@@ -53,7 +95,7 @@
          padding-left: 12px;
          padding-top: 19px;
          font-size: 14px;
-         font-family: '寰蒋闆呴粦';
+         font-family: '微软雅黑';
          color: #5a5353;
 }
 .shopsrc{
@@ -75,7 +117,8 @@
 }
 .shopdel{
 		 display:inline-block;
-         padding-left: 499px;
+		 float:right;
+         padding-right:60px;
          padding-top: 11px;
 }
 .shopdel a{
@@ -90,7 +133,7 @@
 	     padding-left: 6px;
 	     padding-top:10px;
          font-size: 13px;
-         font-family: '寰蒋闆呴粦';
+         font-family: '微软雅黑';
 }
 .shopdml{
 	margin-left:-40px;
@@ -146,8 +189,8 @@
 	font-size:9px;
 	font-family:serif;
 	display: inline-block;
-	margin-left: 842px;
-	margin-top: 7px;
+	margin-left: 833px;
+	margin-top: -32px;
 }
 
 .dh_1{
@@ -155,7 +198,7 @@
 	
 }
 .del_1{
-		margin-left: 154px;
+		margin-left: 434px;
 }
 .del_dd{
 	display: inline-block;
@@ -344,13 +387,13 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .jieshao .right .xzbb .banben a:hover{color:#ff6700;}
 .jieshao .right .xzbb .banben:hover{border:1px solid #ff6700;}
 .jieshao .right .xzbb .banben a .yuandian{display: inline-block;height: 15px;width: 15px;border-radius: 50%;background: #000;margin-left: 80px;}
-/*闁褰囩拠锔藉剰*/
+/*閫夊彇璇︽儏*/
 .xqxq{height: 80px;width: 555px;background: rgb(255,255,255);padding:20px;}
-/*閺勵垰鎯佹稉瀣礋*/
+/*鏄惁涓嬪崟*/
 .xiadan{height: 50px;line-height: 50px;}
 .xiadan .jrgwc{height: 50px;width: 200px;border:none;background:#ff6700;color:#fff;font-size: 18px;font-weight: bold;cursor:pointer;margin-right: 50px;}
 .xiadan .jrgwc:hover{border:1px solid #fff;}
-/*閹存垹娈戠拹顓犲⒖鏉烇拷*/
+/*鎴戠殑璐墿杞�*/
 .banner_x .wdgwc{height: 100px;line-height: 100px;font-weight:bold;font-size: 24px;}
 .banner_x .wxts{height: 90px;line-height: 105px;font-size: 12px;color:#777;}
 .banner_x .dlzc{height: 100px;line-height: 100px;}
@@ -358,7 +401,7 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .banner_x .dlzc ul li a{display:block;padding:0 8px;font-size: 12px;font-family: Times New Roman;color: #777;}
 .banner_x .dlzc ul li a:hover{color:#ff6700; }
 .xiantiao{width: 100%;height: 2px;background:#ff6700; }
-/*鐠愵厾澧挎潪锕侇嚊閸楋拷*/
+/*璐墿杞﹁鍗�*/
 .gwcxqbj{width: 100%;height:400px;background: rgb(245,245,245);padding-bottom: 20px;}
 .gwcxqbj .gwcxd{background: #fff;width: 1226px;height: auto;padding-top: 30px;}
 .gwcxqbj .gwcxd .top2{width:1226px;height: 70px;}
@@ -382,7 +425,7 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .gwcxqbj .gwcxd .content2 .sub_content .shuliang{width: 70px;height: 35px;border:2px solid #ccc;text-align: center;font-size:16px;color:#ff6700;}
 .gwcxqbj .gwcxd .content2 .sub_content a{display: block;width: 20px;height: 20px;border-radius: 10px;color:#000;}
 .gwcxqbj .gwcxd .content2 .sub_content a:hover{color:#ff6700;}
-/*缂佹挾鐣婚崡锟�*/
+/*缁撶畻鍗�*/
 .jiesuandan{width:1226px;height: 50px;background: #fff;}
 .jiesuandan .tishi{width: 400px;height: 50px;line-height: 50px;}
 .jiesuandan .tishi ul li{float: left; font-size: 14px;display: inline-block;padding:0 10px;color:#666;}
@@ -393,10 +436,10 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .jiesuandan .jiesuan .jiesuanjiage span{font-size: 24px;font-weight: bold;}
 .jiesuandan .jiesuan .jsanniu .jsan{width: 200px;height: 50px;color:#fff;background:rgb(255,103,0); font-size: 20px;border:none;cursor:pointer;}
 .jiesuandan .jiesuan .jsanniu .jsan:hover{background: rgb(242,88,7);}
-/*娑擃亙姹夋稉顓炵妇*/
+/*涓汉涓績*/
 .grzxbj{width: 100%;height:auto;background: rgb(245,245,245);padding-bottom: 20px;padding-top: 20px;}
 .grzxbj .selfinfo{width: 1226px;}
-.grzxbj .selfinfo .lfnav{width: 234px;height: 500px;background: #fff;}
+.grzxbj .selfinfo .lfnav{width: 234px;height:100%;background: #fff;}
 .grzxbj .selfinfo .lfnav .ddzx{width: 234px;height: 40px;line-height: 40px;font-size: 19px; margin:30px 20px 10px 40px;color:rgb(51,51,51);}
 .grzxbj .selfinfo .lfnav .subddzx ul li{display: block;width: 194px;height: 40px;line-height: 40px;padding-left: 40px;}
 .grzxbj .selfinfo .lfnav .subddzx ul li a{color:rgb(117,117,117);}
@@ -404,7 +447,7 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .grzxbj .selfinfo .rtcont{width: 978px;height:auto;background: #fff;}
 .grzxbj .selfinfo .rtcont .ddzxbt{width: 938px;height: 56px;line-height: 65px;font-size: 22px;font-weight:bold;color:rgb(117,117,117);padding-left: 40px;border-bottom: 2px solid #F5F5F5;}
 .grzxbj .selfinfo .rtcont .grzlbt{width:938px;height: 60px;line-height: 60px;font-size: 20px;color:rgb(117,117,117);}
-.grzxbj .selfinfo .rtcont .subgrzl{height: 45px;line-height: 45px;width: 900px;margin-top: 10px;margin-bottom: 10px;border-radius: 3px;}
+.grzxbj .selfinfo .rtcont .subgrzl{height: 45px;line-height: 45px;width: 900px;background: rgb(253,253,253);margin-top: 10px;margin-bottom: 10px;border-radius: 3px;}
 .grzxbj .selfinfo .rtcont .subgrzl span:nth-of-type(1){display: inline-block;font-size: 15px;font-weight: bold;color:rgb(117,117,117);width: 70px;height: 45px;line-height: 45px;padding-left: 20px;}
 .grzxbj .selfinfo .rtcont .subgrzl span:nth-of-type(2){display: inline-block;font-size: 15px;color:rgb(117,117,117);width: 480px;height: 45px;line-height: 45px;padding-left: 120px;
 }
@@ -412,7 +455,7 @@ header .top .right .gouwuche:hover{color:#000;background: #666;}
 .grzxbj .selfinfo .rtcont .subgrzl span a{color:teal; }
 .grzxbj .selfinfo .rtcont .subgrzl span a:hover{color:#ff6700; }
 
-/*鐠併垹宕熸稉顓炵妇*/
+/*璁㈠崟涓績*/
 .grzxbj .selfinfo .rtcont .ddxq{width: 938px;height: auto;font-size: 17px;color:rgb(117,117,117); 
 	border-bottom: 1px solid #ccc;padding-left: 40px;}
 .grzxbj .selfinfo .rtcont .ddxq .ddspt{width: 80px;height: 80px;margin: 19px 25px 0 0;border:1px solid #aaa;}

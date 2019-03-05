@@ -11,6 +11,8 @@
 
 </head>
 <body>
+<script src="js/zeroModal.min.js"></script>
+<link href="css/zeroModal.css" rel="stylesheet">
 <div style="text-align: center;">
 <style type="text/css">
 	.ss{
@@ -27,6 +29,35 @@
 	#sss,#ssf{
 		padding-top: 30px;
 	}
+	input{
+		width: 165px;
+		height: 30px;
+		border-radius: 5px;
+		margin-left: 100px;
+	}
+	textarea{
+		width: 165px;
+		height: 50px;
+		border-radius: 5px;
+		box-shadow: darkgrey 6px 8px 30px -2px ;
+		vertical-align: middle;
+		margin-left: 100px;
+	}
+	select,option{
+		width: 165px;
+		height: 25px;
+		border-radius: 5px;
+		margin-left: 100px;
+	}
+	body{
+		background-color: E8F2FE;
+	}
+	button{
+		width: 100px;
+		height: 30px;
+		border-radius: 5px;
+		margin-left: 100px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -37,23 +68,23 @@
 			var proreview =  $("textarea[name=proreview]").val();
 			var grsonid =  $("#grson").val(); 
 			if(price==""){
-				alert("商品价格不能为空!");
+				zeroModal.alert('商品价格不能为空!');
 				return false;
 			}
 			if(oriprice==""){
-				alert("商品原价不能为空!");
+				zeroModal.alert('商品原价不能为空!');
 				return false;
 			}
 			if(prodetails==""){
-				alert("商品详情不能为空!");
+				zeroModal.alert('商品详情不能为空!');
 				return false;
 			}
 			if(proreview==""){
-				alert("商品描述不能为空!");
+				zeroModal.alert('商品描述不能为空!');
 				return false;
 			}
 			if(grsonid==0){
-				alert("请选择商品分类!");
+				zeroModal.alert('请选择商品分类!');
 				return false;
 			}
 			return true;
@@ -96,7 +127,7 @@
 			</tr>
 			<tr>
 				<td class="ss">商品图片</td>
-				<td class="sc"><input name="file" type="file" /></td>
+				<td class="sc"><input name="file" type="file" style="margin-left: 4px;" /></td>
 			</tr>
 			<!-- <tr>
 				<td class="ss">商品数量</td>
